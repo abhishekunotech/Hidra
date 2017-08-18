@@ -1,6 +1,4 @@
-# D30-HectorDA
-[![GoDoc](https://godoc.org/github.com/dminGod/D30-HectorDA?status.svg)](https://godoc.org/github.com/dminGod/D30-HectorDA)
-[![Go Report Card](https://goreportcard.com/badge/github.com/dminGod/D30-HectorDA)](https://goreportcard.com/report/github.com/dminGod/D30-HectorDA)
+# Hydra - Working Title for Middleware in Golang
 ### Overview
 
 ---
