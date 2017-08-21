@@ -1,3 +1,7 @@
+//Package handlers contains definitions for different functions.
+//Install using go install in this directory.
+//Author: Operations Management Team - Unotech Software.
+
 package handlers
 
 import (
@@ -9,6 +13,7 @@ import (
 	"net/http"
 )
 
+//Structure for go type definition of the JSON 
 type TicketDetails struct {
 	TicketId int
 }
@@ -81,38 +86,51 @@ type Source_array struct {
 	Nagios_statecode string `json:"nagios_statecode"`
 }
 
+//This function will generate tickets and return the ticket in json format.
 func creatorOfTickets(jsonInput string) string {
+
+//API response is returned in JSON format from url 
 	url := "http://192.168.2.108/felicity/nph-genericinterface.pl/Webservice/TicketAPI/TicketCreate?UserLogin=abhik&Password=abhik"
 	fmt.Println("URL:>", url)
-
+//JSON input array
 	var jsonStr = []byte(jsonInput)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+
+//Create custom header 
 	req.Header.Set("X-Custom-Header", "myvalue")
 	req.Header.Set("Content-Type", "application/json")
-
+//A “Client” is an HTTP client.
 	client := &http.Client{}
+
+//“Do” sends an HTTP request and returns an HTTP response.
 	resp, err := client.Do(req)
+
+////Errors are handled if any.
 	if err != nil {
 		panic(err)
 	}
+//When “err” is nil, “resp” always contains a non-nil “resp.Body”. 
+//Callers should close “resp.Body” using defer when done reading from it.
 	defer resp.Body.Close()
 
 	fmt.Println("response Status:", resp.Status)
 	fmt.Println("response Headers:", resp.Header)
+//ReadAll reads from response until an error or EOF and returns the data it read.
+
 	body, _ := ioutil.ReadAll(resp.Body)
 	fmt.Println("response Body:", string(body))
 	return string(body)
 }
-
+//F
 func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "hello bla")
 }
-
+//Function to get the details about ticket.
 func GetTicketDetails(w http.ResponseWriter, r *http.Request) {
 	tick := &TicketDetails{TicketId: 123}
 	json.NewEncoder(w).Encode(tick)
 }
-
+//Function to get CI logs.
 func GetCILogs(w http.ResponseWriter, r *http.Request) {
 
 	url := "http://192.168.2.52:59200/_search?q=172.34.144.133&pretty=true&size=1"
@@ -134,17 +152,18 @@ func GetCILogs(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(data)
 
 }
-
+//Function to get CI jobs.
 func GetCIJobs(w http.ResponseWriter, r *http.Request) {
 	CIJob := &CIJobs{JobId: 123}
 	json.NewEncoder(w).Encode(CIJob)
 }
 
+//Function to get CI details.
 func GetCIDetails(w http.ResponseWriter, r *http.Request) {
 	CIDetail := &CIDetails{CIId: 123}
 	json.NewEncoder(w).Encode(CIDetail)
 }
-
+//Function to create ticket.
 func Ticketcreate(w http.ResponseWriter, r *http.Request) {
 
 	bodyVal, _ := ioutil.ReadAll(r.Body)
