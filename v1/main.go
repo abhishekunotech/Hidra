@@ -10,5 +10,7 @@ func main() {
 
 	router := routes.NewRouter()
 
-	go log.Fatal(http.ListenAndServeTLS(":443", "../server.crt", "../server.key", router))
+	//log.Fatal(http.ListenAndServeTLS(":443", "../server.crt", "../server.key", router))
+
+	go log.Fatal(http.ListenAndServe(":8080", router))
 }

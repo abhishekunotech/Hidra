@@ -4,7 +4,7 @@ import (
     "net/http"
     "github.com/gorilla/mux"
     "github.com/UnotechSoftware/felicitymiddleware/v1/handlers"
-    "github.com/UnotechSoftware/felicitymiddleware/v1/logger"
+    "github.com/UnotechSoftware/felicitymiddleware/v1/util/logger"
 )
 
 type Route struct {
