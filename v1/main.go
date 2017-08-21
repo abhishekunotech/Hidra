@@ -3,11 +3,12 @@ package main
 import (
 	"log"
 	"net/http"
+    "github.com/abhishekunotech/hydra/v1/routes"
 )
 
 func main() {
 
-	router := NewRouter()
+	router := routes.NewRouter()
 
-	go log.Fatal(http.ListenAndServeTLS(":443", "server.crt", "server.key", router))
+	go log.Fatal(http.ListenAndServeTLS(":443", "../server.crt", "../server.key", router))
 }
