@@ -1,10 +1,11 @@
 package routes
 
 import (
-	"github.com/abhishekunotech/hydra/v1/handlers"
-	"github.com/abhishekunotech/hydra/v1/logger"
-	"github.com/gorilla/mux"
-	"net/http"
+    "net/http"
+    "github.com/gorilla/mux"
+    "github.com/Unotechsoftware/Hydra/v1/handlers"
+    "github.com/Unotechsoftware/Hydra/v1/utils"
+
 )
 
 type Route struct {
@@ -21,9 +22,10 @@ func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes {
 
-		var handler http.Handler
-		handler = route.HandlerFunc
-		handler = logger.Logger(handler, route.Name)
+    	var handler http.Handler
+	handler = route.HandlerFunc
+	handler = utils.Logger(handler, route.Name)
+
 
 		router.
 			Methods(route.Method).
