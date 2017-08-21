@@ -1,4 +1,4 @@
-# Hydra - Working Title for Middleware in Golang
+# Hydra
 ### Overview
 
 ---
