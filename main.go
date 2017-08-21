@@ -7,13 +7,12 @@
 package main
 import (
 
-	"github.com/abhishekunotech/hydra/v1/routes"
 	"log"
 	"net/http"
 //	"fmt"
 	"os"
 	"github.com/antigloss/go/logger"
-    	"github.com/Unotechsoftware/Hydra/v1/routes"
+    	"github.com/Unotechsoftware/Hydra/routes"
 //    	"github.com/UnotechSoftware/hydra/v1/utils"
 
 
