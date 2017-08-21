@@ -2,7 +2,7 @@ package utils
 
 import (
 "net/http"
-"github.com/UnotechSoftware/felicitymiddleware/v1/utils/logger"
+"github.com/UnotechSoftware/hydra/v1/utils/logger"
 
 )
 func Logger(handler http.Handler, name string) http.Handler {

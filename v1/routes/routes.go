@@ -3,8 +3,8 @@ package routes
 import (
     "net/http"
     "github.com/gorilla/mux"
-    "github.com/UnotechSoftware/felicitymiddleware/v1/handlers"
-    "github.com/UnotechSoftware/felicitymiddleware/v1/utils"
+    "github.com/UnotechSoftware/hydra/v1/handlers"
+    "github.com/UnotechSoftware/hydra/v1/utils"
 )
 
 type Route struct {
