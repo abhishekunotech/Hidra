@@ -4,7 +4,7 @@ import (
     "net/http"
     "github.com/gorilla/mux"
     "github.com/UnotechSoftware/felicitymiddleware/v1/handlers"
-    "github.com/UnotechSoftware/felicitymiddleware/v1/util/logger"
+    "github.com/UnotechSoftware/felicitymiddleware/v1/utils"
 )
 
 type Route struct {
@@ -23,7 +23,7 @@ func NewRouter() *mux.Router {
 
     	var handler http.Handler
 	handler = route.HandlerFunc
-	handler = logger.Logger(handler, route.Name)
+	handler = utils.Logger(handler, route.Name)
 
         router.
             Methods(route.Method).
