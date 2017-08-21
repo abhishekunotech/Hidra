@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/abhishekunotech/hydra/v1/routes"
 	"log"
 	"net/http"
-    "github.com/abhishekunotech/hydra/v1/routes"
 )
 
 func main() {
