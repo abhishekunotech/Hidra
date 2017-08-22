@@ -1,6 +1,12 @@
-package main
+//This is the entry point for a middleware to Felicity Components
+//Install using go install in this directory
+//Running this will start up an HTTPS Server instance on port 443, and can be accessed at http://localhost:443.
+//You will first need to generate SSL Certificates for the server using instructions from README.md, if you do not already have any certificates
+//Author: Operations Management Team - Unotech Software
 
+package main
 import (
+
 	"github.com/abhishekunotech/hydra/v1/routes"
 	"log"
 	"net/http"
@@ -10,11 +16,16 @@ import (
     	"github.com/Unotechsoftware/Hydra/v1/routes"
 //    	"github.com/UnotechSoftware/hydra/v1/utils"
 
+
 )
 
 func main() {
 
-	router := routes.NewRouter()
+//Implements a router.  The router defines the list of all available APIs  
+
+   router := routes.NewRouter()
+
+
 
 	var AccessLog string = "/var/log/access_log"
 	var _,err = os.Stat(AccessLog)
@@ -37,5 +48,21 @@ func main() {
 			100, // maximum size of a logfile in MB
 			false) // whether logs with Trace level are written down
 logger.Info("Some Info")
+  
+  //ListenAndServeTLS starts an HTTPS server.
+//Change the first and second parameters as per the locations of your certificates
+
 	 log.Fatal(http.ListenAndServe(":8080", router))
+
 }
+
+
+
+
+
+
+
+
+
+
+
