@@ -1,10 +1,13 @@
-//This is the entry point for a middleware to Felicity Components
-//Install using go install in this directory
-//Running this will start up an HTTPS Server instance on port 443, and can be accessed at http://localhost:443.
-//You will first need to generate SSL Certificates for the server using instructions from README.md, if you do not already have any certificates
-//Author: Operations Management Team - Unotech Software
+/*
+    This is the entry point for a middleware to Felicity Components
 
-package main
+	Install using go install in this directory
+	Running this will start up an HTTPS Server instance on port 443, and can be accessed at http://localhost:443.
+	You will first need to generate SSL Certificates for the server using instructions from README.md, if you do not already have any certificates
+
+	Author: Operations Management Team - Unotech Software
+*/
+package Hydra
 import (
 
 	"log"
@@ -18,6 +21,9 @@ import (
 
 )
 
+/*
+	The main Function will create a router which defines the list of all available APIs and create a http server to listen to request for these API
+*/
 func main() {
 
 //Implements a router.  The router defines the list of all available APIs  

@@ -1,7 +1,9 @@
-//This function will wrap the passed handler with logging and timing functionality.
-//Install using go install in this directory.
-//Author: Operations Management Team - Unotech Software.
+/*
+	This function will wrap the passed handler with logging and timing functionality.
+	Install using go install in this directory.
 
+	Author: Operations Management Team - Unotech Software.
+*/
 
 package logger
 
