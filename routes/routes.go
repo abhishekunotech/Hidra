@@ -10,8 +10,8 @@ package routes
 import (
     "net/http"
     "github.com/gorilla/mux"
-    "github.com/Unotechsoftware/Hydra/v1/handlers"
-    "github.com/Unotechsoftware/Hydra/v1/utils"
+    "github.com/Unotechsoftware/Hydra/handlers"
+    "github.com/Unotechsoftware/Hydra/utils"
 
 )
 
