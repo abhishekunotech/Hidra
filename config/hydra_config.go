@@ -1,3 +1,12 @@
+/*
+	This package provides configuration for Hydra
+
+	This includes the Request Abstract. Individual structs as *_config will hold configurations specific to the individual components in Felicity Platform. 
+	
+	This package uses Viper for Configuration Management
+	
+	Author: Operations Management Team - Unotech Software
+*/
 package config
 
 import (
@@ -25,23 +34,28 @@ type	Request_config	struct {
 }
 
 type ServiceDesk_config struct {
+	HydraRequestServiceDesk	Request_config
+	TicketID	int
 }
 
 type Asset_config struct {
-	
+	HydraRequestAsset	Request_config
 }
 
 type Rundeck_config struct {
-	
+	HydraRequestRundeck	Request_config
 }
 
 type EventManager_config struct {
+	HydraRequestEvent	Request_config
 }
 
 type Monitoring_config struct {
+	HydraRequestMonitor	Request_config
 }
 
 type Hydra_config struct {
+	LogFolder	string
 }
 
 type HyConfig struct {
@@ -50,11 +64,11 @@ type HyConfig struct {
 }
 
 // Dont need to add the .toml in the name here
-var configFile string = "dwara.toml"
+var configFile string = "hydra.toml"
 
 // With trailing slash
 var linuxConfigFolders []string = []string{"/etc/"}
-var windowsConfigFolders []string = []string{"\\dwara\\"}
+var windowsConfigFolders []string = []string{"\\hydra\\"}
 var ViConfig *viper.Viper
 
 /*
@@ -121,7 +135,7 @@ func getConfigFile() (retFilePath string, retErrors []error) {
 	flag.Parse()
 	fmt.Println("The flag config file", flagConfigFile)
 
-	envConfigFile := os.Getenv("DWARA_CONFIG_FILE")
+	envConfigFile := os.Getenv("HYDRA_CONFIG_FILE")
 
 	// If we are in windows, check the folders we generally put stuff in
 	if runtime.GOOS == "windows" {
