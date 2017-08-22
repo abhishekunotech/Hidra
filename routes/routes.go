@@ -1,10 +1,11 @@
-//The package Routes defines properties of an HTTP endpoint. At runtime, the router will
-//associate each Route with a http.Handler object, and use the Route properties
-//to determine which Handler should be invoked.
-//Basically Routes will define routes for the different functions.
-//Install using go install in this directory.
-//Author: Operations Management Team - Unotech Software.
+/*
+	The package Routes defines properties of an HTTP endpoint. 
+	At runtime, the router will associate each Route with a http.Handler object, and use the Route properties to determine which Handler should be invoked.
+	Basically Routes will define routes for the different functions.
+	Install using go install in this directory.
 
+	Author: Operations Management Team - Unotech Software.
+*/
 package routes
 
 import (
