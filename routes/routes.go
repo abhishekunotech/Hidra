@@ -1,5 +1,5 @@
 /*
-	The package Routes defines properties of an HTTP endpoint. 
+	The package Routes defines properties of an HTTP endpoint.
 	At runtime, the router will associate each Route with a http.Handler object, and use the Route properties to determine which Handler should be invoked.
 	Basically Routes will define routes for the different functions.
 	Install using go install in this directory.
@@ -9,21 +9,20 @@
 package routes
 
 import (
-    "net/http"
-    "github.com/gorilla/mux"
-    "github.com/Unotechsoftware/Hydra/handlers"
-    "github.com/Unotechsoftware/Hydra/utils"
-
+	"github.com/Unotechsoftware/Hydra/handlers"
+	"github.com/Unotechsoftware/Hydra/utils"
+	"github.com/gorilla/mux"
+	"net/http"
 )
 
 type Route struct {
-// Name is a key specifying which HTTP handler the router should associate
-	Name        string
-//Method is any valid HTTP method
-	Method      string
-//Pattern contains a path pattern 
-	Pattern     string
-//handler 
+	// Name is a key specifying which HTTP handler the router should associate
+	Name string
+	//Method is any valid HTTP method
+	Method string
+	//Pattern contains a path pattern
+	Pattern string
+	//handler
 	HandlerFunc http.HandlerFunc
 }
 
@@ -31,17 +30,15 @@ type Route struct {
 type Routes []Route
 
 func NewRouter() *mux.Router {
-//Create a new mux router for given handler
+	//Create a new mux router for given handler
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes {
 
+		//Create the Route for the requested method,name,pattern and handler.
 
-//Create the Route for the requested method,name,pattern and handler.
-
-    	var handler http.Handler
-	handler = route.HandlerFunc
-	handler = utils.Logger(handler, route.Name)
-
+		var handler http.Handler
+		handler = route.HandlerFunc
+		handler = utils.Logger(handler, route.Name)
 
 		router.
 			Methods(route.Method).

@@ -1,10 +1,10 @@
 /*
 	This package provides configuration for Hydra
 
-	This includes the Request Abstract. Individual structs as *_config will hold configurations specific to the individual components in Felicity Platform. 
-	
+	This includes the Request Abstract. Individual structs as *_config will hold configurations specific to the individual components in Felicity Platform.
+
 	This package uses Viper for Configuration Management
-	
+
 	Author: Operations Management Team - Unotech Software
 */
 package config
@@ -24,38 +24,38 @@ type Http struct {
 	HttpPort    int
 }
 
-type	Request_config	struct {
+type Request_config struct {
 	HttpBaseUrl     string
-        HttpRequestName string
-        HttpRequestUri  string
-        Username        string
-        Password        string
-        SessionId       string
+	HttpRequestName string
+	HttpRequestUri  string
+	Username        string
+	Password        string
+	SessionId       string
 }
 
 type ServiceDesk_config struct {
-	HydraRequestServiceDesk	Request_config
-	TicketID	int
+	HydraRequestServiceDesk Request_config
+	TicketID                int
 }
 
 type Asset_config struct {
-	HydraRequestAsset	Request_config
+	HydraRequestAsset Request_config
 }
 
 type Rundeck_config struct {
-	HydraRequestRundeck	Request_config
+	HydraRequestRundeck Request_config
 }
 
 type EventManager_config struct {
-	HydraRequestEvent	Request_config
+	HydraRequestEvent Request_config
 }
 
 type Monitoring_config struct {
-	HydraRequestMonitor	Request_config
+	HydraRequestMonitor Request_config
 }
 
 type Hydra_config struct {
-	LogFolder	string
+	LogFolder string
 }
 
 type HyConfig struct {
