@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
+	"github.com/antigloss/go/logger"
 	"net/http"
 	"io/ioutil"
 	"io"
@@ -21,15 +21,15 @@ func callTicketDetails(w http.ResponseWriter, r *http.Request, username string, 
     	resp, err := client.Do(req)
 //	req.Close = true
     	if err != nil{
-		fmt.Printf("\n\nThis caused the following error \n\n")
-        	fmt.Printf(err.Error())
+		logger.Error("\n\nThis caused the following error \n\n")
+        	logger.Error(err.Error())
     	}
 	req.Close = true
     	bodyText, err := ioutil.ReadAll(resp.Body)
 	var data interface{}
     	err = json.Unmarshal(bodyText, &data)
    	if err != nil {
-        	fmt.Printf(err.Error())
+        	logger.Error(err.Error())
     	}
     	json.NewEncoder(w).Encode(data)		
 	/*json.NewEncoder(w).Encode(data)*/

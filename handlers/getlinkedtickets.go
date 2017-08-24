@@ -2,7 +2,7 @@
 
 import (
 	"encoding/json"
-	"fmt"
+	"github.com/antigloss/go/logger"
 	"net/http"
 	"io/ioutil"
 	"io"
@@ -12,8 +12,8 @@ import (
 func callLinkedTickets(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 	
 	sessionIDString := callSessionDetails(username,password)
-	fmt.Printf("Session ID in call linked Changes is "+sessionIDString)
-	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedTickets?TicketID="+ticketid+"&SessionID="+sessionIDString
+	
+	url := "http://192.168.2.901:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedTickets?TicketID="+ticketid+"&SessionID="+sessionIDString
 	client := &http.Client{}
 	var bodyReader io.Reader
     	req, err := http.NewRequest("GET", url,bodyReader)
@@ -22,15 +22,15 @@ func callLinkedTickets(w http.ResponseWriter, r *http.Request, username string, 
     	resp, err := client.Do(req)
 //	req.Close = true
     	if err != nil{
-		fmt.Printf("\n\nThis caused the following error \n\n")
-        	fmt.Printf(err.Error())
+		logger.Error("\n\nThis caused the following error \n\n")
+        	logger.Error(err.Error())
     	}
 	req.Close = true
     	bodyText, err := ioutil.ReadAll(resp.Body)
 	var data interface{}
     	err = json.Unmarshal(bodyText, &data)
    	if err != nil {
-        	fmt.Printf(err.Error())
+        	logger.Error(err.Error())
     	}
     	json.NewEncoder(w).Encode(data)		
 	/*json.NewEncoder(w).Encode(data)*/

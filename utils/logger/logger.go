@@ -1,11 +1,11 @@
 package logger
 
 import (
+	"github.com/antigloss/go/logger"	
     "fmt"
    // "log"
     "net/http"
     "time"
-    "os"
 )
 
 func Logger(inner http.Handler, name string) http.Handler {
@@ -23,20 +23,7 @@ func Logger(inner http.Handler, name string) http.Handler {
             name,
             time.Since(start),)
 
-	fmt.Println(string(s))
-
-	fp, err := os.OpenFile("/var/log/access_log", os.O_APPEND|os.O_WRONLY, 0600)
-	if err != nil{
-	   panic(err)
-	}
+	logger.Info(string(s))
 	
-        //data := []byte(s)
-	
-	_, err = fp.WriteString(s)
-	if err != nil{
-	   panic(err)
-	}
-	defer fp.Close()
-
     })
 }
