@@ -83,6 +83,12 @@ var routes = Routes{
 		handlers.GetCIDetails,
 	},
 	Route{
+		"getListOfWorkOrders",
+		"GET",
+		"/getListOfWorkOrders",
+		handlers.GetListOfWorkOrders,
+	},
+	Route{
 		"Ticketcreate",
 		"POST",
 		"/Ticketcreate",
