@@ -5,10 +5,10 @@ import (
         "fmt"
         "net/http"
         "io/ioutil"
-	"reflect"
-        "io"
+	//"reflect"
+        //"io"
 )
-
+/*
 type SessionObject struct{
 	SessionIDStrg	string	`json:"SessionID"`
 }
@@ -38,7 +38,7 @@ func callSessionDetails(username string, password string) string{
 	fmt.Printf("\n\nSESSION ID IN CALL SESSION DETAILS IS "+data.SessionIDStrg+"\n\n")
 	return data.SessionIDStrg	
 }
-
+*/
 func callWorkOrders(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 
 	sessionIDString := callSessionDetails(username,password)

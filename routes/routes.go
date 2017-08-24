@@ -100,4 +100,10 @@ var routes = Routes{
 		"/getLinkedChange",
 		handlers.GetLinkedChange,
 	},
+	Route{
+		"getLinkedTickets",
+		"GET",
+		"/getLinkedTickets",
+		handlers.GetLinkedTickets,
+	},
 }
