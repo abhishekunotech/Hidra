@@ -88,4 +88,10 @@ var routes = Routes{
 		"/Ticketcreate",
 		handlers.Ticketcreate,
 	},
+	Route{
+		"getLinkedChange",
+		"GET",
+		"/getLinkedChange",
+		handlers.GetLinkedChange,
+	},
 }
