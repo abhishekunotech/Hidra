@@ -15,7 +15,7 @@ figlet -f small "Installing Golang"
 sleep 1
 
 
-mkdir -p /root/go/src/github.com/UnotechSoftware/
+mkdir -p /root/go/src/github.com/Unotechsoftware/
 
 cd /opt
 
@@ -30,7 +30,7 @@ echo -e 'export PATH=$PATH:$GOPATH/bin' >>/etc/profile
 
 source /etc/profile
 
-cd $GOPATH/src/github.com/UnotechSoftware
+cd $GOPATH/src/github.com/Unotechsoftware
 
 clear
 figlet -f small "Installing Hydra"
