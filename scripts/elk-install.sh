@@ -1,6 +1,7 @@
 #!/bin/.bash
 yum  install figlet 
 yum install java-1.8.0-openjdk
+mkdir -p /opt/elastcic_search 
 
 cd /opt/elastic_search 
 
