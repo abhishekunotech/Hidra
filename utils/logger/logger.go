@@ -15,12 +15,11 @@ func Logger(inner http.Handler, name string) http.Handler {
 	inner.ServeHTTP(w, r)
 
 	var s string
-	s = fmt.Sprintf("%s::\t%s\t%s\t%s\t%s\t%s\n",
-            start,
-	    r.Method,
+	s = fmt.Sprintf("%s %s %s %s %s\n",
 	    r.RemoteAddr,
+	    r.Method,
             r.RequestURI,
-            name,
+	    name,
             time.Since(start),)
 
 	logger.Info(string(s))
