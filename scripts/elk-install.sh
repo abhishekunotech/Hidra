@@ -24,7 +24,7 @@ wget https://artifacts.elastic.co/downloads/logstash/logstash-5.5.2.rpm
 rpm --install logstash-5.5.2.rpm 
 
 figlet -f small "installed logstash"
-sleep(1)
+
 figlet -f small "READY TO USE ELK"
 
 
