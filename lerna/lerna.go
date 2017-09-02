@@ -9,8 +9,8 @@ import (
 
 type JSONObjectType struct {
 	Version    string `json:"version"`
-	Routes     []RouteType
-	Components []ComponentType
+	Routes     map[string] RouteType
+	Components map[string] ComponentType
 }
 
 type RouteType struct {

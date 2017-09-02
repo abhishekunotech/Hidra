@@ -53,31 +53,27 @@ func GetAPIType_Parameter(){
 }
 
 
-func GetRouteType_Version(){
-
+func GetRouteType_Version(abc RouteType) string{
+	return abc.Version
 }
 
 
-func GetRouteType_Method(){
-
+func GetRouteType_Method(abc RouteType) string{
+	return abc.Method
 }
 
-func GetRouteType_Uri(){
-
-
-}
-
-
-func GetRouteType_Component(){
-
-
-
+func GetRouteType_Uri(abc RouteType) string{
+	return abc.Uri
 }
 
 
-func GetRouteType_Handler(){
+func GetRouteType_Component(abc RouteType) string{
+	return abc.Component
+}
 
 
+func GetRouteType_Handler(abc RouteType) string{
+	return abc.Handler
 }
 
 
@@ -86,19 +82,19 @@ func GetJSONObjectType_Version(abc *viper.Viper) string{
 }
 
 
-func GetJSONObjectType_Routes(abc *viper.Viper) []RouteType{
+func GetJSONObjectType_Routes(abc *viper.Viper) map[string]RouteType{
 	returnVal := abc.GetStringMap("routes")
 	keys_of_returnval := GetKeyArray(returnVal)
 	RouteInside := abc.Sub("routes")
 	//var returnStrg string
-	var returnValue []RouteType
+	returnValue := make(map[string]RouteType)
 
 	// Need to define the size of the array. 
 	// Or append element to slice
 	for _, element := range keys_of_returnval{
 		var Meow RouteType
 		_ = RouteInside.UnmarshalKey(element, &Meow)	
-		returnValue = append(returnValue,Meow)
+		returnValue[element] = Meow
 	}
 
 	return returnValue

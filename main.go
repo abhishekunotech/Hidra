@@ -12,12 +12,12 @@ package main
 import (
 	"log"
 	"net/http"
-	"fmt"
+//	"fmt"
 //	"reflect"
 	"github.com/Unotechsoftware/Hydra/routes"
 	"github.com/antigloss/go/logger"
 	"os"
-	"github.com/Unotechsoftware/Hydra/lerna"
+//	"github.com/Unotechsoftware/Hydra/lerna"
 //	"github.com/fsnotify/fsnotify"
 )
 
@@ -52,12 +52,19 @@ func main() {
 	//Change the first and second parameters as per the locations of your certificates
 	
 	
-	//log.Fatal(http.ListenAndServe(":8080", router))
 	
 
+	/* EXAMPLE OF CONFIGURATION USAGE
 	ConfObj := lerna.ReturnConfigObject()
-	fmt.Println(lerna.GetJSONObjectType_Routes(ConfObj))
+	mapStrgRoutes := lerna.GetJSONObjectType_Routes(ConfObj)
+	fmt.Println(mapStrgRoutes["getcidetails"].Version)
+	
+	RouteTypeCIDetails := mapStrgRoutes["getcidetails"]
 
+	VersionStrgRoute := lerna.GetRouteType_Version(RouteTypeCIDetails)
+
+	fmt.Println(VersionStrgRoute)
+	*/
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
