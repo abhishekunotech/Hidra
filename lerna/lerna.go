@@ -24,16 +24,18 @@ type RouteType struct {
 type ComponentType struct {
 	Version string `json:"version"`
 	Url     string `json:"URL"`
-	Apis    []APIType
+	Apis    map[string] APIType
 }
 
 type APIType struct {
 	Version   string `json:"version"`
 	Uri       string `json:"URI"`
-	Parameter map[string]string
+	Parameter map[string] ParameterVal
 }
 
-
+type ParameterVal struct {
+	Value string 
+}
 
 
 //Write Initialize Redis in Utils

@@ -25,33 +25,34 @@ func GetKeyArray(Abc map[string]interface{}) []string{
 
 }
 
-func GetComponentType_Version(){
-
+func GetComponentType_Version(abc ComponentType) string{
+	return abc.Version
 }
 
-func GetComponentType_Url(){
-
+func GetComponentType_Url(abc ComponentType) string{
+	return abc.Url
 }
 
-func GetComponentType_Apis(){
-
+func GetComponentType_Apis(abc ComponentType) map[string]APIType{
+	return abc.Apis
 }
 
-func GetAPIType_Version(){
-
-
+func GetAPIType_Version(abc APIType) string{
+	return abc.Version
 }
 
 
-func GetAPIType_Uri(){
-
+func GetAPIType_Uri(abc APIType) string{
+	return abc.Uri
 }
 
-func GetAPIType_Parameter(){
-
-
+func GetAPIType_ParameterObj(abc APIType) map[string]ParameterVal{
+	return abc.Parameter
 }
 
+func GetAPIType_Parameter(abc ParameterVal) string{
+	return abc.Value
+}
 
 func GetRouteType_Version(abc RouteType) string{
 	return abc.Version
@@ -86,22 +87,31 @@ func GetJSONObjectType_Routes(abc *viper.Viper) map[string]RouteType{
 	returnVal := abc.GetStringMap("routes")
 	keys_of_returnval := GetKeyArray(returnVal)
 	RouteInside := abc.Sub("routes")
-	//var returnStrg string
 	returnValue := make(map[string]RouteType)
 
-	// Need to define the size of the array. 
-	// Or append element to slice
 	for _, element := range keys_of_returnval{
-		var Meow RouteType
-		_ = RouteInside.UnmarshalKey(element, &Meow)	
-		returnValue[element] = Meow
+		var Element RouteType
+		_ = RouteInside.UnmarshalKey(element, &Element)	
+		returnValue[element] = Element
 	}
 
 	return returnValue
 }
 
 
-func GetJSONObjectType_Components(){
+func GetJSONObjectType_Components(abc *viper.Viper) map[string]ComponentType{
+	returnVal := abc.GetStringMap("components")
+	keys_of_returnval := GetKeyArray(returnVal)
+	ComponentInside := abc.Sub("components")
 
+	returnValue := make(map[string]ComponentType)
 
+	for _,element := range keys_of_returnval{
+		var Element ComponentType
+		fasfa := ComponentInside.Sub(element)
+		_ = fasfa.Unmarshal(&Element)
+		returnValue[element] = Element
+		
+	}
+	return returnValue
 }
