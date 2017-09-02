@@ -2,6 +2,8 @@ package lerna
 
 import(
 	"fmt"
+	"github.com/spf13/viper"
+	//"reflect"
 )
 
 func GetKeyArray(Abc map[string]interface{}) []string{
@@ -79,15 +81,27 @@ func GetRouteType_Handler(){
 }
 
 
-func GetJSONObjectType_Version(){
-
-
+func GetJSONObjectType_Version(abc *viper.Viper) string{
+	return	abc.GetString("version")
 }
 
 
-func GetJSONObjectType_Routes(){
+func GetJSONObjectType_Routes(abc *viper.Viper) []RouteType{
+	returnVal := abc.GetStringMap("routes")
+	keys_of_returnval := GetKeyArray(returnVal)
+	RouteInside := abc.Sub("routes")
+	//var returnStrg string
+	var returnValue []RouteType
 
+	// Need to define the size of the array. 
+	// Or append element to slice
+	for _, element := range keys_of_returnval{
+		var Meow RouteType
+		_ = RouteInside.UnmarshalKey(element, &Meow)	
+		returnValue = append(returnValue,Meow)
+	}
 
+	return returnValue
 }
 
 

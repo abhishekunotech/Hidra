@@ -13,12 +13,12 @@ import (
 	"log"
 	"net/http"
 	"fmt"
-	"reflect"
+//	"reflect"
 	"github.com/Unotechsoftware/Hydra/routes"
 	"github.com/antigloss/go/logger"
 	"os"
 	"github.com/Unotechsoftware/Hydra/lerna"
-	"github.com/fsnotify/fsnotify"
+//	"github.com/fsnotify/fsnotify"
 )
 
 /*
@@ -51,18 +51,13 @@ func main() {
 	//ListenAndServeTLS starts an HTTPS server.
 	//Change the first and second parameters as per the locations of your certificates
 	
-	ConfigObj := lerna.ReturnConfigObject()
 	
-	ConfigObj.WatchConfig()
+	//log.Fatal(http.ListenAndServe(":8080", router))
+	
 
-	ConfigObj.OnConfigChange(func(e fsnotify.Event) {
-		ConfigObj = lerna.ReturnConfigObject()
-	})
+	ConfObj := lerna.ReturnConfigObject()
+	fmt.Println(lerna.GetJSONObjectType_Routes(ConfObj))
 
-	fmt.Println(reflect.TypeOf(ConfigObj))
-	
-	fmt.Println(ConfigObj)
-	
+
 	log.Fatal(http.ListenAndServe(":8080", router))
-
 }
