@@ -38,6 +38,7 @@ type ParameterVal struct {
 }
 
 
+
 //Write Initialize Redis in Utils
 //Import and Call that MOFO here
 func ReturnConfigObject() *viper.Viper{
