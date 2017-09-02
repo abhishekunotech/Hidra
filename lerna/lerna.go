@@ -1,60 +1,57 @@
-package main
+package lerna
 
 import (
 	"fmt"
-	"github.com/fsnotify/fsnotify"
-	jww "github.com/spf13/jwalterweatherman"
+	"github.com/antigloss/go/logger"
 	"github.com/spf13/viper"
-	"io/ioutil"
-	"log"
-	"path/filepath"
-	//"encoding/json"
-	//"bytes"
 )
 
-type config struct {
-	configPaths    []string
-	configName     string
-	configFile     string
-	configType     string
-	onConfigChange func(fsnotify.Event)
-}
 
-type jsonobject struct {
+type JSONObjectType struct {
 	Version    string `json:"version"`
-	Routes     []RoutesType
-	Components []ComponentsType
+	Routes     []RouteType
+	Components []ComponentType
 }
 
-type RoutesType struct {
-	Name    string `json:"name"`
-	Method  string `json:"method"`
-	URI     string `json:"URI"`
-	Handler string `json:"handler"`
+type RouteType struct {
+	Version   string `json:"version"`
+	Method    string `json:"method"`
+	Uri       string `json:"URI"`
+	Component string `json:"component"`
+	Handler   string `json:"handler"`
 }
 
-type ComponentsType struct {
-	ComponentName string `json:"componentName"`
-	URL           string `json:"url"`
-	API           []APIs
+type ComponentType struct {
+	Version string `json:"version"`
+	Url     string `json:"URL"`
+	Apis    []APIType
 }
 
-type APIs struct {
-	Name       string `json:"name"`
-	URI        string `json:"URI"`
-	Parameters []Params
+type APIType struct {
+	Version   string `json:"version"`
+	Uri       string `json:"URI"`
+	Parameter map[string]string
 }
 
-type Params struct {
-	TicketId  string `json:"TicketId"`
-	UserLogin string `json:"UserLogin"`
-	Password  string `json:"Password"`
-}
 
-func main() {
 
-	file, e := ioutil.ReadFile("/etc/Hydra/conf.d/Hydra.js")
-	if e != nil {
-		fmt.Printf("File error: %v\n", e)
+
+//Write Initialize Redis in Utils
+//Import and Call that MOFO here
+func ReturnConfigObject() *viper.Viper{
+
+	ViConfig := viper.New()
+	ViConfig.SetConfigName("Hydra_non")
+	ViConfig.AddConfigPath("/etc/Hydra/conf.d/")
+	ViConfig.SetConfigType("json")
+
+	err := ViConfig.ReadInConfig() // Find and read the config file
+	if err != nil {                // Handle errors reading the config file
+		logger.Error(err.Error())
 	}
+
+	
+	
+	return ViConfig
+
 }

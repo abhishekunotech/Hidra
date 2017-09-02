@@ -12,11 +12,13 @@ package main
 import (
 	"log"
 	"net/http"
-	//	"fmt"
+	"fmt"
+	"reflect"
 	"github.com/Unotechsoftware/Hydra/routes"
 	"github.com/antigloss/go/logger"
 	"os"
-	//    	"github.com/UnotechSoftware/hydra/v1/utils"
+	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/fsnotify/fsnotify"
 )
 
 /*
@@ -41,16 +43,26 @@ func main() {
 	ErrorLog, err := os.OpenFile("/var/log/error_log", os.O_WRONLY|os.O_CREATE, 0666)
 
 	log.SetOutput(ErrorLog)
-	//log.Fatal(http.ListenAndServeTLS(":443", "../server.crt", "../server.key", router))
 	logger.Init("./log", // specify the directory to save the logfiles
 		400,   // maximum logfiles allowed under the specified log directory
 		20,    // number of logfiles to delete when number of logfiles exceeds the configured limit
 		100,   // maximum size of a logfile in MB
 		false) // whether logs with Trace level are written down
-	logger.Info("Meowww")
 	//ListenAndServeTLS starts an HTTPS server.
 	//Change the first and second parameters as per the locations of your certificates
+	
+	/*ConfigObj := lerna.ReturnConfigObject()
+	
+	ConfigObj.WatchConfig()
 
+	ConfigObj.OnConfigChange(func(e fsnotify.Event) {
+		ConfigObj = lerna.ReturnConfigObject()
+	})
+
+	fmt.Println(reflect.TypeOf(ConfigObj))
+	
+	fmt.Println(ConfigObj)
+	*/
 	log.Fatal(http.ListenAndServe(":8080", router))
 
 }
