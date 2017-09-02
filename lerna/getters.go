@@ -101,6 +101,9 @@ func GetJSONObjectType_Routes(abc *viper.Viper) map[string]RouteType{
 
 func GetJSONObjectType_Components(abc *viper.Viper) map[string]ComponentType{
 	returnVal := abc.GetStringMap("components")
+	
+	fmt.Println(returnVal)
+
 	keys_of_returnval := GetKeyArray(returnVal)
 	ComponentInside := abc.Sub("components")
 
