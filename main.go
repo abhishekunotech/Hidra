@@ -12,12 +12,12 @@ package main
 import (
 	"log"
 	"net/http"
-	"fmt"
+//	"fmt"
 //	"reflect"
 	"github.com/Unotechsoftware/Hydra/routes"
 	"github.com/antigloss/go/logger"
 	"os"
-	"github.com/Unotechsoftware/Hydra/lerna"
+//	"github.com/Unotechsoftware/Hydra/lerna"
 //	"github.com/fsnotify/fsnotify"
 )
 
@@ -67,26 +67,6 @@ func main() {
 	*/
 	
 	
-	ConfObj := lerna.ReturnConfigObject()
-	mapStrgComponents := lerna.GetJSONObjectType_Components(ConfObj)
-
-	ComponentTypeOTRS := mapStrgComponents["otrs"]
-	fmt.Println(ComponentTypeOTRS)
-	MapStrgAPIType := lerna.GetComponentType_Apis(ComponentTypeOTRS)
-	fmt.Println(MapStrgAPIType)
-	APITypeGTD := MapStrgAPIType["getticketdetails"]
-	fmt.Println(APITypeGTD.Uri)
-	UserLoginStrgObj	:= lerna.GetAPIType_ParameterObj(APITypeGTD)	
-	UserLoginStrg := lerna.GetAPIType_Parameter(UserLoginStrgObj["userlogin"])
-	fmt.Println(UserLoginStrg)
-
-
-
-	//ConfObj := lerna.ReturnConfigObject()
-
-	//SomeVar := ConfObj.Sub("components")
-
-//	fmt.Println(ConfObj.Get("components"))
 
 	
 	log.Fatal(http.ListenAndServe(":8080", router))

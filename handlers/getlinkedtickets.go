@@ -1,19 +1,27 @@
  package handlers
 
 import (
+	"fmt"
 	"encoding/json"
 	"github.com/antigloss/go/logger"
 	"net/http"
 	"io/ioutil"
 	"io"
+	"github.com/Unotechsoftware/Hydra/lerna"
 //	"reflect"
 )
 
 func callLinkedTickets(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 	
 	sessionIDString := callSessionDetails(username,password)
-	
-	url := "http://192.168.2.901:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedTickets?TicketID="+ticketid+"&SessionID="+sessionIDString
+	ConfObj := lerna.ReturnConfigObject()
+	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+	felicityapiuri :=  ConfObj.Sub("components.otrs.apis.getlinkedticketdetails").GetString("uri")
+	ticketID := ConfObj.Sub("components.otrs.apis.getlinkedticketdetails.parameters").GetString("TicketID")
+
+	url := felicitybaseurl+felicityapiuri+"/"+ticketID+"?SessionID="+sessionIDString
+	fmt.Println("URL Meow")
+	fmt.Println(url)
 	client := &http.Client{}
 	var bodyReader io.Reader
     	req, err := http.NewRequest("GET", url,bodyReader)
