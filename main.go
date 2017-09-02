@@ -51,7 +51,7 @@ func main() {
 	//ListenAndServeTLS starts an HTTPS server.
 	//Change the first and second parameters as per the locations of your certificates
 	
-	/*ConfigObj := lerna.ReturnConfigObject()
+	ConfigObj := lerna.ReturnConfigObject()
 	
 	ConfigObj.WatchConfig()
 
@@ -62,7 +62,7 @@ func main() {
 	fmt.Println(reflect.TypeOf(ConfigObj))
 	
 	fmt.Println(ConfigObj)
-	*/
+	
 	log.Fatal(http.ListenAndServe(":8080", router))
 
 }
