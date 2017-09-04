@@ -115,7 +115,7 @@ var routes = Routes{
 	Route{
 		"getCustomerInfobyTicketID",
 		"GET",
-		"/abc",
+		"/felicity/getCustomerInfobyTicketID",
 		handlers.GetCustomerInfobyTicketID,
 	},
 }
