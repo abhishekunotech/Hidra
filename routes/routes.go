@@ -112,4 +112,10 @@ var routes = Routes{
 		"/felicity/isValidUser",
 		handlers.IsValidFelicityUser,
 	},
+	Route{
+		"getCustomerInfobyTicketID",
+		"GET",
+		"/felicity/getCustomerInfobyTicketID",
+		handlers.GetCustomerInfobyTicketID,
+	},
 }
