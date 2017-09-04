@@ -15,7 +15,15 @@ type SessionObject struct{
 }
 
 func callSessionDetails(username string, password string) string{
-	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin="+username+"&Password="+password
+
+	ConfObj := lerna.ReturnConfigObject()
+	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.SessionAPI").GetString("uri")
+	felicityusername := ConfObj.Sub("components.otrs.apis.SessionAPI.parameters").GetString("UserLogin")
+	felicitypassword := ConfObj.Sub("components.otrs.apis.SessionAPI.parameters").GetString("Password")
+        url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
+fmt.Println(url)
+//	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin="+username+"&Password="+password
 	
 	client := &http.Client{}
 	var bodyReader io.Reader

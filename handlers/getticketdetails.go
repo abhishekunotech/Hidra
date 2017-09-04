@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"fmt"
+	"github.com/Unotechsoftware/Hydra/lerna"
 	"encoding/json"
 	"github.com/antigloss/go/logger"
 	"net/http"
@@ -11,8 +13,14 @@ import (
 
 
 func callTicketDetails(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
-	
-	url := "http://192.168.2.152/felicity/nph-genericinterface.pl/Webservice/TicketAPI/TicketGet/"+ticketid+"?UserLogin="+username+"&Password="+password
+	ConfObj := lerna.ReturnConfigObject()
+	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.getticketdetails").GetString("uri")
+	felicityusername := ConfObj.Sub("components.otrs.apis.getticketdetails.parameters").GetString("UserLogin")
+	felicitypassword := ConfObj.Sub("components.otrs.apis.getticketdetails.parameters").GetString("Password")
+        url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
+fmt.Println(url)	
+//	url := "http://192.168.2.152/felicity/nph-genericinterface.pl/Webservice/TicketAPI/TicketGet/"+ticketid+"?UserLogin="+username+"&Password="+password
 	client := &http.Client{}
 	var bodyReader io.Reader
     	req, err := http.NewRequest("GET", url,bodyReader)

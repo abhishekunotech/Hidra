@@ -12,12 +12,12 @@ package main
 import (
 	"log"
 	"net/http"
-//	"fmt"
+	"fmt"
 //	"reflect"
 	"github.com/Unotechsoftware/Hydra/routes"
 	"github.com/antigloss/go/logger"
 	"os"
-//	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydra/lerna"
 //	"github.com/fsnotify/fsnotify"
 )
 
@@ -54,7 +54,7 @@ func main() {
 	
 	
 
-	/* EXAMPLE OF CONFIGURATION USAGE
+	// EXAMPLE OF CONFIGURATION USAGE
 	ConfObj := lerna.ReturnConfigObject()
 	mapStrgRoutes := lerna.GetJSONObjectType_Routes(ConfObj)
 	fmt.Println(mapStrgRoutes["getcidetails"].Version)
@@ -64,7 +64,7 @@ func main() {
 	VersionStrgRoute := lerna.GetRouteType_Version(RouteTypeCIDetails)
 
 	fmt.Println(VersionStrgRoute)
-	*/
+	
 	
 	
 

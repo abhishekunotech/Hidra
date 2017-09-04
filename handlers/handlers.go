@@ -5,6 +5,7 @@
 package handlers
 
 import (
+	"github.com/Unotechsoftware/Hydra/lerna"
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
@@ -152,6 +153,7 @@ type OtsArray struct {
 func creatorOfTickets(jsonInput string) string {
 
 	//API response is returned in JSON format from url
+	
 	url := "http://192.168.2.108/felicity/nph-genericinterface.pl/Webservice/TicketAPI/TicketCreate?UserLogin=abhik&Password=abhik"
 	fmt.Println("URL:>", url)
 	//JSON input array
@@ -188,6 +190,7 @@ func creatorOfTickets(jsonInput string) string {
 /*
 func Index(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprintln(w, "hello bla")
+
 	var ticketid string 
 	var username string
 	var password string
@@ -220,10 +223,23 @@ func Index(w http.ResponseWriter, r *http.Request) {
 //Function to get CI logs.
 func GetCILogs(w http.ResponseWriter, r *http.Request) {
 
+	ConfObj := lerna.ReturnConfigObject()
+	felicitybaseurl := ConfObj.Sub("components.graylog").GetString("url")
+	felicityapiuri := ConfObj.Sub("components.graylog.apis.getcilogs").GetString("uri")
+	ipStrg := ConfObj.Sub("components.graylog.apis.getcilogs.parameters").GetString("ip")
+	prettyStrg := ConfObj.Sub("components.graylog.apis.getcilogs.parameters").GetString("pretty")
+	
+	sizeStrg := ConfObj.Sub("components.graylog.apis.getcilogs.parameters").GetString("size")
+        fmt.Println("base url :: ",felicitybaseurl)
+	url1 := felicitybaseurl+felicityapiuri+ipStrg+"&pretty="+prettyStrg+"&size="+sizeStrg
+	//url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
+fmt.Println(url1)
+
+
 	//API response is returned in JSON format from url
 
-	url := "http://192.168.2.52:59200/_search?q=172.34.144.133&pretty=true&size=1"
-	res, err := http.Get(url)
+	//url := "http://192.168.2.52:59200/_search?q=172.34.144.133&pretty=true&size=1"
+	res, err := http.Get(url1)
 
 	//Errors are handled if any.
 	if err != nil {
@@ -252,16 +268,22 @@ func GetCILogs(w http.ResponseWriter, r *http.Request) {
 func GetCIJobs(w http.ResponseWriter, r *http.Request) {
 	CIJob := &CIJobs{JobId: 123}
 	json.NewEncoder(w).Encode(CIJob)
+	ConfObj := lerna.ReturnConfigObject()
+        felicitybaseurl := ConfObj.Sub("components.rundeck").GetString("url")
+        felicityapiuri := ConfObj.Sub("components.rundeck.apis.getcijobs").GetString("uri")
+        felicityusername := ConfObj.Sub("components.rundeck.apis.getcijobs.parameters").GetString("UserLogin")
+        felicitypassword := ConfObj.Sub("components.rundeck.apis.getcijobs.parameters").GetString("Password")
+        url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
+fmt.Println(url)
 }
 
 //Function to get CI details.
 func GetCIDetails(w http.ResponseWriter, r *http.Request) {
-
    body, _ := ioutil.ReadAll(r.Body)
         mapHttp := r.URL.Query()
         var userName string
         var password string
-        var hostip string
+      var hostip string
         for key,value := range mapHttp {
              
                 if key == "login"{

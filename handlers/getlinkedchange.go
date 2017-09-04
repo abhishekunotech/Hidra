@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"fmt"
+	"github.com/Unotechsoftware/Hydra/lerna"
 	"encoding/json"
 	"github.com/antigloss/go/logger"
 	"net/http"
@@ -13,8 +15,17 @@ type SessionObject struct{
 }
 
 func callSessionDetails(username string, password string) string{
-	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin="+username+"&Password="+password
-	fmt.Printf("\n\n url is "+url+"\n\n")
+	
+	ConfObj := lerna.ReturnConfigObject()
+        felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+        felicityapiuri := ConfObj.Sub("components.otrs.apis").GetString("uri")
+        felicityusername := ConfObj.Sub("components.otrs.apis.SessionAPI.parameters").GetString("UserLogin")
+        felicitypassword := ConfObj.Sub("components.otrs.apis.SessionAPI.parameters").GetString("Password")
+        url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
+	fmt.Println(url)	
+
+//url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin="+username+"&Password="+password
+//	fmt.Printf("\n\n url is "+url+"\n\n")
 	client := &http.Client{}
 	var bodyReader io.Reader
 	req, err := http.NewRequest("GET", url, bodyReader)
@@ -41,9 +52,17 @@ func callSessionDetails(username string, password string) string{
 
 func callLinkedChanges(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 	
-	sessionIDString := callSessionDetails(username,password)
+	//sessionIDString := callSessionDetails(username,password)
+	ConfObj := lerna.ReturnConfigObject()
+        felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+        felicityapiuri := ConfObj.Sub("components.otrs.apis.getlinkedchanges").GetString("uri")
+        felicityusername := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("UserLogin")
+        felicitypassword := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("Password")
+	felicityticketid := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("TicketID")
+        url := felicitybaseurl+felicityapiuri+"?TicketID="+felicityticketid+"&UserLogin="+felicityusername+"&Password="+felicitypassword
+        fmt.Println(url)
 
-	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedChange?TicketID="+ticketid+"&SessionID="+sessionIDString
+//	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedChange?TicketID="+ticketid+"&SessionID="+sessionIDString
 	client := &http.Client{}
 	var bodyReader io.Reader
     	req, err := http.NewRequest("GET", url,bodyReader)
@@ -62,6 +81,7 @@ func callLinkedChanges(w http.ResponseWriter, r *http.Request, username string, 
    	if err != nil {
         	logger.Error(err.Error())
     	}
+	 w.Header().Set("Content-Type", "application/json")
     	json.NewEncoder(w).Encode(data)		
 	/*json.NewEncoder(w).Encode(data)*/
 
