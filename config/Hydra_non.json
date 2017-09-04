@@ -93,11 +93,21 @@
 			"version":"1.0",
 			"URI":"/SessionAPI/SessionCreate",
 			"parameters":{
-				"UserLogin":"abhik",
-				"Password":"abhik"
+				"UserLogin":"rasikm",
+				"Password":"rasikm"
 			}
 
 		},
+		"GetListOfWorkOrders":{
+                    "version":"1.0",
+                    "URI": "/TicketAPI/ListOfLinkedWorkorders",
+                    "parameters": {
+                        "TicketID": "627",
+                        "UserLogin": "abhik",
+                        "Password" : "abhik"
+                    }
+                },
+
 		"GetLinkedTicketDetails":{
 			"version":"1.0",
 			"URI":"/TicketAPI/ListOfLinkedTickets",

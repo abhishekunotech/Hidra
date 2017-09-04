@@ -5,7 +5,7 @@ import (
         "encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
         "net/http"
-	//"fmt"
+	"fmt"
         "io/ioutil"
 	//"reflect"
         //"io"
@@ -14,10 +14,10 @@ func callWorkOrders(w http.ResponseWriter, r *http.Request, username string, pas
 
 	sessionIDString := callSessionDetails(username,password)
 
-	//fmt.Println("session id is ::",sessionIDString)        
+	fmt.Println("session id is ::",sessionIDString)        
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	//fmt.Println("base url:- ",felicitybaseurl)
+	fmt.Println("base url:- ",felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistofworkorders").GetString("uri")
 	ticketid = ConfObj.Sub("components.otrs.apis.getlistofworkorders.parameters").GetString("TicketId")
 		
