@@ -101,6 +101,12 @@ var routes = Routes{
 		handlers.GetLinkedChange,
 	},
 	Route{
+		"TicketAll",
+		"GET",
+		"/TicketAll",
+		handlers.TicketAll,
+	},
+	Route{
 		"getLinkedTickets",
 		"GET",
 		"/felicity/getLinkedTickets",
