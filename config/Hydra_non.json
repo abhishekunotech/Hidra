@@ -41,6 +41,15 @@
             "handler": "handlers.GetCIDetails"
         }
         ,
+
+	"getUserColumnPreference":{
+                "version":"1.0",
+            "method": "GET",
+            "URI": "/getUserColumnPreference",
+            "component":"otrs",
+            "handler": "handlers.GetUserColumnPreference"
+        },
+
         "getListOfWorkOrders":{
         	"version":"1.0",
             "method": "GET",
@@ -149,6 +158,15 @@
                                 "Password":"yazadb"
                         }
                 },
+		 "GetUserColumnPreference":{
+                        "version":"1.0",
+                        "URI":"/Config/GetUserColumnPreferences",
+                        "parameters":{
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
+                },
+
 		"SessionAPI":{
 			"version":"1.0",
 			"URI":"/SessionAPI/SessionCreate",
