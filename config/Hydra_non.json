@@ -47,7 +47,22 @@
             "URI": "/getListOfWorkOrders",
             "component":"otrs",
             "handler": "handlers.GetListOfWorkOrders"
-        }
+        },
+	"getListOfKLinkedChange":{
+                "version":"1.0",
+            "method": "GET",
+            "URI": "/getListOfLinkedChange",
+            "component":"otrs",
+            "handler": "handlers.GetListOfLinkedChange"
+        },
+
+	"TicketAll":{
+		"version": "1.0",
+	    "method": "GET",
+            "URI": "/TicketAll",
+            "component":"otrs",
+            "handler": "handlers.TicketAll"
+	}
         ,
         "Ticketcreate":{
         	"version":"1.0",
@@ -89,15 +104,15 @@
                     }
                     
                 },
-		"SessionAPI":{
-			"version":"1.0",
-			"URI":"/SessionAPI/SessionCreate",
-			"parameters":{
-				"UserLogin":"rasikm",
-				"Password":"rasikm"
-			}
-
-		},
+		"TicketAll":{
+                    "version":"1.0",
+                    "URI": "/TicketAPI/TicketAll",
+                    "parameters": {
+                        "Filter": "All",
+                        "CustomerUserLogin": "yazadb",
+                        "Password": "yazadb"
+                    }
+                },	
 		"GetListOfWorkOrders":{
                     "version":"1.0",
                     "URI": "/TicketAPI/ListOfLinkedWorkorders",
@@ -107,6 +122,32 @@
                         "Password" : "abhik"
                     }
                 },
+		"CustomerSessionAPI":{
+                        "version":"1.0",
+                        "URI":"/SessionAPI/SessionCreate",
+                        "parameters":{
+                                "CustomerUserLogin":"yazadb",
+                                "Password":"yazadb"
+                        }
+                },
+		"SessionAPI":{
+			"version":"1.0",
+			"URI":"/SessionAPI/SessionCreate",
+			"parameters":{
+				"UserLogin":"abhik",
+				"Password":"abhik"
+			}
+		},
+		"GetListOfLinkedChange":{
+			"version":"1.0",
+                        "URI":"/TicketAPI/ListOfLinkedTickets",
+                        "parameters":{
+                                "TicketID":"447",
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
+                },
+
 
 		"GetLinkedTicketDetails":{
 			"version":"1.0",
