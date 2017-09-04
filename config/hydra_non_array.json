@@ -89,6 +89,15 @@
                     }
                     
                 }
+		"GetListOfWorkOrders":{
+		    "version":"1.0",
+		    "URI": "/TicketAPI/ListOfLinkedWorkorders",
+		    "parameters": {
+			"TicketID": "",
+			"UserLogin": "",
+			"Password" : ""
+	            }
+		}
                 
             }
             
