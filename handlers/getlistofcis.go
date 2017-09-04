@@ -47,9 +47,9 @@ func GetListOfCIs(w http.ResponseWriter, r *http.Request) {
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.getticketinfo").GetString("uri")
-	felicityusername := ConfObj.Sub("components.otrs.apis.getticketinfo.parameters").GetString("UserLogin")
-	felicitypassword := ConfObj.Sub("components.otrs.apis.getticketinfo.parameters").GetString("Password")
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistofcis").GetString("uri")
+	felicityusername := ConfObj.Sub("components.otrs.apis.getlistofcis.parameters").GetString("UserLogin")
+	felicitypassword := ConfObj.Sub("components.otrs.apis.getlistofcis.parameters").GetString("Password")
         url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
 	fmt.Println(url)
 
