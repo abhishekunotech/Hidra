@@ -103,7 +103,7 @@ var routes = Routes{
 	Route{
 		"getLinkedTickets",
 		"GET",
-		"/getLinkedTickets",
+		"/felicity/getLinkedTickets",
 		handlers.GetLinkedTickets,
 	},
 	Route{

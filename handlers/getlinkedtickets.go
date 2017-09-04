@@ -11,15 +11,15 @@ import (
 //	"reflect"
 )
 
-func callLinkedTickets(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
+func callLinkedTickets(w http.ResponseWriter, r *http.Request, ticketid string){
 	
-	sessionIDString := callSessionDetails(username,password)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri :=  ConfObj.Sub("components.otrs.apis.getlinkedticketdetails").GetString("uri")
-	ticketID := ConfObj.Sub("components.otrs.apis.getlinkedticketdetails.parameters").GetString("TicketID")
-
-	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketID+"&SessionID="+sessionIDString
+	felicityusername := ConfObj.Sub("components.otrs.apis.getlinkedticketdetails.parameters").GetString("UserLogin")
+	felicitypassword := ConfObj.Sub("components.otrs.apis.getlinkedticketdetails.parameters").GetString("Password")
+	sessionIDString := callSessionDetails(felicityusername,felicitypassword)
+	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketid+"&SessionID="+sessionIDString
 	fmt.Println("URL Meow")
 	fmt.Println(url)
 	client := &http.Client{}
@@ -51,8 +51,6 @@ func callLinkedTickets(w http.ResponseWriter, r *http.Request, username string, 
 func GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
-	var userName string
-	var password string
 	var ticketid string
 	for key,value := range mapHttp {
 		if key == "ticketID"{
@@ -60,17 +58,7 @@ func GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
 				ticketid = valueStrg
 			}
 		}
-		if key == "username"{
-			for _, valueStrg := range value {
-				userName = valueStrg
-			}
-		}
-		if key == "password"{
-			for _, valueStrg := range value {
-				password = valueStrg
-			}
-		}
 	}
-	callLinkedTickets(w,r,userName, password, ticketid)
+	callLinkedTickets(w,r,ticketid)
 
 }
