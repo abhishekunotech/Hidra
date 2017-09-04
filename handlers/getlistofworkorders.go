@@ -3,46 +3,27 @@ package handlers
 import (
 	"github.com/antigloss/go/logger"
         "encoding/json"
-
+	"github.com/Unotechsoftware/Hydra/lerna"
         "net/http"
+	"fmt"
         "io/ioutil"
 	//"reflect"
         //"io"
 )
-/*
-type SessionObject struct{
-	SessionIDStrg	string	`json:"SessionID"`
-}
-
-func callSessionDetails(username string, password string) string{
-	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin="+username+"&Password="+password
-	
-	client := &http.Client{}
-	var bodyReader io.Reader
-	req, err := http.NewRequest("GET", url, bodyReader)
-	resp, err := client.Do(req)
-	if err != nil{
-		logger.Error("\n\n Session Creation failed because - \n\n")
-		logger.Error(err.Error())
-	}
-	req.Close = true
-	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data SessionObject
-	err = json.Unmarshal(bodyText, &data)
-
-	if err != nil{
-		logger.Error(err.Error())
-	}
-	
-	return data.SessionIDStrg	
-}
-*/
 func callWorkOrders(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 
 	sessionIDString := callSessionDetails(username,password)
-        
-	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedWorkorders?TicketID="+ticketid+"&SessionID="+sessionIDString
 
+	fmt.Println("session id is ::",sessionIDString)        
+	ConfObj := lerna.ReturnConfigObject()
+	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+	fmt.Println("base url:- ",felicitybaseurl)
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistofworkorders").GetString("uri")
+	ticketid = ConfObj.Sub("components.otrs.apis.getlistofworkorders.parameters").GetString("TicketId")
+		
+	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketid+"&SessionID="+sessionIDString
+
+	//fmt.Println("url is::",url)	
 	res, err:= http.Get(url)
 	if err != nil{
 		logger.Error(err.Error())	
@@ -55,6 +36,7 @@ func callWorkOrders(w http.ResponseWriter, r *http.Request, username string, pas
         if err != nil {
                 logger.Error(err.Error())
         }
+	w.Header().Set("Content-Type", "application/json")
         json.NewEncoder(w).Encode(data)
         /*json.NewEncoder(w).Encode(data)*/
 

@@ -106,4 +106,10 @@ var routes = Routes{
 		"/getLinkedTickets",
 		handlers.GetLinkedTickets,
 	},
+	Route{
+		"felicityLogin",
+		"GET",
+		"/felicity/isValidUser",
+		handlers.IsValidFelicityUser,
+	},
 }
