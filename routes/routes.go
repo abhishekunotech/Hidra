@@ -139,6 +139,12 @@ var routes = Routes{
 		handlers.GetCustomerInfobyTicketID,
 	},
 	Route{
+                "getListOfCIs",
+                "GET",
+                "/getListOfCIs",
+                handlers.GetListOfCIs,
+	},
+	Route{
 		"getCountClosedTickets",
 		"GET",
 		"/felicity/getCountClosedTickets",

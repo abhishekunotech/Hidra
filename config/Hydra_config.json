@@ -1,0 +1,188 @@
+{
+    "version": "1.1",
+    "routes": {
+        "Index":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/",
+            "component":"otrs",
+            "handler": "handlers.Index"
+        }
+        ,
+        "GetTicketDetails":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/getTicketDetails",
+            "component":"otrs",
+            "handler": "handlers.GetTicketDetails"
+        }
+        ,
+        "getCILogs":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/getCILogs",
+            "component":"otrs",
+            "handler": "handlers.GetCILogs"
+        }
+        ,
+        "getCIJobs":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/getCIJobs",
+            "component":"otrs",
+            "handler": "handlers.GetCIJobs"
+        }
+        ,
+        "getCIDetails":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/getCIDetails",
+            "component":"otrs",
+            "handler": "handlers.GetCIDetails"
+        }
+        ,
+        "getListOfWorkOrders":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/getListOfWorkOrders",
+            "component":"otrs",
+            "handler": "handlers.GetListOfWorkOrders"
+        }
+        ,
+        "Ticketcreate":{
+        	"version":"1.0",
+            "method": "POST",
+            "URI": "/Ticketcreate",
+            "component":"otrs",
+            "handler": "handlers.Ticketcreate"
+        }
+        ,
+	"getListOfCIs":{
+                "version":"1.0",
+            "method": "GET",
+            "URI": "/getListOfCIs",
+            "component":"otrs",
+            "handler": "handlers.GetListOfCIs"
+        }
+        ,
+        "getLinkedChange":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/getLinkedChange",
+            "component":"otrs",
+            "handler": "handlers.GetLinkedChange"
+        }
+        ,
+        "getLinkedTickets":{
+        	"version":"1.0",
+            "method": "GET",
+            "URI": "/getLinkedTickets",
+            "component":"otrs",
+            "handler": "handlers.GetLinkedTickets"
+        }
+    }
+    ,
+    "components": {
+
+        "otrs":{
+            "version": "1.0",
+            "url": "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice",
+            "apis": {
+                "GetTicketInfo":{
+                    "version":"1.0",
+                    "URI": "/TicketAPI/getTicketInfo",
+                    "parameters": {
+                        "TicketID": "627",
+                        "UserLogin": "rasikm",
+                        "Password": "rasikm"
+                    }
+                    
+                },
+		"SessionAPI":{
+			"version":"1.0",
+			"URI":"/SessionAPI/SessionCreate",
+			"parameters":{
+				"UserLogin":"abhik",
+				"Password":"abhik"
+			}
+
+		},
+		"GetLinkedTicketDetails":{
+			"version":"1.0",
+			"URI":"/TicketAPI/ListOfLinkedTickets",
+			"parameters":{
+				"TicketID":"627",
+				"UserLogin":"abhik",
+				"Password":"abhik"
+			}
+		},
+		"GetListOfCIs":{
+                        "version":"1.0",
+                        "URI":"/TicketAPI/ListOfCIs",
+                        "parameters":{
+                                "TicketID":"627",
+                                "UserLogin":"rasikm",
+                                "Password":"rasikm"
+                        }
+                },
+
+		"GetLinkedChanges":{
+                        "version":"1.0",
+                        "URI":"/TicketAPI/ListOfLinkedChanges",
+                        "parameters":{
+                                "TicketID":"627",
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
+                },
+
+                
+            }
+            
+        }
+        ,
+        "glpi":{
+            "version": "1.0",
+            "url": "",
+            "apis": {
+                "GetCIDetails":{
+                    "version":"1.0",
+                    "URI": "/getCIDetails",
+                    "parameters": {
+                        "TicketID": "627",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+	  
+                }
+                
+            }
+            
+        }
+	,
+	"graylog":{
+            "version": "1.0",
+            "url": "http://192.168.2.52:59200/_search?q=",
+            "apis": {
+                "GetCILogs":{
+                    "version":"1.0",
+                    "URI": "/getCILogs",
+                    "parameters": {
+                        "ip": "172.34.144.133",
+                        "pretty": "true",
+                        "size": "1"
+                    }
+
+                }
+                 
+            }
+
+        }
+	
+	
+
+	
+	
+        
+    }
+
