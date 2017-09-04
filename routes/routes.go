@@ -112,4 +112,18 @@ var routes = Routes{
 		"/felicity/isValidUser",
 		handlers.IsValidFelicityUser,
 	},
+	Route{
+                "getListOfCIs",
+                "GET",
+                "/getListOfCIs",
+                handlers.GetListOfCIs,
+        },
+	Route{
+                "getTicketInfo",
+                "GET",
+                "/getTicketInfo",
+                handlers.GetTicketInfo,
+        },
+
+
 }

@@ -50,25 +50,37 @@ func callSessionDetails(username string, password string) string{
 }
 */
 
+//	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedChange?TicketID="+ticketid+"&SessionID="+sessionIDString
 func callLinkedChanges(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 	
-	//sessionIDString := callSessionDetails(username,password)
+	sessionIDString := callSessionDetails(username,password)
 	ConfObj := lerna.ReturnConfigObject()
         felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
         felicityapiuri := ConfObj.Sub("components.otrs.apis.getlinkedchanges").GetString("uri")
-        felicityusername := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("UserLogin")
-        felicitypassword := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("Password")
+        //felicityusername := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("UserLogin")
+        //felicitypassword := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("Password")
 	felicityticketid := ConfObj.Sub("components.otrs.apis.getlinkedchanges.parameters").GetString("TicketID")
-        url := felicitybaseurl+felicityapiuri+"?TicketID="+felicityticketid+"&UserLogin="+felicityusername+"&Password="+felicitypassword
+        url := felicitybaseurl+felicityapiuri+"?TicketID="+felicityticketid+"&SessionID="+sessionIDString
         fmt.Println(url)
 
-//	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedChange?TicketID="+ticketid+"&SessionID="+sessionIDString
 	client := &http.Client{}
 	var bodyReader io.Reader
     	req, err := http.NewRequest("GET", url,bodyReader)
-    	//req.SetBasicAuth(username,password)
+    	
+	if err != nil {
+
+		fmt.Println("Get Request failed on call linked changes")
+		fmt.Println(err.Error())
+	}
+	//req.SetBasicAuth(username,password)
     	//req.Header.Set("Authorization", "Basic Z2xwaTpnbHBp")
     	resp, err := client.Do(req)
+
+	if err != nil{
+		fmt.Println("Get Request Failed on call linked changes - Client do")
+		fmt.Println(err.Error())
+	}
+
 //	req.Close = true
     	if err != nil{
 		logger.Error("\n\nThis caused the following error \n\n")
