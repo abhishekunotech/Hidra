@@ -36,6 +36,7 @@ func callWorkOrders(w http.ResponseWriter, r *http.Request, username string, pas
         if err != nil {
                 logger.Error(err.Error())
         }
+	w.Header().Set("Content-Type", "application/json")
         json.NewEncoder(w).Encode(data)
         /*json.NewEncoder(w).Encode(data)*/
 
