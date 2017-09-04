@@ -1,5 +1,5 @@
 {
-    "version": "1.0",
+    "version": "1.1",
     "routes": {
         "Index":{
         	"version":"1.0",
@@ -77,26 +77,35 @@
     "components": {
         "otrs":{
             "version": "1.0",
-            "url": "http://abc.com",
+            "url": "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice",
             "apis": {
                 "GetTicketDetails":{
                     "version":"1.0",
                     "URI": "/TicketAPI/getTicketDetails",
                     "parameters": {
-                        "TicketID": "",
-                        "UserLogin": "",
-                        "Password": ""
+                        "TicketID": "123",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
                     }
                     
-                }
-		"GetListOfWorkOrders":{
-		    "version":"1.0",
-		    "URI": "/TicketAPI/ListOfLinkedWorkorders",
-		    "parameters": {
-			"TicketID": "",
-			"UserLogin": "",
-			"Password" : ""
-	            }
+                },
+		"SessionAPI":{
+			"version":"1.0",
+			"URI":"/SessionAPI/SessionCreate",
+			"parameters":{
+				"UserLogin":"abhik",
+				"Password":"abhik"
+			}
+
+		},
+		"GetLinkedTicketDetails":{
+			"version":"1.0",
+			"URI":"/TicketAPI/ListOfLinkedTickets",
+			"parameters":{
+				"TicketID":"627",
+				"UserLogin":"abhik",
+				"Password":"abhik"
+			}
 		}
                 
             }

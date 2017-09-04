@@ -7,6 +7,7 @@ package handlers
 import (
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"bytes"
+	//"bytes"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -150,76 +151,6 @@ type OtsArray struct {
         Three string `json:"3"`
         Four string `json:"4"`
 }
-func creatorOfTickets(jsonInput string) string {
-
-	//API response is returned in JSON format from url
-	
-	url := "http://192.168.2.108/felicity/nph-genericinterface.pl/Webservice/TicketAPI/TicketCreate?UserLogin=abhik&Password=abhik"
-	fmt.Println("URL:>", url)
-	//JSON input array
-	var jsonStr = []byte(jsonInput)
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
-
-	//Create custom header
-	req.Header.Set("X-Custom-Header", "myvalue")
-	req.Header.Set("Content-Type", "application/json")
-	//A “Client” is an HTTP client.
-	client := &http.Client{}
-
-	//“Do” sends an HTTP request and returns an HTTP response.
-	resp, err := client.Do(req)
-
-	//Panic is a built-in function that stops the ordinary flow of control and begins panicking.
-	//Panics can be initiated by invoking panic directly. They can also be caused by runtime errors.
-	//Errors are handled if any.
-	if err != nil {
-		panic(err)
-	}
-	//When “err” is nil, “resp” always contains a non-nil “resp.Body”.
-	//Callers should close “resp.Body” using defer when done reading from it.
-	defer resp.Body.Close()
-
-	fmt.Println("response Status:", resp.Status)
-	fmt.Println("response Headers:", resp.Header)
-	//ReadAll reads from response until an error or EOF and returns the data it read.
-
-	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response Body:", string(body))
-	return string(body)
-}
-/*
-func Index(w http.ResponseWriter, r *http.Request) {
-	//fmt.Fprintln(w, "hello bla")
-
-	var ticketid string 
-	var username string
-	var password string
-	ticketid = "627"
-	username = "amol"
-	password = "amol"
-	
-	url := "http://192.168.2.152/felicity/nph-genericinterface.pl/Webservice/TicketAPI/TicketGet/"+ticketid+"?UserLogin="+username+"&Password="+password
-	
-	client := &http.Client{}
-	var bodyReader io.Reader
-    	req, err := http.NewRequest("GET", url,bodyReader)
-    	//req.SetBasicAuth(username,password)
-    	//req.Header.Set("Authorization", "Basic Z2xwaTpnbHBp")
-    	resp, err := client.Do(req)
-//	req.Close = true
-    	if err != nil{
-		logger.Error("\n\nThis caused the following error \n\n")
-        	logger.Error(err.Error())
-    	}
-	req.Close = true
-    	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-    	err = json.Unmarshal(bodyText, &data)
-   	if err != nil {
-        	logger.Error(err.Error())
-    	}
-}
-*/
 //Function to get CI logs.
 func GetCILogs(w http.ResponseWriter, r *http.Request) {
 
@@ -370,24 +301,6 @@ body, err = ioutil.ReadAll(res.Body)
     json.NewEncoder(w).Encode(data)
 }
 
-//Function to create ticket.
-func Ticketcreate(w http.ResponseWriter, r *http.Request) {
-
-	//ReadAll reads from response until an error or EOF and returns the data it read.
-	bodyVal, _ := ioutil.ReadAll(r.Body)
-	bodyValStrg := string(bodyVal)
-
-	//Function call to create ticket and get the response
-	var jsonReturnString = creatorOfTickets(bodyValStrg)
-	var jsonReturn = []byte(jsonReturnString)
-	//Decode JSON response
-	jsonRetVal, _ := json.Marshal(jsonReturn)
-	var byteArr []byte
-	//Display the response
-	base64.StdEncoding.Decode(byteArr, jsonRetVal)
-	fmt.Fprintf(w, string(byteArr))
-	//json.NewEncoder(w).Encode(Tick)
-}
 
 //Function to set authentication header for CIDetails.
 func basicAuth(username string, password string) string {
