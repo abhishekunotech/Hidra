@@ -19,7 +19,7 @@ func callLinkedTickets(w http.ResponseWriter, r *http.Request, username string, 
 	felicityapiuri :=  ConfObj.Sub("components.otrs.apis.getlinkedticketdetails").GetString("uri")
 	ticketID := ConfObj.Sub("components.otrs.apis.getlinkedticketdetails.parameters").GetString("TicketID")
 
-	url := felicitybaseurl+felicityapiuri+"/"+ticketID+"?SessionID="+sessionIDString
+	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketID+"&SessionID="+sessionIDString
 	fmt.Println("URL Meow")
 	fmt.Println(url)
 	client := &http.Client{}
@@ -40,6 +40,7 @@ func callLinkedTickets(w http.ResponseWriter, r *http.Request, username string, 
    	if err != nil {
         	logger.Error(err.Error())
     	}
+	w.Header().Set("Content-Type", "application/json")
     	json.NewEncoder(w).Encode(data)		
 	/*json.NewEncoder(w).Encode(data)*/
 
