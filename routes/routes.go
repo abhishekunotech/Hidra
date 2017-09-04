@@ -118,4 +118,10 @@ var routes = Routes{
 		"/felicity/getCustomerInfobyTicketID",
 		handlers.GetCustomerInfobyTicketID,
 	},
+	Route{
+		"getCountClosedTickets",
+		"GET",
+		"/felicity/getCountClosedTickets",
+		handlers.GetCountofClosedTickets,
+	},
 }
