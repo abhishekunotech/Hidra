@@ -4,15 +4,21 @@ import(
 	"fmt"
 	"net/http"
 	"io/ioutil"
-	"encoding/base64"
 	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/antigloss/go/logger"
 	"bytes"
+	"time"
 )
 
+/*
+{"ArticleID":"2927","TicketNumber":"2017090410000024","TicketID":"629"}
 
+*/
 type TicketResponseBody struct{
-	
-
+	ArticleID string	`json:"ArticleID,omitempty"`
+	TicketNumber	string	`json:"TicketNumber"`
+	TicketID	string	`json:"TicketID"`
 }
 
 //Function to create ticket.
@@ -29,51 +35,57 @@ func Ticketcreate(w http.ResponseWriter, r *http.Request) {
         bodyValStrg := string(bodyVal)
 
         //Function call to create ticket and get the response
-        var jsonReturnString = creatorOfTickets(bodyValStrg)
-        var jsonReturn = []byte(jsonReturnString)
+        creatorOfTickets(bodyValStrg,w,r)
+        
+	/*var jsonReturn = []byte(jsonReturnString)
         //Decode JSON response
         jsonRetVal, _ := json.Marshal(jsonReturn)
         var byteArr []byte
         //Display the response
         base64.StdEncoding.Decode(byteArr, jsonRetVal)
         fmt.Fprintf(w, string(byteArr))
-        //json.NewEncoder(w).Encode(Tick)
+        //json.NewEncoder(w).Encode(Tick)*/
 }
 
 
-func creatorOfTickets(jsonInput string) string {
+func creatorOfTickets(jsonInput string,w http.ResponseWriter,r *http.Request) {
 
-        //API response is returned in JSON format from url
-        url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/TicketCreat?UserLogin=abhik&Password=abhik"
-        fmt.Println("URL:>", url)
-        //JSON input array
-        var jsonStr = []byte(jsonInput)
-        req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 
-        //Create custom header
-        req.Header.Set("X-Custom-Header", "myvalue")
-        req.Header.Set("Content-Type", "application/json")
-        //A "Client" is an HTTP client.
-        client := &http.Client{}
+	 http.DefaultClient.Timeout = 10 * time.Second
+	ConfObj := lerna.ReturnConfigObject()
+	
+	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+        felicityapiuri :=  ConfObj.Sub("components.otrs.apis.ticketcreate").GetString("uri")
+        passwordStrg := ConfObj.Sub("components.otrs.apis.ticketcreate.parameters").GetString("Password")	
+	usernameStrg := ConfObj.Sub("components.otrs.apis.ticketcreate.parameters").GetString("Username")
+	sessionIDString := callSessionDetails(usernameStrg,passwordStrg)	
+	
 
-        //"Do" sends an HTTP request and returns an HTTP response.
-        resp, err := client.Do(req)
+        url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
+        fmt.Println("URLi:>", url)
 
-        //Panic is a built-in function that stops the ordinary flow of control and begins panicking.
-        //Panics can be initiated by invoking panic directly. They can also be caused by runtime errors.
-        //Errors are handled if any.
+	jsonStr1 := bytes.NewBufferString(jsonInput)
+	
+	resp, err := http.Post(url, "application/json", jsonStr1)
+	
         if err != nil {
-                panic(err)
+		fmt.Println("Error OCcured")
+		fmt.Println(err.Error())
         }
-        //When "err" is nil, "resp" always contains a non-nil "resp.Body".
-        //Callers should close "resp.Body" using defer when done reading from it.
         defer resp.Body.Close()
 
         fmt.Println("response Status:", resp.Status)
         fmt.Println("response Headers:", resp.Header)
-        //ReadAll reads from response until an error or EOF and returns the data it read.
 
         body, _ := ioutil.ReadAll(resp.Body)
+	var bodyText []byte
+	var data TicketResponseBody
+        err = json.Unmarshal(bodyText, &data)
+        if err != nil {
+                logger.Error(err.Error())
+        }
+        w.Header().Set("Content-Type", "application/json")
+        json.NewEncoder(w).Encode(data)	
+
         fmt.Println("response Body:", string(body))
-        return string(body)
 }
