@@ -106,13 +106,19 @@ var routes = Routes{
 		"GET",
 		"/getListOfLinkedChange",
 		handlers.GetListOfLinkedChange,
-},
-  Route{
+	},
+        Route{
 		"TicketAll",
 		"GET",
 		"/TicketAll",
 		handlers.TicketAll,
 
+	},
+	Route{
+		"GetCountOfOpenTickets",
+		"GET",
+		"/getCountOfOpenTickets",
+		handlers.GetCountOfOpenTickets,
 	},
 	Route{
 		"getLinkedTickets",

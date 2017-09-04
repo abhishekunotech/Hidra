@@ -41,6 +41,15 @@
             "handler": "handlers.GetCIDetails"
         }
         ,
+
+	"getUserColumnPreference":{
+                "version":"1.0",
+            "method": "GET",
+            "URI": "/getUserColumnPreference",
+            "component":"otrs",
+            "handler": "handlers.GetUserColumnPreference"
+        },
+
         "getListOfWorkOrders":{
         	"version":"1.0",
             "method": "GET",
@@ -62,8 +71,16 @@
             "URI": "/TicketAll",
             "component":"otrs",
             "handler": "handlers.TicketAll"
-	}
+	},
+	"CountOpenTickets":{
+                "version": "1.0",
+            "method": "GET",
+            "URI": "/CountOpenTickets",
+            "component":"otrs",
+            "handler": "handlers.CountOpenTickets"
+        }
         ,
+
         "Ticketcreate":{
         	"version":"1.0",
             "method": "POST",
@@ -104,6 +121,17 @@
                     }
                     
                 },
+		
+		 "CountOfOpenTickets":{
+                    "version":"1.0",
+                    "URI": "/TicketAPI/GetCountOfTickets",
+                    "parameters": {
+                        "state": "open",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+
+                },
 		"TicketAll":{
                     "version":"1.0",
                     "URI": "/TicketAPI/TicketAll",
@@ -130,6 +158,15 @@
                                 "Password":"yazadb"
                         }
                 },
+		 "GetUserColumnPreference":{
+                        "version":"1.0",
+                        "URI":"/Config/GetUserColumnPreferences",
+                        "parameters":{
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
+                },
+
 		"SessionAPI":{
 			"version":"1.0",
 			"URI":"/SessionAPI/SessionCreate",
