@@ -6,7 +6,6 @@ package handlers
 
 import (
 	"github.com/Unotechsoftware/Hydra/lerna"
-	"bytes"
 	//"bytes"
 	"encoding/base64"
 	"encoding/json"
