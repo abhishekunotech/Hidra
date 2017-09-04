@@ -124,4 +124,10 @@ var routes = Routes{
 		"/felicity/getCountClosedTickets",
 		handlers.GetCountofClosedTickets,
 	},
+	Route{
+		"getListofWorkorderGraph",
+		"GET",
+		"/felicity/getListofWorkorderGraph",
+		handlers.GetListofWorkorderGraph,
+	},
 }
