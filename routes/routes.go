@@ -101,9 +101,29 @@ var routes = Routes{
 		handlers.GetLinkedChange,
 	},
 	Route{
+
+		"getListOfLinkedChange",
+		"GET",
+		"/getListOfLinkedChange",
+		handlers.GetListOfLinkedChange,
+	},
+        Route{
+		"TicketAll",
+		"GET",
+		"/TicketAll",
+		handlers.TicketAll,
+
+	},
+	Route{
+		"GetCountOfOpenTickets",
+		"GET",
+		"/getCountOfOpenTickets",
+		handlers.GetCountOfOpenTickets,
+	},
+	Route{
 		"getLinkedTickets",
 		"GET",
-		"/getLinkedTickets",
+		"/felicity/getLinkedTickets",
 		handlers.GetLinkedTickets,
 	},
 	Route{
@@ -113,10 +133,19 @@ var routes = Routes{
 		handlers.IsValidFelicityUser,
 	},
 	Route{
+
+		"getCustomerInfobyTicketID",
+		"GET",
+		"/felicity/getCustomerInfobyTicketID",
+		handlers.GetCustomerInfobyTicketID,
+	},
+	Route{
+
                 "getListOfCIs",
                 "GET",
                 "/getListOfCIs",
                 handlers.GetListOfCIs,
+
         },
 	Route{
                 "getTicketInfo",
@@ -125,5 +154,18 @@ var routes = Routes{
                 handlers.GetTicketInfo,
         },
 
+
+	Route{
+		"getCountClosedTickets",
+		"GET",
+		"/felicity/getCountClosedTickets",
+		handlers.GetCountofClosedTickets,
+	},
+	Route{
+		"getListofWorkorderGraph",
+		"GET",
+		"/felicity/getListofWorkorderGraph",
+		handlers.GetListofWorkorderGraph,
+	},
 
 }

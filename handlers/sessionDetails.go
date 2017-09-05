@@ -15,7 +15,8 @@ type SessionObject struct{
 }
 
 func callSessionDetails(username string, password string) string{
-	
+
+	fmt.Println("in sessiondetails")	
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.SessionAPI").GetString("uri")

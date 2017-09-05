@@ -9,12 +9,12 @@
             "handler": "handlers.Index"
         }
         ,
-        "GetTicketDetails":{
-        	"version":"1.0",
+	 "GetTicketInfo":{
+                "version":"1.0",
             "method": "GET",
-            "URI": "/getTicketDetails",
+            "URI": "/getTicketInfo",
             "component":"otrs",
-            "handler": "handlers.GetTicketDetails"
+            "handler": "handlers.GetTicketInfo"
         }
         ,
         "getCILogs":{
@@ -41,12 +41,42 @@
             "handler": "handlers.GetCIDetails"
         }
         ,
+	"getUserColumnPreference":{
+                "version":"1.0",
+            "method": "GET",
+            "URI": "/getUserColumnPreference",
+            "component":"otrs",
+            "handler": "handlers.GetUserColumnPreference"
+        },
+
         "getListOfWorkOrders":{
         	"version":"1.0",
             "method": "GET",
             "URI": "/getListOfWorkOrders",
             "component":"otrs",
             "handler": "handlers.GetListOfWorkOrders"
+        },
+	"getListOfKLinkedChange":{
+                "version":"1.0",
+            "method": "GET",
+            "URI": "/getListOfLinkedChange",
+            "component":"otrs",
+            "handler": "handlers.GetListOfLinkedChange"
+        },
+
+	"TicketAll":{
+		"version": "1.0",
+	    "method": "GET",
+            "URI": "/TicketAll",
+            "component":"otrs",
+            "handler": "handlers.TicketAll"
+	},
+	"CountOpenTickets":{
+                "version": "1.0",
+            "method": "GET",
+            "URI": "/CountOpenTickets",
+            "component":"otrs",
+            "handler": "handlers.CountOpenTickets"
         }
         ,
         "Ticketcreate":{
@@ -71,33 +101,73 @@
             "URI": "/getLinkedTickets",
             "component":"otrs",
             "handler": "handlers.GetLinkedTickets"
+        },
+        "getListOfCIs":{
+                "version":"1.0",
+            "method": "GET",
+            "URI": "/getListOfCIs",
+            "component":"otrs",
+            "handler": "handlers.GetListOfCIs"
         }
-    }
+        ,
+        "setUserColumnPreferences":{
+                "version":"1.0",
+            "method": "POST",
+            "URI": "/setUserColumnPreferences",                                   	    "component":"otrs",                                                 
+            "handler": "handlers.SetUserColumnPreferences"                      
+        }                                                                      
+        ,                                                                       
+        "getListOfFAQs":{                                                       
+                "version":"1.0",                                                
+            "method": "GET",                                                    
+            "URI": "/getListOfFAQs",                                            
+            "component":"otrs",                                                 
+            "handler": "handlers.GetListOfFAQs"                                 
+        }                                                                       
+        ,                                                                       
+        "getLinkedTickets":{                                                    
+                "version":"1.0",                                                
+            "method": "GET",                                                    
+            "URI": "/getLinkedTickets",                                         
+            "component":"otrs",                                                 
+            "handler": "handlers.GetLinkedTickets"                              
+        }                                                                       
+    }                                                                           
     ,
     "components": {
         "otrs":{
             "version": "1.0",
             "url": "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice",
             "apis": {
-                "GetTicketDetails":{
+                 "GetTicketInfo":{
                     "version":"1.0",
-                    "URI": "/TicketAPI/getTicketDetails",
+                    "URI": "/TicketAPI/getTicketInfo",
                     "parameters": {
                         "TicketID": "123",
                         "UserLogin": "abhik",
                         "Password": "abhik"
                     }
-                    
                 },
-		"SessionAPI":{
-			"version":"1.0",
-			"URI":"/SessionAPI/SessionCreate",
-			"parameters":{
-				"UserLogin":"rasikm",
-				"Password":"rasikm"
-			}
 
-		},
+		 "CountOfOpenTickets":{
+                    "version":"1.0",
+                    "URI": "/TicketAPI/GetCountOfTickets",
+                    "parameters": {
+                        "state": "open",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+
+                },
+		"TicketAll":{
+                    "version":"1.0",
+                    "URI": "/TicketAPI/TicketAll",
+                    "parameters": {
+                        "Filter": "All",
+                        "CustomerUserLogin": "yazadb",
+                        "Password": "yazadb"
+                    }
+                },	
 		"GetListOfWorkOrders":{
                     "version":"1.0",
                     "URI": "/TicketAPI/ListOfLinkedWorkorders",
@@ -106,6 +176,75 @@
                         "UserLogin": "abhik",
                         "Password" : "abhik"
                     }
+                },
+		"CustomerSessionAPI":{
+                        "version":"1.0",
+                        "URI":"/SessionAPI/SessionCreate",
+                        "parameters":{
+                                "CustomerUserLogin":"yazadb",
+                                "Password":"yazadb"
+                        }
+                },
+		 "GetUserColumnPreference":{
+                        "version":"1.0",
+                        "URI":"/Config/GetUserColumnPreferences",
+                        "parameters":{
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
+                },
+
+		"SessionAPI":{
+			"version":"1.0",
+			"URI":"/SessionAPI/SessionCreate",
+			"parameters":{
+				"UserLogin":"abhik",
+				"Password":"abhik"
+			}
+		},
+		"GetListOfLinkedChange":{
+			"version":"1.0",
+                        "URI":"/TicketAPI/ListOfLinkedTickets",
+                        "parameters":{
+                                "TicketID":"447",
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
+                },
+		"GetListOfCIs":{
+                        "version":"1.0",
+                        "URI":"/TicketAPI/ListOfCIs",
+                        "parameters":{
+                                "TicketID":"627",
+                                "UserLogin":"rasikm",
+                                "Password":"rasikm"
+                        }
+                },
+                "GetListOfFAQs":{
+                        "version":"1.0",
+                        "URI":"/TicketAPI/ListOfFAQs",
+                        "parameters":{
+                                "TicketID":"627",
+                                "UserLogin":"rasikm",
+                                "Password":"rasikm"
+                        }
+                },
+                "GetListOfLinkedChange":{
+                        "version":"1.0",
+                        "URI":"/TicketAPI/ListOfLinkedTickets",
+                        "parameters":{
+                                "TicketID":"447",
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
+                },
+                "SetUserColumnPreferences":{
+                        "version":"1.0",
+                        "URI":"/Config/SetUserColumnPreferences",
+                        "parameters":{
+                                "UserLogin":"abhik",
+                                "Password":"abhik"
+                        }
                 },
 
 		"GetLinkedTicketDetails":{

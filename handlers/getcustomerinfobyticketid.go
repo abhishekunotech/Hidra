@@ -1,26 +1,25 @@
  package handlers
 
 import (
-//	"fmt"
 	"encoding/json"
 	"github.com/antigloss/go/logger"
 	"net/http"
 	"io/ioutil"
 	"io"
 	"github.com/Unotechsoftware/Hydra/lerna"
-//	"reflect"
 )
 
-func callLinkedTickets(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string){
+func callCustomerInfo(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string){
 	
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri :=  ConfObj.Sub("components.otrs.apis.getlinkedticketdetails").GetString("uri")
+	felicityapiuri :=  ConfObj.Sub("components.otrs.apis.getcustomerinfobyticketid").GetString("uri")
 	sessionIDString := callSessionDetails(username,password)
 	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketid+"&SessionID="+sessionIDString
 	client := &http.Client{}
 	var bodyReader io.Reader
     	req, err := http.NewRequest("GET", url,bodyReader)
+
     	resp, err := client.Do(req)
     	if err != nil{
 		logger.Error("\n\nThis caused the following error \n\n")
@@ -40,7 +39,7 @@ func callLinkedTickets(w http.ResponseWriter, r *http.Request, ticketid string, 
 
 //Function to get the details about ticket.
 
-func GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
+func GetCustomerInfobyTicketID(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var ticketid string
@@ -53,16 +52,16 @@ func GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		if key == "UserLogin"{
-			for _, valueStrg := range value {
-				username = valueStrg
+			for _, valueStrg := range value{
+				username = valueStrg	
 			}
 		}
 		if key == "Password"{
-			for _, valueStrg := range value {
+			for _, valueStrg := range value{
 				password = valueStrg
 			}
 		}
 	}
-	callLinkedTickets(w,r,ticketid,username,password)
+	callCustomerInfo(w,r,ticketid,username,password)
 
 }
