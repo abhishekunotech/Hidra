@@ -133,17 +133,28 @@ var routes = Routes{
 		handlers.IsValidFelicityUser,
 	},
 	Route{
+
 		"getCustomerInfobyTicketID",
 		"GET",
 		"/felicity/getCustomerInfobyTicketID",
 		handlers.GetCustomerInfobyTicketID,
 	},
 	Route{
+
                 "getListOfCIs",
                 "GET",
                 "/getListOfCIs",
                 handlers.GetListOfCIs,
-	},
+
+        },
+	Route{
+                "getTicketInfo",
+                "GET",
+                "/getTicketInfo",
+                handlers.GetTicketInfo,
+        },
+
+
 	Route{
 		"getCountClosedTickets",
 		"GET",
@@ -156,4 +167,5 @@ var routes = Routes{
 		"/felicity/getListofWorkorderGraph",
 		handlers.GetListofWorkorderGraph,
 	},
+
 }
