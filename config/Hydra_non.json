@@ -41,7 +41,6 @@
             "handler": "handlers.GetCIDetails"
         }
         ,
-
 	"getUserColumnPreference":{
                 "version":"1.0",
             "method": "GET",
@@ -80,7 +79,6 @@
             "handler": "handlers.CountOpenTickets"
         }
         ,
-
         "Ticketcreate":{
         	"version":"1.0",
             "method": "POST",
@@ -103,8 +101,7 @@
             "URI": "/getLinkedTickets",
             "component":"otrs",
             "handler": "handlers.GetLinkedTickets"
-        }
-    }
+        },
         "getListOfCIs":{
                 "version":"1.0",
             "method": "GET",
@@ -118,7 +115,7 @@
             "method": "POST",
             "URI": "/setUserColumnPreferences",                                   	    "component":"otrs",                                                 
             "handler": "handlers.SetUserColumnPreferences"                      
-        }                                                                       
+        }                                                                      
         ,                                                                       
         "getListOfFAQs":{                                                       
                 "version":"1.0",                                                
