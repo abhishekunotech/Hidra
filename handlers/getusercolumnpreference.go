@@ -45,7 +45,7 @@ func callUserColumnPreference(w http.ResponseWriter, r *http.Request, username s
 //Function to get list of work orders
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
-func GetUserColumnPreference(w http.ResponseWriter, r *http.Request) {
+func GetUserColumnPreferences(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
         fmt.Println("in user column pref")
         mapHttp := r.URL.Query()

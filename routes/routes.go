@@ -167,5 +167,16 @@ var routes = Routes{
 		"/felicity/getListofWorkorderGraph",
 		handlers.GetListofWorkorderGraph,
 	},
-
+	Route{
+		"setUserColumnPreferences",
+		"POST",
+		"/felicity/setUserColumnPreferences",
+		handlers.SetUserColumnPreferences,
+	},
+	Route{
+		"getUserColumnPreferences",
+		"GET",
+		"/getUserColumnPreference",
+		handlers.GetUserColumnPreferences,
+	},
 }
