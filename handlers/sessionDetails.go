@@ -20,9 +20,7 @@ func callSessionDetails(username string, password string) string{
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.SessionAPI").GetString("uri")
-	felicityusername := ConfObj.Sub("components.otrs.apis.SessionAPI.parameters").GetString("UserLogin")
-	felicitypassword := ConfObj.Sub("components.otrs.apis.SessionAPI.parameters").GetString("Password")
-        url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
+        url := felicitybaseurl+felicityapiuri+"?UserLogin="+username+"&Password="+password
        	fmt.Println(url)
         client := &http.Client{}
         var bodyReader io.Reader
