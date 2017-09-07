@@ -10,7 +10,7 @@
 package main
 
 import (
-	"fmt"
+//	"fmt"
 	"log"
 	"net/http"
 	//	"reflect"
@@ -54,13 +54,13 @@ func main() {
 	// EXAMPLE OF CONFIGURATION USAGE
 	ConfObj := lerna.ReturnConfigObject()
 	mapStrgRoutes := lerna.GetJSONObjectType_Routes(ConfObj)
-	fmt.Println(mapStrgRoutes["getcidetails"].Version)
+	//fmt.Println(mapStrgRoutes["getcidetails"].Version)
 
 	RouteTypeCIDetails := mapStrgRoutes["getcidetails"]
 
 	VersionStrgRoute := lerna.GetRouteType_Version(RouteTypeCIDetails)
 
-	fmt.Println(VersionStrgRoute)
+	//fmt.Println(VersionStrgRoute)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
