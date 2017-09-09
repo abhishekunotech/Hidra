@@ -215,4 +215,10 @@ var routes = Routes{
 		"/custListAjax",
 		handlers.CustListAjax,
 	},
+	Route{
+		"requestListAjax",
+		"GET",
+		"/requestListAjax",
+		handlers.RequestListAjax,
+	},
 }
