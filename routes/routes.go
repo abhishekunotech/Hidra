@@ -185,4 +185,10 @@ var routes = Routes{
 		"/getUserQueueList",
 		handlers.GetUserQueueList,
 	},
+	Route{
+		"getListAssignedQueue",
+		"GET",
+		"/getListAssignedQueue",
+		handlers.GetListAssignedQueue,
+	},
 }
