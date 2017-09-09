@@ -117,6 +117,12 @@ var routes = Routes{
 	Route{
 		"GetCountOfOpenTickets",
 		"GET",
+		"/getCountOfOpenTickets",
+		handlers.GetCountOfOpenTickets,
+	},
+	Route{
+		"getCountofOpenTicketsCustomerUser",
+		"GET",
 		"/getCountOfOpenTicketsCustomerUser",
 		handlers.GetCountOfOpenTicketsCustomerUser,
 	},

@@ -15,10 +15,8 @@ func callCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request, 
 
 	sessionIDString := callSessionDetails(username, password)
 
-	fmt.Println("session id is ::", sessionIDString)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	fmt.Println("base url:- ", felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.CountOfOpenTicketsUser").GetString("uri")
 	state := ConfObj.Sub("components.otrs.apis.CountOfOpenTicketsUser.parameters").GetString("state")
 	url := felicitybaseurl + felicityapiuri + "?State=" + state + "&SessionID=" + sessionIDString + "&CustomerID=" + custID + "&CustomerUser=" + custuser
@@ -77,12 +75,7 @@ func GetCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request) {
 
 		}
 	}
-		fmt.Println("User name and Password is")
 
-		fmt.Println(userName)
-		fmt.Println(password)
-		fmt.Println(custID)
-		fmt.Println(custUser)
 		callCountOfOpenTicketsCustomerUser(w, r, custID, userName, password, custUser)
 		//bodyStrg := string(body[:])
 		//fmt.Fprintf(w,"www"+bodyStrg+"\n")
