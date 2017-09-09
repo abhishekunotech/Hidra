@@ -191,4 +191,10 @@ var routes = Routes{
 		"/getListAgents",
 		handlers.GetListAgents,
 	},
+	Route{
+		"getListGroupFilter",
+		"GET",
+		"/getListGroupFilter",
+		handlers.GetListGroupFilter,
+	},
 }
