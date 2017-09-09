@@ -185,4 +185,10 @@ var routes = Routes{
 		"/getListAssignedQueue",
 		handlers.GetListAssignedQueue,
 	},
+	Route{
+		"getListAgents",
+		"GET",
+		"/getListAgents",
+		handlers.GetListAgents,
+	},
 }
