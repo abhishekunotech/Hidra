@@ -233,4 +233,10 @@ var routes = Routes{
 		"/getSLAInfo",
 		handlers.GetSLAInfo,
 	},
+	Route{
+		"getArticle",
+		"GET",
+		"/getArticle",
+		handlers.GetArticle,
+	},
 }
