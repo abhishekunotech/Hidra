@@ -148,6 +148,12 @@ var routes = Routes{
 
         },
 	Route{
+                "getListOfLinkedFAQs",
+                "GET",
+                "/getListOfLinkedFAQs",
+                handlers.GetListOfLinkedFAQs,
+        },
+	Route{
                 "getTicketInfo",
                 "GET",
                 "/getTicketInfo",
