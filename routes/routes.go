@@ -203,4 +203,10 @@ var routes = Routes{
 		"/getListTicketState",
 		handlers.GetListTicketState,
 	},
+	Route{
+		"listPriority",
+		"GET",
+		"/listPriority",
+		handlers.ListPriority,
+	},
 }
