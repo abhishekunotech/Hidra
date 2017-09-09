@@ -263,4 +263,10 @@ var routes = Routes{
 		"/getListArticleType",
 		handlers.GetListArticleType,
 	},
+	Route{
+		"queueTemplateList",
+		"GET",
+		"/getQueueTemplateList",
+		handlers.GetQueueTemplateList,
+	},
 }
