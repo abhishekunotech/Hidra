@@ -239,4 +239,10 @@ var routes = Routes{
 		"/getArticle",
 		handlers.GetArticle,
 	},
+	Route{
+		"listType",
+		"GET",
+		"/listType",
+		handlers.ListType,
+	},
 }
