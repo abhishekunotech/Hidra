@@ -197,4 +197,10 @@ var routes = Routes{
 		"/getListGroupFilter",
 		handlers.GetListGroupFilter,
 	},
+	Route{
+		"getListTicketState",
+		"GET",
+		"/getListTicketState",
+		handlers.GetListTicketState,
+	},
 }
