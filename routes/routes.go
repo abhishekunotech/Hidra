@@ -209,4 +209,46 @@ var routes = Routes{
 		"/getListTicketState",
 		handlers.GetListTicketState,
 	},
+	Route{
+		"listPriority",
+		"GET",
+		"/listPriority",
+		handlers.ListPriority,
+	},
+	Route{
+		"custListAjax",
+		"GET",
+		"/custListAjax",
+		handlers.CustListAjax,
+	},
+	Route{
+		"requestListAjax",
+		"GET",
+		"/requestListAjax",
+		handlers.RequestListAjax,
+	},
+	Route{
+		"getTicketHistory",
+		"GET",
+		"/getTicketHistory",
+		handlers.GetTicketHistory,
+	},
+	Route{
+		"getSLAInfo",
+		"GET",
+		"/getSLAInfo",
+		handlers.GetSLAInfo,
+	},
+	Route{
+		"getArticle",
+		"GET",
+		"/getArticle",
+		handlers.GetArticle,
+	},
+	Route{
+		"listType",
+		"GET",
+		"/listType",
+		handlers.ListType,
+	},
 }
