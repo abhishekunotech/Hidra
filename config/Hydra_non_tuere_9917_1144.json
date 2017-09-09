@@ -305,13 +305,11 @@
                         "State": "close"
                     }
                     
-                }
-                ,
-                "GetUserQueueList": {
-                    "version": "1.0",
-                    "URI": "/TicketAPI/GetUserQueueList"
-                }
-                
+                },
+                "GetListAssignedQueue":{
+			"version":"1.0",
+			"URI":"/TicketAPI/GetUserQueueList"
+		}
             }
             
         }
