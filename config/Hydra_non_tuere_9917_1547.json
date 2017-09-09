@@ -358,6 +358,10 @@
 		"ListType":{
 			"version":"1.0",
 			"URI":"/Common/TicketType"
+		},
+		"ListArticleType":{
+			"version":"1.0",
+			"URI":"/TicketAPI/GetArticleTypeList"
 		}
             }
             
