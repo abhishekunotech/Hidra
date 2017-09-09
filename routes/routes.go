@@ -221,4 +221,10 @@ var routes = Routes{
 		"/requestListAjax",
 		handlers.RequestListAjax,
 	},
+	Route{
+		"getTicketHistory",
+		"GET",
+		"/getTicketHistory",
+		handlers.GetTicketHistory,
+	},
 }
