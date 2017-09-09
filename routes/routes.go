@@ -209,4 +209,10 @@ var routes = Routes{
 		"/listPriority",
 		handlers.ListPriority,
 	},
+	Route{
+		"custListAjax",
+		"GET",
+		"/custListAjax",
+		handlers.CustListAjax,
+	},
 }
