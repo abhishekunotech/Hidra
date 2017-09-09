@@ -180,12 +180,6 @@ var routes = Routes{
 		handlers.GetUserColumnPreferences,
 	},
 	Route{
-		"getUserQueueList",
-		"GET",
-		"/getUserQueueList",
-		handlers.GetUserQueueList,
-	},
-	Route{
 		"getListAssignedQueue",
 		"GET",
 		"/getListAssignedQueue",

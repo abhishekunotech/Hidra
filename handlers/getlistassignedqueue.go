@@ -10,7 +10,7 @@ import (
 	//"reflect"
         //"io"
 )
-func callAssignedQueue(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
+func callAssignedQueue(w http.ResponseWriter, r *http.Request, username string, password string){
 
 	sessionIDString := callSessionDetails(username,password)
 
@@ -18,10 +18,9 @@ func callAssignedQueue(w http.ResponseWriter, r *http.Request, username string, 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	fmt.Println("base url:- ",felicitybaseurl)
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistofworkorders").GetString("uri")
-	ticketid = ConfObj.Sub("components.otrs.apis.getlistofworkorders.parameters").GetString("TicketId")
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistassignedqueue").GetString("uri")
 		
-	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketid+"&SessionID="+sessionIDString
+	url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
 
 	//fmt.Println("url is::",url)	
 	res, err:= http.Get(url)
@@ -51,13 +50,8 @@ func GetListAssignedQueue(w http.ResponseWriter, r *http.Request) {
 	mapHttp := r.URL.Query()
         var userName string
         var password string
-        var ticketid string
+        //var ticketid string
         for key,value := range mapHttp {
-                if key == "ticketID"{
-                        for _, valueStrg := range value {
-                                ticketid = valueStrg
-                        }
-                }
                 if key == "userLogin"{
                         for _, valueStrg := range value {
                                 userName = valueStrg
@@ -70,10 +64,8 @@ func GetListAssignedQueue(w http.ResponseWriter, r *http.Request) {
                 }
         }
 
-        callAssignedQueue(w,r,userName, password, ticketid)
+        callAssignedQueue(w,r,userName, password)
 
-        //bodyStrg := string(body[:])
-        //fmt.Fprintf(w,"www"+bodyStrg+"\n")
 }
 
 

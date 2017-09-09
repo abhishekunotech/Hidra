@@ -14,7 +14,6 @@ import (
 	"log"
 	"net/http"
 	//	"reflect"
-	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/Unotechsoftware/Hydra/routes"
 	"github.com/antigloss/go/logger"
 	"os"
@@ -51,16 +50,6 @@ func main() {
 	//ListenAndServeTLS starts an HTTPS server.
 	//Change the first and second parameters as per the locations of your certificates
 
-	// EXAMPLE OF CONFIGURATION USAGE
-	ConfObj := lerna.ReturnConfigObject()
-	mapStrgRoutes := lerna.GetJSONObjectType_Routes(ConfObj)
-	//fmt.Println(mapStrgRoutes["getcidetails"].Version)
-
-	RouteTypeCIDetails := mapStrgRoutes["getcidetails"]
-
-	VersionStrgRoute := lerna.GetRouteType_Version(RouteTypeCIDetails)
-
-	//fmt.Println(VersionStrgRoute)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
