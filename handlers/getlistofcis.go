@@ -1,83 +1,80 @@
 package handlers
 
 import (
-	"encoding/json"
-	"fmt"
-//	"github.com/antigloss/go/logger"
-//	"io"
-	"io/ioutil"
-	"net/http"
-	"github.com/Unotechsoftware/Hydra/lerna"
+        "github.com/antigloss/go/logger"
+        "encoding/json"
+        "github.com/Unotechsoftware/Hydra/lerna"
+        "net/http"
+        "fmt"
+        "io/ioutil"
+        //"reflect"
+        //"io"
 )
-type ListOfCIs struct {
+func callListOfCIs(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 
-        ZeroCI []ZeroCIArray
-      OneCI []OneCIArray 
+        sessionIDString := callSessionDetails(username,password)
+
+        fmt.Println("session id is ::",sessionIDString)
+        ConfObj := lerna.ReturnConfigObject()
+        felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+        fmt.Println("base url:- ",felicitybaseurl)
+        felicityapiuri := ConfObj.Sub("components.otrs.apis.GetListOfCIs").GetString("uri")
+        ticketid = ConfObj.Sub("components.otrs.apis.GetListOfCIs.parameters").GetString("TicketId")
+
+        url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketid+"&SessionID="+sessionIDString
+
+        fmt.Println("url is::",url)
+        res, err:= http.Get(url)
+        if err != nil{
+                logger.Error(err.Error())
+        }
+
+        bodyText, err := ioutil.ReadAll(res.Body)
+
+        var data interface{}
+        err = json.Unmarshal(bodyText, &data)
+        if err != nil {
+                logger.Error(err.Error())
+        }
+        w.Header().Set("Content-Type", "application/json")
+        json.NewEncoder(w).Encode(data)
+        /*json.NewEncoder(w).Encode(data)*/
+
 }
 
-type ZeroCIArray struct{
-	DeplState	string	`json:"DeplState"`
-	CI_Id	 	int	`json:"ci_id"`
-	Create_Time 	string	`json:"create_time"`
-	Link_Name  	string  `json:"link_name"`
-        ClassName   	string  `json:"ClassName"`
-        TypeId       	int     `json:"type_id"`
-	ClassId 	int     `json:"class_id"`
-        InciState       string  `json:"InciState"`
-        Configitem_Number string  `json:"configitem_number"`
-	TicketId	int        `json:"ticket_id"`
-        Name    string  `json:"Name"`
-	
-}
-type OneCIArray struct{
-	DeplState       string  `json:"DeplState"`
-        CI_Id           int     `json:"ci_id"`
-        Create_Time     string  `json:"create_time"`
-        Link_Name       string  `json:"link_name"`
-        ClassName       string  `json:"ClassName"`
-        TypeId          int     `json:"type_id"`
-        ClassId         int     `json:"class_id"`
-        InciState       string  `json:"InciState"`
-        Configitem_Number string  `json:"configitem_number"`
-        TicketId        int        `json:"ticket_id"`
-        Name    string  `json:"Name"`
-}
+//Function to get list of work orders
+// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func GetListOfCIs(w http.ResponseWriter, r *http.Request) {
+        //body, _ := ioutil.ReadAll(r.Body)
+	fmt.Println("In list of CIs")
+        mapHttp := r.URL.Query()
+        var userName string
+        var password string
+        var ticketid string
+        for key,value := range mapHttp {
+                if key == "TicketID"{
+                        for _, valueStrg := range value {
+                                ticketid = valueStrg
+                        }
+                }
+                if key == "UserLogin"{
+                        for _, valueStrg := range value {
+                                userName = valueStrg
+                        }
+                }
+                if key == "Password"{
+                        for _, valueStrg := range value {
+                                password = valueStrg
+                        }
+                }
+        }
 
-	ConfObj := lerna.ReturnConfigObject()
-	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistofcis").GetString("uri")
-	felicityusername := ConfObj.Sub("components.otrs.apis.getlistofcis.parameters").GetString("UserLogin")
-	felicitypassword := ConfObj.Sub("components.otrs.apis.getlistofcis.parameters").GetString("Password")
-        url := felicitybaseurl+felicityapiuri+"?UserLogin="+felicityusername+"&Password="+felicitypassword
-	fmt.Println(url)
-
-
-	//API response is returned in JSON format from url
-
-	//url := "http://192.168.2.52:59200/_search?q=172.34.144.133&pretty=true&size=1"
-
-	res, err := http.Get(url)
-
-	//Errors are handled if any.
-	if err != nil {
-		panic(err.Error())
-	}
-
-	//ReadAll reads from response until an error or EOF and returns the data it read.
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		panic(err.Error())
-	}
-	var data interface{}
-
-	//To decode JSON data, use the Unmarshal function.
-	err = json.Unmarshal(body, &data)
-	if err != nil {
-		panic(err.Error())
-	}
-	fmt.Printf("Results: %v\n", data)
-	//Encode the data
-	json.NewEncoder(w).Encode(data)
+        callListOfCIs(w,r,userName, password, ticketid)
+	fmt.Println(userName)
+	fmt.Println(password)
+	fmt.Println(ticketid)
+        //bodyStrg := string(body[:])
+        //fmt.Fprintf(w,"www"+bodyStrg+"\n")
 }
+

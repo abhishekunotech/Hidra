@@ -113,16 +113,17 @@
         "setUserColumnPreferences":{
                 "version":"1.0",
             "method": "POST",
-            "URI": "/setUserColumnPreferences",                                   	    "component":"otrs",                                                 
+            "URI": "/setUserColumnPreferences",  
+            "component":"otrs",                                                 
             "handler": "handlers.SetUserColumnPreferences"                      
         }                                                                      
         ,                                                                       
-        "getListOfFAQs":{                                                       
+        "getListOfLinkedFAQs":{                                                       
                 "version":"1.0",                                                
             "method": "GET",                                                    
-            "URI": "/getListOfFAQs",                                            
+            "URI": "/getListOfLinkedFAQs",                                            
             "component":"otrs",                                                 
-            "handler": "handlers.GetListOfFAQs"                                 
+            "handler": "handlers.GetListOfLinkedFAQs"                                 
         }                                                                       
         ,                                                                       
         "getLinkedTickets":{                                                    
@@ -220,9 +221,9 @@
                                 "Password":"rasikm"
                         }
                 },
-                "GetListOfFAQs":{
+                "GetListOfLinkedFAQs":{
                         "version":"1.0",
-                        "URI":"/TicketAPI/ListOfFAQs",
+                        "URI":"/TicketAPI/ListOfLinkedFAQs",
                         "parameters":{
                                 "TicketID":"627",
                                 "UserLogin":"rasikm",
