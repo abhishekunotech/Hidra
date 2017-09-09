@@ -117,8 +117,8 @@ var routes = Routes{
 	Route{
 		"GetCountOfOpenTickets",
 		"GET",
-		"/getCountOfOpenTickets",
-		handlers.GetCountOfOpenTickets,
+		"/getCountOfOpenTicketsCustomerUser",
+		handlers.GetCountOfOpenTicketsCustomerUser,
 	},
 	Route{
 		"getLinkedTickets",
