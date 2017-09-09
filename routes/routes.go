@@ -227,4 +227,10 @@ var routes = Routes{
 		"/getTicketHistory",
 		handlers.GetTicketHistory,
 	},
+	Route{
+		"getSLAInfo",
+		"GET",
+		"/getSLAInfo",
+		handlers.GetSLAInfo,
+	},
 }
