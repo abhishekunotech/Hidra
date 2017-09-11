@@ -9,7 +9,7 @@
 package routes
 
 import (
-	"github.com/Unotechsoftware/Hydra/handlers"
+//	"github.com/Unotechsoftware/Hydra/handlers"
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/gorilla/mux"
 	"net/http"
@@ -51,10 +51,10 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-
-func PopulateRoutes() Routes{
-
-
+	
+func PopulateRoutes(){
+	ConfObj := lerna.ReturnConfigObject()
+        RouteObj := ConfObj.Sub("routes")
 }
 
 
