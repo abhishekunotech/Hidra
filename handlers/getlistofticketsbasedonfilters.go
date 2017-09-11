@@ -3,7 +3,6 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
@@ -35,10 +34,8 @@ func (h *Handler) GetTicketGrid(w http.ResponseWriter, r *http.Request) {
 	var t Grid_API
 	err := decoder.Decode(&t)
 	if err != nil {
-		fmt.Println("Error Occured")
 		logger.Error("Error Occured in Decoding Post Request")
 		logger.Error(err.Error())
-		fmt.Println(err.Error())
 	}
 	defer r.Body.Close()
 
@@ -52,67 +49,37 @@ func GetTicketGrid(T Grid_API, w http.ResponseWriter, r *http.Request) {
 
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.GetTicketGrid").GetString("uri")
-	//sessionIDString := callSessionDetails(T.UserLogin,T.Password)
 
-	//fmt.Println("SESSION ID IS")
-	//fmt.Println(sessionIDString)
 
-	//url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
-	//url := felicitybaseurl+felicityapiuri+"?UserLogin="+T.UserLogin+"&Password="+T.Password
 	url := felicitybaseurl + felicityapiuri
 
-	fmt.Println("\n\n\n URL IS ")
-	fmt.Println(url)
 	j, err := json.Marshal(T)
 
 	if err != nil {
-		fmt.Println("Error in Marshaling JsON")
-		fmt.Println(err.Error())
+		logger.Error("Error in Marshaling JsON")
+		logger.Error(err.Error())
 	}
 
 	b := bytes.NewBuffer(j)
 
-	fmt.Println(b)
-	/*
-	           resp, err := http.Post(url, "application/json", b)
-	           if err != nil {
-	                   fmt.Println("Error OCcured here")
-	                   fmt.Println(err.Error())
-	           }
-	           defer resp.Body.Close()
-	           fmt.Println("response Status:", resp.Status)
-	           fmt.Println("response Headers:", resp.Header)
-	           var bodyText []byte
-	           var data interface{}
-	           err = json.Unmarshal(bodyText, &data)
-	           if err != nil {
-	                   fmt.Println("JSON  Unmarshalling failed")
-	   		fmt.Println(err.Error())
-	   		logger.Error(err.Error())
-	           }
-	   	fmt.Println(bodyText)
-	*/
 
 	client := &http.Client{}
 
 	req, err := http.NewRequest("POST", url, b)
 
 	if err != nil {
-		fmt.Println("\n\n Request to Create Request Failed \n\n")
-		fmt.Println(err.Error())
+		logger.Error("\n\n Request to Create Request Failed \n\n")
+		logger.Error(err.Error())
 	}
 
-	fmt.Println("Request")
 
 	req.Close = true
 	req.Header.Set("Content-Type", "application/json")
-	fmt.Println(req)
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println("\n\n POST REQUEST TO FELICITY FAILED \n\n")
-		fmt.Println(err.Error())
+		logger.Error("\n\n POST REQUEST TO FELICITY FAILED \n\n")
+		logger.Error(err.Error())
 	}
-	//req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
 	var data interface{}
 	err = json.Unmarshal(bodyText, &data)

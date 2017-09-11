@@ -2,28 +2,24 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
-	//"reflect"
-	//"io"
 )
 
 func callCustListAjax(w http.ResponseWriter, r *http.Request, username string, password string, search string, term string) {
 
 	sessionIDString := callSessionDetails(username, password)
 
-	fmt.Println("session id is ::", sessionIDString)
+	logger.Info("session id is ::", sessionIDString)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	fmt.Println("base url:- ", felicitybaseurl)
+	logger.Info("base url:- ", felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.custlistajax").GetString("uri")
 
 	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&Search=" + search + "&Term=" + term
 
-	//fmt.Println("url is::",url)
 	res, err := http.Get(url)
 	if err != nil {
 		logger.Error(err.Error())
@@ -38,7 +34,6 @@ func callCustListAjax(w http.ResponseWriter, r *http.Request, username string, p
 	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
-	/*json.NewEncoder(w).Encode(data)*/
 
 }
 
@@ -46,7 +41,6 @@ func callCustListAjax(w http.ResponseWriter, r *http.Request, username string, p
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) CustListAjax(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 
 	mapHttp := r.URL.Query()
 	var userName string

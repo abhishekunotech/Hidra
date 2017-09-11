@@ -2,13 +2,10 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
-	//"reflect"
-	//"io"
 )
 
 func callCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request, custID string, username string, password string, custuser string) {
@@ -21,7 +18,6 @@ func callCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request, 
 	state := ConfObj.Sub("components.otrs.apis.CountOfOpenTicketsUser.parameters").GetString("state")
 	url := felicitybaseurl + felicityapiuri + "?State=" + state + "&SessionID=" + sessionIDString + "&CustomerID=" + custID + "&CustomerUser=" + custuser
 
-	fmt.Println("url is::", url)
 	res, err := http.Get(url)
 	if err != nil {
 		logger.Error(err.Error())
@@ -36,7 +32,6 @@ func callCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request, 
 	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
-	/*json.NewEncoder(w).Encode(data)*/
 
 }
 
@@ -44,8 +39,6 @@ func callCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request, 
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
-	fmt.Println("in openticket count")
 	mapHttp := r.URL.Query()
 
 	var userName string
@@ -77,7 +70,5 @@ func (h *Handler) GetCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *ht
 	}
 
 	callCountOfOpenTicketsCustomerUser(w, r, custID, userName, password, custUser)
-	//bodyStrg := string(body[:])
-	//fmt.Fprintf(w,"www"+bodyStrg+"\n")
 
 }

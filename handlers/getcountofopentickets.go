@@ -2,29 +2,26 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
-	//"reflect"
-	//"io"
 )
 
 func callCountOfOpenTickets(w http.ResponseWriter, r *http.Request, custID string, username string, password string) {
 
 	sessionIDString := callSessionDetails(username, password)
 
-	fmt.Println("session id is ::", sessionIDString)
+	logger.Info("session id is ::", sessionIDString)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	fmt.Println("base url:- ", felicitybaseurl)
+	logger.Info("base url:- ", felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.countofopentickets").GetString("uri")
 	state := ConfObj.Sub("components.otrs.apis.countofopentickets.parameters").GetString("state")
 
 	url := felicitybaseurl + felicityapiuri + "?State=" + state + "&SessionID=" + sessionIDString + "&CustomerID=" + custID
 
-	fmt.Println("url is::", url)
+	logger.Info("url is::", url)
 	res, err := http.Get(url)
 	if err != nil {
 		logger.Error(err.Error())
@@ -39,7 +36,6 @@ func callCountOfOpenTickets(w http.ResponseWriter, r *http.Request, custID strin
 	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
-	/*json.NewEncoder(w).Encode(data)*/
 
 }
 
@@ -48,7 +44,6 @@ func callCountOfOpenTickets(w http.ResponseWriter, r *http.Request, custID strin
 
 func (h *Handler) GetCountOfOpenTickets(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
-	fmt.Println("in opentivket count")
 	mapHttp := r.URL.Query()
 
 	var userName string
@@ -73,7 +68,4 @@ func (h *Handler) GetCountOfOpenTickets(w http.ResponseWriter, r *http.Request) 
 	}
 
 	callCountOfOpenTickets(w, r, custID, userName, password)
-
-	//bodyStrg := string(body[:])
-	//fmt.Fprintf(w,"www"+bodyStrg+"\n")
 }
