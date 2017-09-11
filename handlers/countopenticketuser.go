@@ -76,9 +76,8 @@ func (h *Handler) GetCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *ht
 		}
 	}
 
-		callCountOfOpenTicketsCustomerUser(w, r, custID, userName, password, custUser)
-		//bodyStrg := string(body[:])
-		//fmt.Fprintf(w,"www"+bodyStrg+"\n")
+	callCountOfOpenTicketsCustomerUser(w, r, custID, userName, password, custUser)
+	//bodyStrg := string(body[:])
+	//fmt.Fprintf(w,"www"+bodyStrg+"\n")
 
-	
 }
