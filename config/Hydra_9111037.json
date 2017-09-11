@@ -1,0 +1,557 @@
+{
+    "version": "1.2",
+    "routes": {
+        "Index": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/",
+            "component": "otrs",
+            "handler": "handlers.Index"
+        }
+        ,
+        "GetTicketDetails": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getTicketDetails",
+            "component": "otrs",
+            "handler": "handlers.GetTicketDetails"
+        }
+        ,
+        "getCILogs": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCILogs",
+            "component": "otrs",
+            "handler": "handlers.GetCILogs"
+        }
+        ,
+        "getCIJobs": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCIJobs",
+            "component": "otrs",
+            "handler": "handlers.GetCIJobs"
+        }
+        ,
+        "getCIDetails": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCIDetails",
+            "component": "otrs",
+            "handler": "handlers.GetCIDetails"
+        }
+        ,
+        "getListOfWorkOrders": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListOfWorkOrders",
+            "component": "otrs",
+            "handler": "handlers.GetListOfWorkOrders"
+        }
+        ,
+        "Ticketcreate": {
+            "version": "1.0",
+            "method": "POST",
+            "URI": "/Ticketcreate",
+            "component": "otrs",
+            "handler": "handlers.Ticketcreate"
+        }
+        ,
+        "getLinkedChange": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getLinkedChange",
+            "component": "otrs",
+            "handler": "handlers.GetLinkedChange"
+        }
+        ,
+        "getListOfLinkedChange": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListOfLinkedChange",
+            "component": "otrs",
+            "handler": "handlers.GetListOfLinkedChange"
+        }
+        ,
+        "TicketAll": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/TicketAll",
+            "component": "otrs",
+            "handler": "handlers.TicketAll"
+        }
+        ,
+        "CountOpenTickets": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCountOfOpenTickets",
+            "component": "otrs",
+            "handler": "handlers.GetCountOfOpenTickets"
+        }
+        ,
+        "getCountofOpenTicketsCustomerUser": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCountOfOpenTicketsCustomerUser",
+            "component": "otrs",
+            "handler": "handlers.GetCountOfOpenTicketsCustomerUser"
+        }
+        ,
+        "getLinkedTickets": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getLinkedTickets",
+            "component": "otrs",
+            "handler": "handlers.GetLinkedTickets"
+        }
+        ,
+        "felicityLogin": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/felicity/isValidUser",
+            "component": "otrs",
+            "handler": "handlers.IsValidFelicityUser"
+        }
+        ,
+        "getCustomerInfobyTicketID": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/felicity/getCustomerInfobyTicketID",
+            "component": "otrs",
+            "handler": "handlers.GetCustomerInfobyTicketID"
+        }
+        ,
+        "getListOfCIs": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListOfCIs",
+            "component": "otrs",
+            "handler": "handlers.GetListOfCIs"
+        }
+        ,
+        "getListOfLinkedFAQs": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListOfLinkedFAQs",
+            "component": "otrs",
+            "handler": "handlers.GetListOfLinkedFAQs"
+        }
+        ,
+        "getTicketInfo": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getTicketInfo",
+            "component": "otrs",
+            "handler": "handlers.GetTicketInfo"
+        }
+        ,
+        "getCountClosedTickets": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/felicity/getCountClosedTickets",
+            "component": "otrs",
+            "handler": "handlers.GetCountofClosedTickets"
+        }
+        ,
+        "getListofWorkorderGraph": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/felicity/getListofWorkorderGraph",
+            "component": "otrs",
+            "handler": "handlers.GetListofWorkorderGraph"
+        }
+        ,
+        "getListAssignedQueue": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListAssignedQueue",
+            "component": "otrs",
+            "handler": "handlers.GetListAssignedQueue"
+        }
+        ,
+        "getUserColumnPreferences": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getUserColumnPreference",
+            "component": "otrs",
+            "handler": "handlers.GetUserColumnPreferences"
+        }
+        ,
+        "setUserColumnPreferences": {
+            "version": "1.0",
+            "method": "POST",
+            "URI": "/felicity/setUserColumnPreferences",
+            "component": "otrs",
+            "handler": "handlers.SetUserColumnPreferences"
+        }
+        ,
+        "getListAgents": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListAgents",
+            "component": "otrs",
+            "handler": "handlers.GetListAgents"
+        }
+        ,
+        "getListGroupFilter": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListGroupFilter",
+            "component": "otrs",
+            "handler": "handlers.GetListGroupFilter"
+        }
+        ,
+        "getListTicketState": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListTicketState",
+            "component": "otrs",
+            "handler": "handlers.GetListTicketState"
+        }
+        ,
+        "listPriority": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/listPriority",
+            "component": "otrs",
+            "handler": "handlers.ListPriority"
+        }
+        ,
+        "custListAjax": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/custListAjax",
+            "component": "otrs",
+            "handler": "handlers.CustListAjax"
+        }
+        ,
+        "requestListAjax": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/requestListAjax",
+            "component": "otrs",
+            "handler": "handlers.RequestListAjax"
+        }
+        ,
+        "getTicketHistory": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getTicketHistory",
+            "component": "otrs",
+            "handler": "handlers.GetTicketHistory"
+        }
+        ,
+        "getSLAInfo": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getSLAInfo",
+            "component": "otrs",
+            "handler": "handlers.GetSLAInfo"
+        }
+        ,
+        "getArticle": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getArticle",
+            "component": "otrs",
+            "handler": "handlers.GetArticle"
+        }
+        ,
+        "listType": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/listType",
+            "component": "otrs",
+            "handler": "handlers.ListType"
+        }
+        ,
+        "listArticleType": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getListArticleType",
+            "component": "otrs",
+            "handler": "handlers.GetListArticleType"
+        }
+        ,
+        "queueTemplateList": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getQueueTemplateList",
+            "component": "otrs",
+            "handler": "handlers.GetQueueTemplateList"
+        }
+        
+    }
+    ,
+    "components": {
+        "otrs": {
+            "version": "1.0",
+            "url": "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice",
+            "apis": {
+                "GetTicketInfo": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/TicketInfo",
+                    "parameters": {
+                        "TicketID": "123",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "SetUserColumnPreferences": {
+                    "version": "1.0",
+                    "URI": "/Config/SetColumnUserPreferences"
+                }
+                ,
+                "CountOfOpenTicketsUser": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetCountOfTickets",
+                    "parameters": {
+                        "state": "open",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "CountofOpenTickets": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetCountOfTickets",
+                    "parameters": {
+                        "state": "open"
+                    }
+                    
+                }
+                ,
+                "TicketAll": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/TicketAll",
+                    "parameters": {
+                        "Filter": "All",
+                        "CustomerUserLogin": "yazadb",
+                        "Password": "yazadb"
+                    }
+                    
+                }
+                ,
+                "GetListOfWorkOrders": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/ListOfLinkedWorkorders",
+                    "parameters": {
+                        "TicketID": "627",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "CustomerSessionAPI": {
+                    "version": "1.0",
+                    "URI": "/SessionAPI/SessionCreate",
+                    "parameters": {
+                        "CustomerUserLogin": "yazadb",
+                        "Password": "yazadb"
+                    }
+                    
+                }
+                ,
+                "GetUserColumnPreference": {
+                    "version": "1.0",
+                    "URI": "/Config/GetUserColumnPreferences",
+                    "parameters": {
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "SessionAPI": {
+                    "version": "1.0",
+                    "URI": "/SessionAPI/SessionCreate",
+                    "parameters": {
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "GetListOfLinkedChange": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/ListOfLinkedTickets",
+                    "parameters": {
+                        "TicketID": "447",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "GetListOfCIs": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/ListOfCIs",
+                    "parameters": {
+                        "TicketID": "627",
+                        "UserLogin": "rasikm",
+                        "Password": "rasikm"
+                    }
+                    
+                }
+                ,
+                "GetListOfFAQs": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/ListOfFAQs",
+                    "parameters": {
+                        "TicketID": "627",
+                        "UserLogin": "rasikm",
+                        "Password": "rasikm"
+                    }
+                    
+                }
+                ,
+                "GetListOfLinkedChange": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/ListOfLinkedTickets",
+                    "parameters": {
+                        "TicketID": "447",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "SetUserColumnPreferences": {
+                    "version": "1.0",
+                    "URI": "/Config/SetUserColumnPreferences",
+                    "parameters": {
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "GetLinkedTicketDetails": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/ListOfLinkedTickets",
+                    "parameters": {
+                        "TicketID": "627",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+                    
+                }
+                ,
+                "GetCustomerInfoByTicketID": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetCustomerInfoByTicketID"
+                }
+                ,
+                "GetListofWorkorderGraph": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/ListOfWorkorderGraph"
+                }
+                ,
+                "GetCountClosedTickets": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetCountOfTickets",
+                    "Parameters": {
+                        "State": "close"
+                    }
+                    
+                }
+                ,
+                "GetListAssignedQueue": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetUserQueueList"
+                }
+                ,
+                "GetListAgents": {
+                    "version": "1.0",
+                    "URI": "/User/Agent"
+                }
+                ,
+                "GetListGroupFilter": {
+                    "version": "1.0",
+                    "URI": "/Common/Groups"
+                }
+                ,
+                "GetListTicketState": {
+                    "version": "1.0",
+                    "URI": "/Common/TicketStates"
+                }
+                ,
+                "ListPriority": {
+                    "version": "1.0",
+                    "URI": "/Common/Priority"
+                }
+                ,
+                "CustListAjax": {
+                    "version": "1.0",
+                    "URI": "/User/Customer"
+                }
+                ,
+                "RequestListAjax": {
+                    "version": "1.0",
+                    "URI": "/User/Requester"
+                }
+                ,
+                "GetTicketHistory": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetTicketHistory",
+                    "Parameters": {
+                        "Action": "AgentTicketHistory"
+                    }
+                    
+                }
+                ,
+                "GetSLAInfo": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetSLAInfo"
+                }
+                ,
+                "GetArticle": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetArticleList"
+                }
+                ,
+                "ListType": {
+                    "version": "1.0",
+                    "URI": "/Common/TicketType"
+                }
+                ,
+                "ListArticleType": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetArticleTypeList"
+                }
+                ,
+                "QueueTemplateList": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/QueueTemplateList"
+                }
+                
+            }
+            
+        }
+        ,
+        "glpi": {
+            "version": "1.0",
+            "url": "",
+            "apis": {
+                "GetCIDetails": {
+                    "version": "1.0",
+                    "URI": "/getCIDetails",
+                    "parameters": {
+                        "TicketID": "",
+                        "UserLogin": "",
+                        "Password": ""
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+}
