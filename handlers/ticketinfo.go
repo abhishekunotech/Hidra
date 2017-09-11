@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"io/ioutil"
 	"io"
-	"fmt"
 	"github.com/Unotechsoftware/Hydra/lerna"
 )
 
@@ -17,18 +16,14 @@ func callGetTicketInfo(w http.ResponseWriter, r *http.Request, ticketid string, 
 	felicityapiuri :=  ConfObj.Sub("components.otrs.apis.GetTicketInfo").GetString("uri")
 	sessionIDString := callSessionDetails(username,password)
 	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketid+"&SessionID="+sessionIDString
-	fmt.Println("URL is")
-	fmt.Println(url)
 	client := &http.Client{}
 	var bodyReader io.Reader
     	req, err := http.NewRequest("GET", url,bodyReader)
 
     	resp, err := client.Do(req)
     	if err != nil{
-		//logger.Error("\n\nThis caused the following error \n\n")
-        	//logger.Error(err.Error())
-		fmt.Println("\n\n This casued the following error in Request")
-		fmt.Println(err.Error())
+		logger.Error("\n\nThis caused the following error \n\n")
+        	logger.Error(err.Error())
     	}
 	req.Close = true
     	bodyText, err := ioutil.ReadAll(resp.Body)
@@ -67,9 +62,6 @@ func (h *Handler) GetTicketInfo(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	fmt.Println("User name and Password is")
-	fmt.Println(username)
-	fmt.Println(password)
 	callGetTicketInfo(w,r,ticketid,username,password)
 
 }
