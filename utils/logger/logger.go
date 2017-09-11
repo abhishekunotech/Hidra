@@ -3,7 +3,6 @@ package logger
 import (
 	"github.com/antigloss/go/logger"	
     "fmt"
-   // "log"
     "net/http"
     "time"
 )
