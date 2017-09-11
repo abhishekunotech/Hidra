@@ -13,6 +13,7 @@ import (
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/gorilla/mux"
 	"net/http"
+	"github.com/Unotechsoftware/Hydra/lerna"
 )
 
 type Route struct {
@@ -50,8 +51,16 @@ func NewRouter() *mux.Router {
 	return router
 }
 
+
+func PopulateRoutes() Routes{
+
+
+}
+
+
+var routes Routes
 //Create different routes for required functions using name, method, path pattern and handler.
-var routes = Routes{
+/*var routes = Routes{
 	Route{
 		"Index",
 		"GET",
@@ -269,4 +278,4 @@ var routes = Routes{
 		"/getQueueTemplateList",
 		handlers.GetQueueTemplateList,
 	},
-}
+}*/
