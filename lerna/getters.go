@@ -1,9 +1,7 @@
 package lerna
 
 import(
-	"fmt"
 	"github.com/spf13/viper"
-	//"reflect"
 )
 
 func GetKeyArray(Abc map[string]interface{}) []string{
@@ -15,11 +13,6 @@ func GetKeyArray(Abc map[string]interface{}) []string{
                 i++
         }
 
-        fmt.Println("\n\n\n\n KEYS ARRAY \n\n\n\n")
-
-        fmt.Println(keys)
-
-        fmt.Println("\n\n\n End of Keys Array \n\n\n\n")
 
         return keys
 
@@ -102,7 +95,6 @@ func GetJSONObjectType_Routes(abc *viper.Viper) map[string]RouteType{
 func GetJSONObjectType_Components(abc *viper.Viper) map[string]ComponentType{
 	returnVal := abc.GetStringMap("components")
 	
-	fmt.Println(returnVal)
 
 	keys_of_returnval := GetKeyArray(returnVal)
 	ComponentInside := abc.Sub("components")

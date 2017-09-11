@@ -5,24 +5,20 @@ import (
         "encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
         "net/http"
-	"fmt"
         "io/ioutil"
-	//"reflect"
-        //"io"
 )
 func callListPriority(w http.ResponseWriter, r *http.Request, username string, password string){
 
 	sessionIDString := callSessionDetails(username,password)
 
-	fmt.Println("session id is ::",sessionIDString)        
+	logger.Info("session id is ::",sessionIDString)        
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	fmt.Println("base url:- ",felicitybaseurl)
+	logger.Info("base url:- ",felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.listpriority").GetString("uri")
 		
 	url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
 
-	//fmt.Println("url is::",url)	
 	res, err:= http.Get(url)
 	if err != nil{
 		logger.Error(err.Error())	
@@ -37,7 +33,6 @@ func callListPriority(w http.ResponseWriter, r *http.Request, username string, p
         }
 	w.Header().Set("Content-Type", "application/json")
         json.NewEncoder(w).Encode(data)
-        /*json.NewEncoder(w).Encode(data)*/
 
 }
 

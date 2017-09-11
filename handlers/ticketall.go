@@ -5,19 +5,14 @@ import (
         "encoding/json"
         "github.com/Unotechsoftware/Hydra/lerna"
         "net/http"
-        "fmt"
         "io/ioutil"
-        //"reflect"
-        //"io"
 )
 func callTicketAll(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string){
 
         sessionIDString := callCustomerSessionDetails(username,password)
 
-        fmt.Println("session id is ::",sessionIDString)
         ConfObj := lerna.ReturnConfigObject()
         felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-        fmt.Println("base url:- ",felicitybaseurl)
         felicityapiuri := ConfObj.Sub("components.otrs.apis.TicketAll").GetString("uri")
         filter := ConfObj.Sub("components.otrs.apis.TicketAll.parameters").GetString("filter")
 
@@ -25,7 +20,6 @@ func callTicketAll(w http.ResponseWriter, r *http.Request, username string, pass
 	
         url := felicitybaseurl+felicityapiuri+"?Filter="+filter+"&SessionID="+sessionIDString
 
-        fmt.Println("url is::",url)
         res, err:= http.Get(url)
         if err != nil{
                 logger.Error(err.Error())
@@ -50,7 +44,6 @@ func callTicketAll(w http.ResponseWriter, r *http.Request, username string, pass
 func (h *Handler) TicketAll(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
 	
-	fmt.Println("in ticketall")
         mapHttp := r.URL.Query()
         var userName string
         var password string
@@ -75,8 +68,6 @@ func (h *Handler) TicketAll(w http.ResponseWriter, r *http.Request) {
 
         callTicketAll(w,r,userName, password, ticketid)
 
-        //bodyStrg := string(body[:])
-        //fmt.Fprintf(w,"www"+bodyStrg+"\n")
 }
 
 

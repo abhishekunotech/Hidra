@@ -10,14 +10,11 @@
 package main
 
 import (
-//	"fmt"
 	"log"
 	"net/http"
-	//	"reflect"
 	"github.com/Unotechsoftware/Hydra/routes"
 	"github.com/antigloss/go/logger"
 	"os"
-	//	"github.com/fsnotify/fsnotify"
 )
 
 /*

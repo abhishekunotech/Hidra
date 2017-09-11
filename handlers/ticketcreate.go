@@ -1,7 +1,6 @@
 package handlers
 
 import(
-	"fmt"
 	"net/http"
 	"io/ioutil"
 	"encoding/json"
@@ -9,6 +8,7 @@ import(
 	"github.com/antigloss/go/logger"
 	"bytes"
 	"time"
+	"fmt"
 )
 
 /*
@@ -28,8 +28,8 @@ func (h *Handler)Ticketcreate(w http.ResponseWriter, r *http.Request) {
         bodyVal, err := ioutil.ReadAll(r.Body)
 
 	if err != nil {
-		fmt.Println("Error Occured with Reading Body")
-		fmt.Println(err.Error())
+		logger.Error("Error Occured with Reading Body")
+		logger.Error(err.Error())
 	}
 
         bodyValStrg := string(bodyVal)

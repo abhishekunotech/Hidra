@@ -315,7 +315,7 @@
 		,
 		"GetTicketGrid": {
                     "version": "1.0",
-                    "URI": "/TicketAPI/getTicketGrid",
+                    "URI": "/TicketAPI/GetTicketGrid",
                 "component": "otrs",
                 "handler": "GetTicketGrid"
                 }

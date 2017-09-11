@@ -3,7 +3,6 @@ package handlers
 
 import(
         "github.com/Unotechsoftware/Hydra/lerna"
-        "fmt"
         "net/http"
         "io/ioutil"
         "encoding/json"
@@ -17,14 +16,10 @@ type CustomerSessionObject struct{
 
 func callCustomerSessionDetails(username string, password string) string{
 
-        fmt.Println("in usersessiondetails")
         ConfObj := lerna.ReturnConfigObject()
         felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
         felicityapiuri := ConfObj.Sub("components.otrs.apis.CustomerSessionApi").GetString("uri")
-        //felicityusername := ConfObj.Sub("components.otrs.apis.CustomerSessionAPI.parameters").GetString("CustomerUserLogin")
-        //felicitypassword := ConfObj.Sub("components.otrs.apis.CustomerSessionAPI.parameters").GetString("Password")
         url := felicitybaseurl+felicityapiuri+"?CustomerUserLogin="+username+"&Password="+password
-        fmt.Println(url)
         client := &http.Client{}
         var bodyReader io.Reader
         req, err := http.NewRequest("GET", url, bodyReader)
