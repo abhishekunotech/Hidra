@@ -257,6 +257,15 @@
             "handler": "GetArticle"
         }
         ,
+	"getTicketGrid": {
+            "version": "1.0",
+            "method": "POST",
+            "URI": "/getTicketGrid",
+            "component": "otrs",
+            "handler": "GetTicketGrid"
+        }
+        ,
+
         "listType": {
             "version": "1.0",
             "method": "GET",
@@ -301,6 +310,13 @@
                 "SetUserColumnPreferences": {
                     "version": "1.0",
                     "URI": "/Config/SetColumnUserPreferences"
+                }
+                ,
+		"GetTicketGrid": {
+                    "version": "1.0",
+		    "URI": "/TicketAPI/getTicketGrid",
+                "component": "otrs",
+		"handler": "GetTicketGrid"
                 }
                 ,
                 "CountOfOpenTicketsUser": {
