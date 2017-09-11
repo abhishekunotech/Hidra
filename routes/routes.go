@@ -9,7 +9,6 @@
 package routes
 
 import (
-	"fmt"
 	"github.com/Unotechsoftware/Hydra/handlers"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/Unotechsoftware/Hydra/utils"
@@ -66,35 +65,10 @@ func PopulateRoutes() {
 		tempRouteObj.Method = ConfObj.GetString("routes." + routeVal + ".method")
 		tempRouteObj.Pattern = ConfObj.GetString("routes." + routeVal + ".URI")
 
-	/*	fmt.Println("RECORD STARTS\n\n\n\n\n")
-		tempRVO := reflect.ValueOf(&tempHandler)
-		fmt.Println("TempRVO is")
-		fmt.Println(tempRVO)
-		tempHandlerName := "routes."+routeVal+".handler"
-		fmt.Println("Temp Handler name is ")
-		fmt.Println(tempHandlerName)
-		tempConfHandler := ConfObj.GetString(tempHandlerName)
-		fmt.Println("Temp Conf Handler is ")
-		fmt.Println(tempConfHandler)
-		tempMetRVO := tempRVO.MethodByName(tempConfHandler)
-		fmt.Println("Temp Met RVO is ")
-		fmt.Println(tempMetRVO)
-		tempMRVOInt := tempMetRVO.Interface()
-		fmt.Println("TEMP MRVO INT is ")
-		fmt.Println(tempMRVOInt)
-		tempMRVOIFunc := tempMRVOInt.(func(w http.ResponseWriter, r *http.Request))
-		fmt.Println("TEMP MRVO INT FUNC IS ")
-		fmt.Println(tempMRVOIFunc)
-		tempRouteObj.HandlerFunc = http.HandlerFunc(tempMRVOIFunc)
-		fmt.Println("TMVROHF is ")
-		fmt.Println(tempRouteObj.HandlerFunc)*/
 		tempRouteObj.HandlerFunc = http.HandlerFunc(reflect.ValueOf(&tempHandler).MethodByName(ConfObj.GetString("routes."+routeVal+".handler")).Interface().(func(w http.ResponseWriter, r *http.Request)))
-		fmt.Println("The Handler is "+ConfObj.GetString("routes."+ routeVal + ".handler"))	
 		//tempRouteObj.HandlerFunc = http.HandlerFunc(reflect.ValueOf(&tempHandler).MethodByName("GetLinkedChange").Interface().(func(w http.ResponseWriter, r *http.Request)))
 		routes = append(routes, tempRouteObj)
-		fmt.Println("END OF RECORD \n\n\n\n\n")
 	}
-	fmt.Println(routes)
 }
 
 var routes Routes

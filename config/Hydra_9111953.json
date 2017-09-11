@@ -8,6 +8,14 @@
             "component": "otrs",
             "handler": "Index"
         }
+	,
+	 "getTicketGrid": {
+            "version": "1.0",
+            "method": "POST",
+            "URI": "/getTicketGrid",
+            "component": "otrs",
+            "handler": "GetTicketGrid"
+        }
         ,
         "GetTicketDetails": {
             "version": "1.0",
@@ -303,6 +311,13 @@
                         "Password": "abhik"
                     }
                     
+                }
+		,
+		"GetTicketGrid": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/getTicketGrid",
+                "component": "otrs",
+                "handler": "GetTicketGrid"
                 }
                 ,
 		"TemplateContent":{
