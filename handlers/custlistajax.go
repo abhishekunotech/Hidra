@@ -44,7 +44,7 @@ func callCustListAjax(w http.ResponseWriter, r *http.Request, username string, p
 //Function to get list of work orders
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
-func CustListAjax(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) CustListAjax(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
 
 	mapHttp := r.URL.Query()

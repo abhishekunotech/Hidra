@@ -61,7 +61,7 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 	}
 }
 
-func IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var userName string

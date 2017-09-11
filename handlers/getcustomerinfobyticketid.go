@@ -44,7 +44,7 @@ func callCustomerInfo(w http.ResponseWriter, r *http.Request, ticketid string, u
 
 //Function to get the details about ticket.
 
-func GetCustomerInfobyTicketID(w http.ResponseWriter, r *http.Request) {
+func (h *Handler)GetCustomerInfobyTicketID(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var ticketid string

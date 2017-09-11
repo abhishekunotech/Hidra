@@ -18,6 +18,10 @@ import (
 	//"net"
 )
 
+type Handler struct{
+
+}
+
 //Structure for go type definition of the JSON
 type TicketDetails struct {
 	TicketId int
@@ -151,7 +155,7 @@ type OtsArray struct {
         Four string `json:"4"`
 }
 //Function to get CI logs.
-func GetCILogs(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetCILogs(w http.ResponseWriter, r *http.Request) {
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.graylog").GetString("url")
@@ -195,7 +199,7 @@ fmt.Println(url1)
 }
 
 //Function to get CI jobs.
-func GetCIJobs(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetCIJobs(w http.ResponseWriter, r *http.Request) {
 	CIJob := &CIJobs{JobId: 123}
 	json.NewEncoder(w).Encode(CIJob)
 	ConfObj := lerna.ReturnConfigObject()
@@ -208,7 +212,7 @@ fmt.Println(url)
 }
 
 //Function to get CI details.
-func GetCIDetails(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetCIDetails(w http.ResponseWriter, r *http.Request) {
    body, _ := ioutil.ReadAll(r.Body)
         mapHttp := r.URL.Query()
         var userName string

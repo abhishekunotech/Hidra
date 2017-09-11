@@ -46,7 +46,7 @@ fmt.Println(url)
 
 //Function to get the details about ticket.
 // Request as http://ip-host/getTicketDetails?ticketID=521&password=abhik&userLogin=abhik
-func GetTicketDetails(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetTicketDetails(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var userName string

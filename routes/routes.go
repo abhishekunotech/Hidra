@@ -9,11 +9,13 @@
 package routes
 
 import (
-//	"github.com/Unotechsoftware/Hydra/handlers"
+	"fmt"
+	"github.com/Unotechsoftware/Hydra/handlers"
+	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/gorilla/mux"
 	"net/http"
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"reflect"
 )
 
 type Route struct {
@@ -32,6 +34,7 @@ type Routes []Route
 
 func NewRouter() *mux.Router {
 	//Create a new mux router for given handler
+	PopulateRoutes()
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes {
 
@@ -51,14 +54,25 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-	
-func PopulateRoutes(){
+
+func PopulateRoutes() {
 	ConfObj := lerna.ReturnConfigObject()
-        RouteObj := ConfObj.Sub("routes")
+	RouteMapString := ConfObj.GetStringMap("routes")
+	RouteKeyArray := lerna.GetKeyArray(RouteMapString)
+	for _, routeVal := range RouteKeyArray {
+		var tempRouteObj Route
+		var tempHandler handlers.Handler
+		tempRouteObj.Name = routeVal
+		tempRouteObj.Method = ConfObj.GetString("routes." + routeVal + ".method")
+		tempRouteObj.Pattern = ConfObj.GetString("routes." + routeVal + ".URI")
+		tempRouteObj.HandlerFunc = reflect.ValueOf(&tempHandler).MethodByName("handlers.Index")
+		routes = append(routes, tempRouteObj)
+	}
+	fmt.Println(routes)
 }
 
-
 var routes Routes
+
 //Create different routes for required functions using name, method, path pattern and handler.
 /*var routes = Routes{
 	Route{

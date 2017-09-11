@@ -22,7 +22,7 @@ type TicketResponseBody struct{
 }
 
 //Function to create ticket.
-func Ticketcreate(w http.ResponseWriter, r *http.Request) {
+func (h *Handler)Ticketcreate(w http.ResponseWriter, r *http.Request) {
 
         //ReadAll reads from response until an error or EOF and returns the data it read.
         bodyVal, err := ioutil.ReadAll(r.Body)

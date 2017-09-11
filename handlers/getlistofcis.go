@@ -45,7 +45,7 @@ func callListOfCIs(w http.ResponseWriter, r *http.Request, username string, pass
 //Function to get list of work orders
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
-func GetListOfCIs(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetListOfCIs(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
 	fmt.Println("In list of CIs")
         mapHttp := r.URL.Query()

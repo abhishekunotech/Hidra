@@ -45,7 +45,7 @@ func callCountOfOpenTickets(w http.ResponseWriter, r *http.Request, custID strin
 //Function to get list of work orders
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
-func GetCountOfOpenTickets(w http.ResponseWriter, r *http.Request) {
+func (h *Handler)GetCountOfOpenTickets(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
         fmt.Println("in opentivket count")
         mapHttp := r.URL.Query()
