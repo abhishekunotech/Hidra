@@ -9,32 +9,26 @@ import (
 
 	"net/http"
 
-	"fmt"
-
 	"io/ioutil"
-	//"reflect"
-	//"io"
 )
 
 func callListOfLinkedFAQS(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string) {
 
 	sessionIDString := callSessionDetails(username, password)
 
-	fmt.Println("session id is ::", sessionIDString)
+	logger.Info("session id is ::", sessionIDString)
 
 	ConfObj := lerna.ReturnConfigObject()
 
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 
-	fmt.Println("base url:- ", felicitybaseurl)
+	logger.Info("base url:- ", felicitybaseurl)
 
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.GetListOfFAQs").GetString("uri")
 
-	//ticketid = ConfObj.Sub("components.otrs.apis.GetListOfFAQs.parameters").GetString("TicketId")
 
 	url := felicitybaseurl + felicityapiuri + "?TicketID=" + ticketid + "&SessionID=" + sessionIDString
 
-	//fmt.Println("url is::",url)
 
 	res, err := http.Get(url)
 
@@ -60,7 +54,6 @@ func callListOfLinkedFAQS(w http.ResponseWriter, r *http.Request, username strin
 
 	json.NewEncoder(w).Encode(data)
 
-	/*json.NewEncoder(w).Encode(data)*/
 
 }
 
@@ -70,9 +63,6 @@ func callListOfLinkedFAQS(w http.ResponseWriter, r *http.Request, username strin
 
 func (h *Handler) GetListOfLinkedFAQs(w http.ResponseWriter, r *http.Request) {
 
-	//body, _ := ioutil.ReadAll(r.Body)
-
-	fmt.Println("In list of faqs")
 
 	mapHttp := r.URL.Query()
 
@@ -118,8 +108,5 @@ func (h *Handler) GetListOfLinkedFAQs(w http.ResponseWriter, r *http.Request) {
 
 	callListOfLinkedFAQS(w, r, userName, password, ticketid)
 
-	//bodyStrg := string(body[:])
-
-	//fmt.Fprintf(w,"www"+bodyStrg+"\n")
 
 }

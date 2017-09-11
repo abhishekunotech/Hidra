@@ -1,14 +1,12 @@
 package handlers
 
 import (
-	//	"fmt"
 	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
 	"io/ioutil"
 	"net/http"
-	//	"reflect"
 )
 
 func callLinkedTickets(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string) {
@@ -41,7 +39,6 @@ func callLinkedTickets(w http.ResponseWriter, r *http.Request, ticketid string, 
 //Function to get the details about ticket.
 
 func (h *Handler) GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var ticketid string
 	var username string
