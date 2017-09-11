@@ -45,7 +45,7 @@ func callListType(w http.ResponseWriter, r *http.Request, username string, passw
 //Function to get list of work orders
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
-func ListType(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) ListType(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
 
 	mapHttp := r.URL.Query()

@@ -47,7 +47,7 @@ func callTicketAll(w http.ResponseWriter, r *http.Request, username string, pass
 //Function to get list of work orders
 // Request as http://ip-host/ticketAll?ticketID=521&password=abhik&userLogin=abhik
 
-func TicketAll(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) TicketAll(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
 	
 	fmt.Println("in ticketall")

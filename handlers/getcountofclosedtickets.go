@@ -39,7 +39,7 @@ func callCountClosedTickets(w http.ResponseWriter, r *http.Request,username stri
 
 //Function to get the details about ticket.
 
-func GetCountofClosedTickets(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetCountofClosedTickets(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var customerid string

@@ -43,7 +43,7 @@ func callWorkorderGraphList(w http.ResponseWriter, r *http.Request, ticketid str
 
 //Function to get the details about ticket.
 
-func GetListofWorkorderGraph(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetListofWorkorderGraph(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var ticketid string

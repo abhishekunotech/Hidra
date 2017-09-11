@@ -18,7 +18,7 @@ type SUCP_Request struct{
 }
 
 
-func SetUserColumnPreferences(w http.ResponseWriter, r *http.Request) {
+func (h *Handler)SetUserColumnPreferences(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)
 	var t SUCP_Request

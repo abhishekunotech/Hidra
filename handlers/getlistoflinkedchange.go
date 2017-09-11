@@ -45,7 +45,7 @@ func callListOfLinkedChange(w http.ResponseWriter, r *http.Request, username str
 //Function to get list of work orders
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
-func GetListOfLinkedChange(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetListOfLinkedChange(w http.ResponseWriter, r *http.Request) {
         //body, _ := ioutil.ReadAll(r.Body)
 	fmt.Println("in listof linked change")
         mapHttp := r.URL.Query()

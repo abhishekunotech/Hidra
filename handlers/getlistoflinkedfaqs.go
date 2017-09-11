@@ -92,7 +92,7 @@ func callListOfLinkedFAQS(w http.ResponseWriter, r *http.Request, username strin
 
 
 
-func GetListOfLinkedFAQs(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetListOfLinkedFAQs(w http.ResponseWriter, r *http.Request) {
 
         //body, _ := ioutil.ReadAll(r.Body)
 

@@ -101,7 +101,7 @@ func callLinkedChanges(w http.ResponseWriter, r *http.Request, username string, 
 
 //Function to get the details about ticket.
 // Request as http://ip-host/getLinkedChange?ticketID=627&password=abhik&username=abhik
-func GetLinkedChange(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) GetLinkedChange(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var userName string

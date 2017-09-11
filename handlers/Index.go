@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-func Index(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) Index(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintln(w, "hello bla")
         
 }
