@@ -1,71 +1,66 @@
- package handlers
+package handlers
 
 import (
-	"fmt"
 	"encoding/json"
-	"github.com/antigloss/go/logger"
-	"net/http"
-	"io/ioutil"
-	"io"
 	"github.com/Unotechsoftware/Hydra/lerna"
-//	"reflect"
+	"github.com/antigloss/go/logger"
+	"io"
+	"io/ioutil"
+	"net/http"
 )
 
-func callWorkorderGraphList(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string){
-	
+func callWorkorderGraphList(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string) {
+
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri :=  ConfObj.Sub("components.otrs.apis.getlistofworkordergraph").GetString("uri")
-	sessionIDString := callSessionDetails(username,password)
-	url := felicitybaseurl+felicityapiuri+"?TicketID="+ticketid+"&SessionID="+sessionIDString
-	fmt.Println("URL Meow")
-	fmt.Println(url)
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistofworkordergraph").GetString("uri")
+	sessionIDString := callSessionDetails(username, password)
+	url := felicitybaseurl + felicityapiuri + "?TicketID=" + ticketid + "&SessionID=" + sessionIDString
 	client := &http.Client{}
 	var bodyReader io.Reader
-    	req, err := http.NewRequest("GET", url,bodyReader)
+	req, err := http.NewRequest("GET", url, bodyReader)
 
-    	resp, err := client.Do(req)
-    	if err != nil{
+	resp, err := client.Do(req)
+	if err != nil {
 		logger.Error("\n\nThis caused the following error \n\n")
-        	logger.Error(err.Error())
-    	}
+		logger.Error(err.Error())
+	}
 	req.Close = true
-    	bodyText, err := ioutil.ReadAll(resp.Body)
+	bodyText, err := ioutil.ReadAll(resp.Body)
 	var data interface{}
-    	err = json.Unmarshal(bodyText, &data)
-   	if err != nil {
-        	logger.Error(err.Error())
-    	}
+	err = json.Unmarshal(bodyText, &data)
+	if err != nil {
+		logger.Error(err.Error())
+	}
 	w.Header().Set("Content-Type", "application/json")
-    	json.NewEncoder(w).Encode(data)		
+	json.NewEncoder(w).Encode(data)
 
 }
 
 //Function to get the details about ticket.
 
 func (h *Handler) GetListofWorkorderGraph(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var ticketid string
 	var username string
 	var password string
-	for key,value := range mapHttp {
-		if key == "TicketID"{
+	for key, value := range mapHttp {
+		if key == "TicketID" {
 			for _, valueStrg := range value {
 				ticketid = valueStrg
 			}
 		}
-		if key == "UserLogin"{
+		if key == "UserLogin" {
 			for _, valueStrg := range value {
 				username = valueStrg
 			}
 		}
-		if key == "Password"{
+		if key == "Password" {
 			for _, valueStrg := range value {
 				password = valueStrg
 			}
 		}
 	}
-	callWorkorderGraphList(w,r,ticketid,username,password)
+	callWorkorderGraphList(w, r, ticketid, username, password)
 
 }

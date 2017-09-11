@@ -1,43 +1,39 @@
 package handlers
 
 import (
-	"github.com/antigloss/go/logger"
-        "encoding/json"
+	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
-        "net/http"
-	"fmt"
-        "io/ioutil"
-	//"reflect"
-        //"io"
+	"github.com/antigloss/go/logger"
+	"io/ioutil"
+	"net/http"
 )
-func callAgents(w http.ResponseWriter, r *http.Request, username string, password string, search string, term string){
 
-	sessionIDString := callSessionDetails(username,password)
+func callAgents(w http.ResponseWriter, r *http.Request, username string, password string, search string, term string) {
 
-	fmt.Println("session id is ::",sessionIDString)        
+	sessionIDString := callSessionDetails(username, password)
+
+	logger.Info("session id is ::", sessionIDString)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	fmt.Println("base url:- ",felicitybaseurl)
+	logger.Info("base url:- ", felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistagents").GetString("uri")
-		
-	url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString+"&Search="+search+"&Term="+term
 
-	//fmt.Println("url is::",url)	
-	res, err:= http.Get(url)
-	if err != nil{
-		logger.Error(err.Error())	
+	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&Search=" + search + "&Term=" + term
+
+	res, err := http.Get(url)
+	if err != nil {
+		logger.Error(err.Error())
 	}
-       
+
 	bodyText, err := ioutil.ReadAll(res.Body)
-	
-        var data interface{}
-        err = json.Unmarshal(bodyText, &data)
-        if err != nil {
-                logger.Error(err.Error())
-        }
+
+	var data interface{}
+	err = json.Unmarshal(bodyText, &data)
+	if err != nil {
+		logger.Error(err.Error())
+	}
 	w.Header().Set("Content-Type", "application/json")
-        json.NewEncoder(w).Encode(data)
-        /*json.NewEncoder(w).Encode(data)*/
+	json.NewEncoder(w).Encode(data)
 
 }
 
@@ -45,39 +41,36 @@ func callAgents(w http.ResponseWriter, r *http.Request, username string, passwor
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetListAgents(w http.ResponseWriter, r *http.Request) {
-        //body, _ := ioutil.ReadAll(r.Body)
 
 	mapHttp := r.URL.Query()
-        var userName string
-        var password string
+	var userName string
+	var password string
 	var search string
-	var term   string
-        //var ticketid string
-        for key,value := range mapHttp {
-                if key == "userLogin"{
-                        for _, valueStrg := range value {
-                                userName = valueStrg
-                        }
-                }
-                if key == "password"{
-                        for _, valueStrg := range value {
-                                password = valueStrg
-                        }
-                }
-		if key == "Search"{
+	var term string
+	//var ticketid string
+	for key, value := range mapHttp {
+		if key == "userLogin" {
 			for _, valueStrg := range value {
-				search = valueStrg	
+				userName = valueStrg
 			}
 		}
-		if key == "Term"{
+		if key == "password" {
+			for _, valueStrg := range value {
+				password = valueStrg
+			}
+		}
+		if key == "Search" {
+			for _, valueStrg := range value {
+				search = valueStrg
+			}
+		}
+		if key == "Term" {
 			for _, valueStrg := range value {
 				term = valueStrg
 			}
 		}
-        }
+	}
 
-        callAgents(w,r,userName, password, search, term)
+	callAgents(w, r, userName, password, search, term)
 
 }
-
-
