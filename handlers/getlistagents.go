@@ -18,8 +18,7 @@ func callAgents(w http.ResponseWriter, r *http.Request, username string, passwor
 	logger.Info("base url:- ", felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistagents").GetString("uri")
 
-	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&Search=" + search + "&Term=" + term
-
+	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&Search=" + search + "&term=" + term
 	res, err := http.Get(url)
 	if err != nil {
 		logger.Error(err.Error())
