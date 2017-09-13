@@ -249,6 +249,14 @@
             "handler": "GetTicketHistory"
         }
         ,
+	"getTicketHistoryVersionTwo": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getTicketHistoryVersionTwo",
+            "component": "otrs",
+            "handler": "GetTicketHistoryVersionTwo"
+        }
+        ,
         "getSLAInfo": {
             "version": "1.0",
             "method": "GET",
@@ -546,6 +554,15 @@
                         "Action": "AgentTicketHistory"
                     }
                     
+                }
+                ,
+		"GetTicketHistoryVersionTwo": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/GetTicketHistoryVersionTwo",
+                    "Parameters": {
+                        "Action": "AgentTicketHistory"
+                    }
+
                 }
                 ,
                 "GetSLAInfo": {
