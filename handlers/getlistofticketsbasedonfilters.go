@@ -1,5 +1,7 @@
 package handlers
 
+
+
 import (
 	"bytes"
 	"encoding/json"
@@ -26,6 +28,8 @@ type Grid_API struct {
 	Due               string   `json:"Due"`
 	GroupIDs          []int    `json:"GroupIDs"`
 	CreatedTime       int      `json:"CreatedTime"`
+	SortBy		string	`json:"SortBy"`
+	OrderBy		string	`json:"OrderBy"`
 }
 
 func (h *Handler) GetTicketGrid(w http.ResponseWriter, r *http.Request) {
