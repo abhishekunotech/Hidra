@@ -65,6 +65,7 @@ func PopulateRoutes() {
 		tempRouteObj.Method = ConfObj.GetString("routes." + routeVal + ".method")
 		tempRouteObj.Pattern = ConfObj.GetString("routes." + routeVal + ".URI")
 
+
 		tempRouteObj.HandlerFunc = http.HandlerFunc(reflect.ValueOf(&tempHandler).MethodByName(ConfObj.GetString("routes."+routeVal+".handler")).Interface().(func(w http.ResponseWriter, r *http.Request)))
 		//tempRouteObj.HandlerFunc = http.HandlerFunc(reflect.ValueOf(&tempHandler).MethodByName("GetLinkedChange").Interface().(func(w http.ResponseWriter, r *http.Request)))
 		routes = append(routes, tempRouteObj)

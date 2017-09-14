@@ -38,6 +38,8 @@ func main() {
 
 	ErrorLog, err := os.OpenFile("/var/log/error_log", os.O_WRONLY|os.O_CREATE, 0666)
 
+
+
 	log.SetOutput(ErrorLog)
 	logger.Init("./log", // specify the directory to save the logfiles
 		400,   // maximum logfiles allowed under the specified log directory
