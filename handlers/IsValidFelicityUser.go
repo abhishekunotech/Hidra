@@ -14,8 +14,8 @@ type LoginResult struct {
 }
 
 func checkValidUserDetails(username string, password string) (bool, string) {
-	url := "http://192.168.2.181/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin=" + username + "&Password=" + password
-
+	url := "http://192.168.2.166/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin=" + username + "&Password=" + password
+	logger.Error(url)
 	client := &http.Client{}
 	var bodyReader io.Reader
 	req, err := http.NewRequest("GET", url, bodyReader)
@@ -31,9 +31,8 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 		return checkValidResult, "nil"
 	} else {
 		req.Close = true
-
 		bodyText, err := ioutil.ReadAll(resp.Body)
-
+		logger.Error(string(bodyText[:]))
 		var data SessionObject
 		err = json.Unmarshal(bodyText, &data)
 

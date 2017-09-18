@@ -26,8 +26,8 @@ type Grid_API struct {
 	CreatedUserIDs    []int    `json:"CreatedUserIDs"`
 	SourceIDs         []int    `json:"SourceIDs"`
 	Due               string   `json:"Due"`
-	GroupIDs          []int    `json:"GroupIDs"`
-	CreatedTime       int      `json:"CreatedTime"`
+	GroupIDs          []string    `json:"GroupIDs"`
+	CreatedTime       string     `json:"CreatedTime"`
 	SortBy		string	`json:"SortBy"`
 	OrderBy		string	`json:"OrderBy"`
 }
