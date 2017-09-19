@@ -339,12 +339,52 @@
 
 	}	
 	,
+	"getCatalogList": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCatalogList",
+            "component": "otrs",
+            "handler": "GetCatalogList"
+        }
+        ,
+	"getCategoryList": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCategoryList",
+            "component": "otrs",
+            "handler": "GetCategoryList"
+        }
+        ,
+	"getCategoryItemList": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getCategoryItemList",
+            "component": "otrs",
+            "handler": "GetCategoryItemList"
+        }
+        ,
+	"getGlobalSearch": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getGlobalSearch",
+            "component": "otrs",
+            "handler": "GetGlobalSearch"
+        }
+        ,
 	"getProcessInformation": {
             "version": "1.0",
             "method": "GET",
             "URI": "/getProcessInformation",
             "component": "otrs",
             "handler": "GetProcessInformation"
+        }
+        ,
+	"createServiceRequest": {
+            "version": "1.0",
+            "method": "POST",
+            "URI": "/TicketAPI/TicketCreate/createServiceRequest",
+            "component": "otrs",
+            "handler": "CreateServiceRequest"
         }
         ,
 	"templateContent":{
@@ -371,7 +411,7 @@
 	},
         "otrs": {
             "version": "1.0",
-            "url": "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice",
+            "url": "http://192.168.2.166/felicity/nph-genericinterface.pl/Webservice",
             "apis": {
                 "GetTicketInfo": {
                     "version": "1.0",
@@ -384,6 +424,61 @@
                     
                 }
 		,
+		"CreateServiceRequest": {
+                    "version": "1.0",
+                    "URI": "/TicketAPI/TicketCreate",
+                    "parameters": {
+                        "TicketID": "123",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+
+                }
+                ,
+		"GetCatalogList": {
+                    "version": "1.0",
+                    "URI": "/ServiceCatalog/GetCatalogList",
+                    "parameters": {
+                        "TicketID": "123",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+
+                }
+                ,
+		"GetGlobalSearch": {
+                    "version": "1.0",
+                    "URI": "/ServiceCatalog/GetGlobalSearch",
+                    "parameters": {
+                        "TicketID": "123",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+
+                }
+                ,
+		"GetCategoryItemList": {
+                    "version": "1.0",
+                    "URI": "/ServiceCatalog/GetCategoryItemList",
+                    "parameters": {
+                        "TicketID": "123",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+
+                }
+                ,
+		"GetCategoryList": {
+                    "version": "1.0",
+                    "URI": "/ServiceCatalog/GetCategoryList",
+                    "parameters": {
+                        "TicketID": "123",
+                        "UserLogin": "abhik",
+                        "Password": "abhik"
+                    }
+
+                }
+                ,
 		"GetProcessInformation": {
                     "version": "1.0",
                     "URI": "/TicketAPI/GetProcessInformation",
