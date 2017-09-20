@@ -371,20 +371,20 @@
             "handler": "GetGlobalSearch"
         }
         ,
+	"getPublicFAQ": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getPublicFAQ",
+            "component": "otrs",
+            "handler": "GetPublicFAQ"
+        }
+        ,
 	"getProcessInformation": {
             "version": "1.0",
             "method": "GET",
             "URI": "/getProcessInformation",
             "component": "otrs",
             "handler": "GetProcessInformation"
-        }
-        ,
-	"createServiceRequest": {
-            "version": "1.0",
-            "method": "POST",
-            "URI": "/TicketAPI/TicketCreate/createServiceRequest",
-            "component": "otrs",
-            "handler": "CreateServiceRequest"
         }
         ,
 	"templateContent":{
@@ -424,9 +424,9 @@
                     
                 }
 		,
-		"CreateServiceRequest": {
+		"GetPublicFAQ": {
                     "version": "1.0",
-                    "URI": "/TicketAPI/TicketCreate",
+                    "URI": "/FAQ/PublicFAQGet",
                     "parameters": {
                         "TicketID": "123",
                         "UserLogin": "abhik",
