@@ -9,6 +9,14 @@
 		"handler": "Login"
 	}
 	,
+	"Login":{
+                "version":"1.0",
+                "method":"POST",
+                "URI":"/isValidUser",
+                "component":"hydra",
+                "handler": "IsValidUser"
+        }
+	,
 	"LoginValidatorPost":{
 		"version":"1.0",
 		"method":"POST",
@@ -407,6 +415,10 @@
 			"LoginValidator":{
 
 			}
+			"IsValidUser":{
+
+                        }
+
 		}
 	},
         "otrs": {
