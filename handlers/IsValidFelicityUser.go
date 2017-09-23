@@ -52,7 +52,6 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 }
 
 func (h *Handler) IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var userName string
 	var password string
@@ -84,8 +83,5 @@ func (h *Handler) IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(jData)
 
-	//	w.Header().Set("Content-Type", "application/json")
-
-	//      json.NewEncoder(w).Encode(data)
 
 }

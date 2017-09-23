@@ -5,7 +5,6 @@ import(
 	"github.com/antigloss/go/logger"
 	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
-        "fmt"
 	"crypto/md5"
 	"io"
 	"encoding/hex"
@@ -21,7 +20,6 @@ import(
 	io.WriteString(h, password)
 	encr_passwd := 	h.Sum(nil)
 	enc_pwd_strg := hex.EncodeToString(encr_passwd)
-	fmt.Println(enc_pwd_strg)
         // insert
         stmt, err := db.Prepare("SELECT count(*) AS Count_records FROM Users WHERE Username=? AND Password=?")
         if err != nil{
