@@ -414,7 +414,7 @@
 			},
 			"LoginValidator":{
 
-			}
+			},
 			"IsValidUser":{
 
                         }
@@ -631,27 +631,6 @@
                         "TicketID": "627",
                         "UserLogin": "rasikm",
                         "Password": "rasikm"
-                    }
-                    
-                }
-                ,
-                "GetListOfLinkedChange": {
-                    "version": "1.0",
-                    "URI": "/TicketAPI/ListOfLinkedTickets",
-                    "parameters": {
-                        "TicketID": "447",
-                        "UserLogin": "abhik",
-                        "Password": "abhik"
-                    }
-                    
-                }
-                ,
-                "SetUserColumnPreferences": {
-                    "version": "1.0",
-                    "URI": "/Config/SetUserColumnPreferences",
-                    "parameters": {
-                        "UserLogin": "abhik",
-                        "Password": "abhik"
                     }
                     
                 }

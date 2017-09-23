@@ -9,12 +9,12 @@
 		"handler": "Login"
 	}
 	,
-	"Login":{
+	"LoginCheck":{
                 "version":"1.0",
                 "method":"POST",
-                "URI":"/isValidUser",
-                "component":"hydra",
-                "handler": "IsValidUser"
+                "URI":"/loginCheck",
+                "component":"pearly_gates",
+                "handler": "LoginCheck"
         }
 	,
 	"LoginValidatorPost":{
@@ -414,7 +414,7 @@
 			},
 			"LoginValidator":{
 
-			}
+			},
 			"IsValidUser":{
 
                         }
@@ -602,17 +602,6 @@
                     
                 }
                 ,
-                "GetListOfLinkedChange": {
-                    "version": "1.0",
-                    "URI": "/TicketAPI/ListOfLinkedTickets",
-                    "parameters": {
-                        "TicketID": "447",
-                        "UserLogin": "abhik",
-                        "Password": "abhik"
-                    }
-                    
-                }
-                ,
                 "GetListOfCIs": {
                     "version": "1.0",
                     "URI": "/TicketAPI/ListOfCIs",
@@ -640,16 +629,6 @@
                     "URI": "/TicketAPI/ListOfLinkedTickets",
                     "parameters": {
                         "TicketID": "447",
-                        "UserLogin": "abhik",
-                        "Password": "abhik"
-                    }
-                    
-                }
-                ,
-                "SetUserColumnPreferences": {
-                    "version": "1.0",
-                    "URI": "/Config/SetUserColumnPreferences",
-                    "parameters": {
                         "UserLogin": "abhik",
                         "Password": "abhik"
                     }
@@ -768,6 +747,17 @@
             
         }
         ,
+	"pearly_gates": {
+            "version": "1.0",
+            "url": "",
+            "apis": {
+		"LoginCheck": {
+		"version": "1.0",
+		"URI": "/loginCheck"
+		 }
+                    }
+	}
+	,
         "glpi": {
             "version": "1.0",
             "url": "",
