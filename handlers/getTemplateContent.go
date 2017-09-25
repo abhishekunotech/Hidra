@@ -6,9 +6,10 @@ import (
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
+	"github.com/Unotechsoftware/Hydra/utils"
 )
 
-func callContentTemplate(w http.ResponseWriter, r *http.Request, username string, password string, templateID string) {
+func callContentTemplate(username string, password string, templateID string) interface {} {
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -32,17 +33,17 @@ func callContentTemplate(w http.ResponseWriter, r *http.Request, username string
 	if err != nil {
 		logger.Error(err.Error())
 	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+
+	return data
 
 }
 
 //Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
+// Request as http://ip-host/getTemplateContent?TemplateID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetTemplateContent(w http.ResponseWriter, r *http.Request) {
 
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	var templateID string
@@ -64,6 +65,6 @@ func (h *Handler) GetTemplateContent(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	callContentTemplate(w, r, userName, password, templateID)
-
+	interface1 := callContentTemplate(userName, password, templateID)
+	utils.ResponseAbstract(interface1, w)
 }

@@ -6,6 +6,6 @@ import (
 )
 
 func (h *Handler) Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "hello bla")
+	fmt.Fprintln(w, "Thank you for pinging the Index!")
 
 }

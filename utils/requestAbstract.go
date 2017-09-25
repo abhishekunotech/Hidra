@@ -1,6 +1,7 @@
 package utils
 
 import(
+	"net/url"
 	"net/http"
 	"github.com/antigloss/go/logger"
 	"encoding/json"
@@ -20,3 +21,7 @@ func RequestAbstract(r *http.Request) map[string] interface{} {
         return t.(map[string] interface{})
 }
 
+func RequestAbstractGet(r *http.Request) url.Values {
+	return r.URL.Query()
+
+}
