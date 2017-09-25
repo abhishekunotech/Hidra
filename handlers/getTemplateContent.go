@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+//	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
@@ -9,7 +9,7 @@ import (
 	"github.com/Unotechsoftware/Hydra/utils"
 )
 
-func callContentTemplate(username string, password string, templateID string) interface {} {
+func callContentTemplate(username string, password string, templateID string) []uint8 {
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -27,14 +27,14 @@ func callContentTemplate(username string, password string, templateID string) in
 	}
 
 	bodyText, err := ioutil.ReadAll(res.Body)
-
+/*
 	var data interface{}
 	err = json.Unmarshal(bodyText, &data)
 	if err != nil {
 		logger.Error(err.Error())
 	}
-
-	return data
+*/
+	return bodyText
 
 }
 
