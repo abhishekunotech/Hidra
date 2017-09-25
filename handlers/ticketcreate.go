@@ -2,8 +2,7 @@ package handlers
 
 import (
 	"bytes"
-	"encoding/json"
-	"fmt"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
@@ -11,10 +10,6 @@ import (
 	"time"
 )
 
-/*
-{"ArticleID":"2927","TicketNumber":"2017090410000024","TicketID":"629"}
-
-*/
 type TicketResponseBody struct {
 	ArticleID    string `json:"ArticleID,omitempty"`
 	TicketNumber string `json:"TicketNumber"`
@@ -37,14 +32,6 @@ func (h *Handler) Ticketcreate(w http.ResponseWriter, r *http.Request) {
 	//Function call to create ticket and get the response
 	creatorOfTickets(bodyValStrg, w, r)
 
-	/*var jsonReturn = []byte(jsonReturnString)
-	  //Decode JSON response
-	  jsonRetVal, _ := json.Marshal(jsonReturn)
-	  var byteArr []byte
-	  //Display the response
-	  base64.StdEncoding.Decode(byteArr, jsonRetVal)
-	  fmt.Fprintf(w, string(byteArr))
-	  //json.NewEncoder(w).Encode(Tick)*/
 }
 
 func creatorOfTickets(jsonInput string, w http.ResponseWriter, r *http.Request) {
@@ -59,30 +46,18 @@ func creatorOfTickets(jsonInput string, w http.ResponseWriter, r *http.Request) 
 	sessionIDString := callSessionDetails(usernameStrg, passwordStrg)
 
 	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString
-	fmt.Println("URLi:>", url)
 
 	jsonStr1 := bytes.NewBufferString(jsonInput)
 
 	resp, err := http.Post(url, "application/json", jsonStr1)
 
 	if err != nil {
-		fmt.Println("Error OCcured")
-		fmt.Println(err.Error())
+		logger.Error("Error OCcured")
+		logger.Error(err.Error())
 	}
 	defer resp.Body.Close()
 
-	fmt.Println("response Status:", resp.Status)
-	fmt.Println("response Headers:", resp.Header)
 
-	body, _ := ioutil.ReadAll(resp.Body)
-	var bodyText []byte
-	var data TicketResponseBody
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
-	fmt.Println("response Body:", string(body))
+	bodyText, _ := ioutil.ReadAll(resp.Body)
+	utils.ResponseAbstract(bodyText,w)
 }
