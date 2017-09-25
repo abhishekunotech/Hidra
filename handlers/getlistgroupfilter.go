@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
 )
 
-func callGroupFilter(w http.ResponseWriter, r *http.Request, username string, password string, UserAccess string) {
+func callGroupFilter(username string, password string, UserAccess string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -27,14 +27,7 @@ func callGroupFilter(w http.ResponseWriter, r *http.Request, username string, pa
 
 	bodyText, err := ioutil.ReadAll(res.Body)
 
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 //Function to get list of work orders
@@ -42,7 +35,7 @@ func callGroupFilter(w http.ResponseWriter, r *http.Request, username string, pa
 
 func (h *Handler) GetListGroupFilter(w http.ResponseWriter, r *http.Request) {
 
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	var userAccess string
@@ -64,6 +57,6 @@ func (h *Handler) GetListGroupFilter(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	callGroupFilter(w, r, userName, password, userAccess)
-
+	groupfilter := callGroupFilter(userName, password, userAccess)
+	utils.ResponseAbstract(groupfilter, w)
 }

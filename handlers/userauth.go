@@ -1,17 +1,9 @@
 package handlers
 
 import (
-	"fmt"
 	"encoding/json"
-//	"strconv"
-	//"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
-//	//"io/ioutil"
-//	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
-//	"gopkg.in/dgrijalva/jwt-go.v2"
-	//"github.com/codegangsta/negroni"
-	//"github.com/dgrijalva/jwt-go"	
 )
 
 type User_Request struct {
@@ -30,8 +22,6 @@ func (h *Handler) IsValidUser(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	fmt.Println(t.Username)
-	fmt.Println(t.Password)
 
 	w.Header().Set("Content-Type", "application/json")
         json.NewEncoder(w).Encode(t)

@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -11,7 +11,7 @@ import (
 
 
 //	url := "http://192.168.2.90:8080/felicity/nph-genericinterface.pl/Webservice/TicketAPI/ListOfLinkedChange?TicketID="+ticketid+"&SessionID="+sessionIDString
-func callLinkedChanges(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string) {
+func callLinkedChanges(username string, password string, ticketid string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 	ConfObj := lerna.ReturnConfigObject()
@@ -40,20 +40,13 @@ func callLinkedChanges(w http.ResponseWriter, r *http.Request, username string, 
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 //Function to get the details about ticket.
 // Request as http://ip-host/getLinkedChange?ticketID=627&password=abhik&username=abhik
 func (h *Handler) GetLinkedChange(w http.ResponseWriter, r *http.Request) {
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	var ticketid string
@@ -74,5 +67,5 @@ func (h *Handler) GetLinkedChange(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	callLinkedChanges(w, r, userName, password, ticketid)
+	utils.ResponseAbstract(callLinkedChanges(userName, password, ticketid),w)
 }

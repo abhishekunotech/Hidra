@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func callCountClosedTickets(w http.ResponseWriter, r *http.Request, username string, password string, customerid string) {
+func callCountClosedTickets(username string, password string, customerid string) []uint8{
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -27,21 +27,14 @@ func callCountClosedTickets(w http.ResponseWriter, r *http.Request, username str
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	return bodyText
 
 }
 
 //Function to get the details about ticket.
 
 func (h *Handler) GetCountofClosedTickets(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var customerid string
 	var username string
 	var password string
@@ -62,6 +55,6 @@ func (h *Handler) GetCountofClosedTickets(w http.ResponseWriter, r *http.Request
 			}
 		}
 	}
-	callCountClosedTickets(w, r, username, password, customerid)
+	utils.ResponseAbstract(callCountClosedTickets(username, password, customerid),w)
 
 }
