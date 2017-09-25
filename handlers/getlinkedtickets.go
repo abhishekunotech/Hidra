@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func callLinkedTickets(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string) {
+func callLinkedTickets(ticketid string, username string, password string) []uint8 {
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -26,20 +26,15 @@ func callLinkedTickets(w http.ResponseWriter, r *http.Request, ticketid string, 
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+
+	return bodyText
 
 }
 
 //Function to get the details about ticket.
 
 func (h *Handler) GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var ticketid string
 	var username string
 	var password string
@@ -60,6 +55,6 @@ func (h *Handler) GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	callLinkedTickets(w, r, ticketid, username, password)
+	utils.ResponseAbstract(callLinkedTickets(ticketid, username, password),w)
 
 }

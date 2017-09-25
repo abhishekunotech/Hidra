@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func callTicketDetails(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string) {
+func callTicketDetails(username string, password string, ticketid string) []uint8{
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.getticketdetails").GetString("uri")
@@ -26,18 +26,12 @@ func callTicketDetails(w http.ResponseWriter, r *http.Request, username string, 
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	json.NewEncoder(w).Encode(data)
+	return bodyText
 }
 
 //Function to get the details about ticket.
 // Request as http://ip-host/getTicketDetails?ticketID=521&password=abhik&userLogin=abhik
 func (h *Handler) GetTicketDetails(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var userName string
 	var password string
@@ -59,5 +53,5 @@ func (h *Handler) GetTicketDetails(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	callTicketDetails(w, r, userName, password, ticketid)
+	utils.ResponseAbstract(callTicketDetails(userName, password, ticketid),w)
 }

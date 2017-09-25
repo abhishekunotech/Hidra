@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
 )
 
-func callArticle(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string, pagesize string, pagenumber string) {
+func callArticle(username string, password string, ticketid string, pagesize string, pagenumber string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -25,14 +25,7 @@ func callArticle(w http.ResponseWriter, r *http.Request, username string, passwo
 	}
 
 	bodyText, err := ioutil.ReadAll(res.Body)
-
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	return bodyText
 
 }
 
@@ -41,7 +34,7 @@ func callArticle(w http.ResponseWriter, r *http.Request, username string, passwo
 
 func (h *Handler) GetArticle(w http.ResponseWriter, r *http.Request) {
 
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	var ticketid string
@@ -75,6 +68,6 @@ func (h *Handler) GetArticle(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	callArticle(w, r, userName, password, ticketid, PageSize, PageNumber)
+	utils.ResponseAbstract(callArticle(userName, password, ticketid, PageSize, PageNumber),w)
 
 }

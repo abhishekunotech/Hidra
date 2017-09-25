@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func callWorkorderGraphList(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string) {
+func callWorkorderGraphList(ticketid string, username string, password string) []uint8{
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -27,14 +27,7 @@ func callWorkorderGraphList(w http.ResponseWriter, r *http.Request, ticketid str
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 //Function to get the details about ticket.
@@ -61,6 +54,6 @@ func (h *Handler) GetListofWorkorderGraph(w http.ResponseWriter, r *http.Request
 			}
 		}
 	}
-	callWorkorderGraphList(w, r, ticketid, username, password)
+	utils.ResponseAbstract(callWorkorderGraphList(ticketid, username, password),w)
 
 }

@@ -3,6 +3,7 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
@@ -27,10 +28,11 @@ func (h *Handler) SetUserColumnPreferences(w http.ResponseWriter, r *http.Reques
 	}
 	defer r.Body.Close()
 
-	setUserColumnPreferences(t, w, r)
+	intermediate := setUserColumnPreferences(t)
+	utils.ResponseAbstract(intermediate,w)
 }
 
-func setUserColumnPreferences(T SUCP_Request, w http.ResponseWriter, r *http.Request) {
+func setUserColumnPreferences(T SUCP_Request) []uint8 {
 
 	//Get Lerna Running
 	ConfObj := lerna.ReturnConfigObject()
@@ -70,14 +72,7 @@ func setUserColumnPreferences(T SUCP_Request, w http.ResponseWriter, r *http.Req
 	}
 	//req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error("\n\n Error Occured in unmarshalling Session JSON \n\n")
-		logger.Error(err.Error())
-	}
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	return bodyText
 
 }

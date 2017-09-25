@@ -1,15 +1,15 @@
 package handlers
 
 import (
-	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
 	"io/ioutil"
 	"net/http"
+	"github.com/Unotechsoftware/Hydra/utils"
 )
 
-func callGetCategoryList(w http.ResponseWriter, r *http.Request, username string, password string, catalog string, id string) {
+func callGetCategoryList(username string, password string, catalog string, id string) []uint8{
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -28,20 +28,12 @@ func callGetCategoryList(w http.ResponseWriter, r *http.Request, username string
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 
 func (h *Handler) GetCategoryList(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var id string
 	var username string
 	var password string
@@ -69,6 +61,6 @@ func (h *Handler) GetCategoryList(w http.ResponseWriter, r *http.Request) {
                 }
 
 	}
-	callGetCategoryList(w, r, username, password, catalog, id)
-
+	categorylist := callGetCategoryList(username, password, catalog, id)
+	utils.ResponseAbstract(categorylist, w)
 }

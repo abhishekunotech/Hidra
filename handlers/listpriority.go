@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
 )
 
-func callListPriority(w http.ResponseWriter, r *http.Request, username string, password string) {
+func callListPriority(username string, password string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -26,24 +26,15 @@ func callListPriority(w http.ResponseWriter, r *http.Request, username string, p
 	}
 
 	bodyText, err := ioutil.ReadAll(res.Body)
-
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 //Function to get list of work orders
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) ListPriority(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	for key, value := range mapHttp {
@@ -60,6 +51,6 @@ func (h *Handler) ListPriority(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	callListPriority(w, r, userName, password)
+	utils.ResponseAbstract(callListPriority(userName, password),w)
 
 }

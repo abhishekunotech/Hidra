@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
 )
 
-func callTicketAll(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string) {
+func callTicketAll(username string, password string, ticketid string) []uint8{
 
 	sessionIDString := callCustomerSessionDetails(username, password)
 
@@ -25,15 +25,7 @@ func callTicketAll(w http.ResponseWriter, r *http.Request, username string, pass
 	}
 
 	bodyText, err := ioutil.ReadAll(res.Body)
-
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-	/*json.NewEncoder(w).Encode(data)*/
+	return bodyText
 
 }
 
@@ -41,9 +33,8 @@ func callTicketAll(w http.ResponseWriter, r *http.Request, username string, pass
 // Request as http://ip-host/ticketAll?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) TicketAll(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	var ticketid string
@@ -65,6 +56,6 @@ func (h *Handler) TicketAll(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	callTicketAll(w, r, userName, password, ticketid)
+	utils.ResponseAbstract(callTicketAll(userName, password, ticketid),w)
 
 }

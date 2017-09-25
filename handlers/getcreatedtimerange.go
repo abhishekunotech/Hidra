@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func callGetCreatedTimeRange(w http.ResponseWriter, r *http.Request,  username string, password string) {
+func callGetCreatedTimeRange(username string, password string) []uint8{
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -27,21 +27,13 @@ func callGetCreatedTimeRange(w http.ResponseWriter, r *http.Request,  username s
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 //Function to get the details about ticket.
 
 func (h *Handler) GetCreatedTimeRange(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var username string
 	var password string
 	for key, value := range mapHttp {
@@ -56,6 +48,6 @@ func (h *Handler) GetCreatedTimeRange(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-callGetCreatedTimeRange(w, r, username, password)
+	utils.ResponseAbstract(callGetCreatedTimeRange(username, password),w)
 
 }

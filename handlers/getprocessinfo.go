@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func callGetProcessInformation(w http.ResponseWriter, r *http.Request, ticketid string, username string, password string) {
+func callGetProcessInformation(ticketid string, username string, password string) []uint8{
 
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -27,20 +27,12 @@ func callGetProcessInformation(w http.ResponseWriter, r *http.Request, ticketid 
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 //Function to get the details about ticket.
 
 func (h *Handler) GetProcessInformation(w http.ResponseWriter, r *http.Request) {
-	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()
 	var ticketid string
 	var username string
@@ -62,6 +54,6 @@ func (h *Handler) GetProcessInformation(w http.ResponseWriter, r *http.Request) 
 			}
 		}
 	}
-	callGetProcessInformation(w, r, ticketid, username, password)
+	utils.ResponseAbstract(callGetProcessInformation(ticketid, username, password),w)
 
 }

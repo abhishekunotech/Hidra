@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
 )
 
-func callAgents(w http.ResponseWriter, r *http.Request, username string, password string, search string, term string) {
+func callAgents(username string, password string, search string, term string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -26,14 +26,7 @@ func callAgents(w http.ResponseWriter, r *http.Request, username string, passwor
 
 	bodyText, err := ioutil.ReadAll(res.Body)
 
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 
 //Function to get list of work orders
@@ -41,7 +34,7 @@ func callAgents(w http.ResponseWriter, r *http.Request, username string, passwor
 
 func (h *Handler) GetListAgents(w http.ResponseWriter, r *http.Request) {
 
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	var search string
@@ -70,6 +63,6 @@ func (h *Handler) GetListAgents(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	callAgents(w, r, userName, password, search, term)
+	utils.ResponseAbstract(callAgents(userName, password, search, term),w)
 
 }

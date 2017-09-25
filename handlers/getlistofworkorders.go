@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
 )
 
-func callWorkOrders(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string) {
+func callWorkOrders(username string, password string, ticketid string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -28,14 +28,7 @@ func callWorkOrders(w http.ResponseWriter, r *http.Request, username string, pas
 	}
 
 	bodyText, err := ioutil.ReadAll(res.Body)
-
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	return bodyText
 }
 
 //Function to get list of work orders
@@ -65,5 +58,5 @@ func (h *Handler) GetListOfWorkOrders(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	callWorkOrders(w, r, userName, password, ticketid)
+	utils.ResponseAbstract(callWorkOrders(userName, password, ticketid),w)
 }

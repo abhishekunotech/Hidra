@@ -3,7 +3,7 @@ package handlers
 import (
 	"github.com/antigloss/go/logger"
 
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 
 	"github.com/Unotechsoftware/Hydra/lerna"
 
@@ -12,7 +12,7 @@ import (
 	"io/ioutil"
 )
 
-func callListOfLinkedFAQS(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string) {
+func callListOfLinkedFAQS(username string, password string, ticketid string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -40,20 +40,7 @@ func callListOfLinkedFAQS(w http.ResponseWriter, r *http.Request, username strin
 
 	bodyText, err := ioutil.ReadAll(res.Body)
 
-	var data interface{}
-
-	err = json.Unmarshal(bodyText, &data)
-
-	if err != nil {
-
-		logger.Error(err.Error())
-
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 
 }
 
@@ -64,7 +51,7 @@ func callListOfLinkedFAQS(w http.ResponseWriter, r *http.Request, username strin
 func (h *Handler) GetListOfLinkedFAQs(w http.ResponseWriter, r *http.Request) {
 
 
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 
 	var userName string
 
@@ -106,7 +93,7 @@ func (h *Handler) GetListOfLinkedFAQs(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	callListOfLinkedFAQS(w, r, userName, password, ticketid)
-
+	LinkedFaqsList := callListOfLinkedFAQS(userName, password, ticketid)
+	utils.ResponseAbstract(LinkedFaqsList, w)
 
 }

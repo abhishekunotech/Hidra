@@ -1,18 +1,16 @@
 package handlers
 
 import (
-	"fmt"
-	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
+	"github.com/Unotechsoftware/Hydra/utils"
 )
 
-func callGetCatalogList(w http.ResponseWriter, r *http.Request, username string, password string) {
+func callGetCatalogList(username string, password string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
-	fmt.Println("In Service Catalogue")
 	logger.Info("session id is ::", sessionIDString)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -20,28 +18,21 @@ func callGetCatalogList(w http.ResponseWriter, r *http.Request, username string,
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.GetCatalogList").GetString("uri")
 	
 	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + username + "&Password=" + password + "&SessionID=" + sessionIDString
-	fmt.Println("URL :", url)
 	res, err := http.Get(url)
 	if err != nil {
 		logger.Error(err.Error())
 	}
 
 	bodyText, err := ioutil.ReadAll(res.Body)
-
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	
+	return bodyText
 
 }
 
 
 func (h *Handler) GetCatalogList(w http.ResponseWriter, r *http.Request) {
-
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
+//	mapHttp := r.URL.Query()
 	var userName string
 	var password string
 	for key, value := range mapHttp {
@@ -57,6 +48,6 @@ func (h *Handler) GetCatalogList(w http.ResponseWriter, r *http.Request) {
 		}
 			}
 
-	callGetCatalogList(w, r, userName, password)
-
+	something := callGetCatalogList(userName, password)
+	utils.ResponseAbstract(something, w)
 }
