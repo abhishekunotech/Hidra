@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
 )
 
-func callListOfLinkedChange(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string) {
+func callListOfLinkedChange(username string, password string, ticketid string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
 
@@ -28,14 +28,7 @@ func callListOfLinkedChange(w http.ResponseWriter, r *http.Request, username str
 	}
 
 	bodyText, err := ioutil.ReadAll(res.Body)
-
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	return bodyText
 
 }
 
@@ -43,7 +36,7 @@ func callListOfLinkedChange(w http.ResponseWriter, r *http.Request, username str
 // Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetListOfLinkedChange(w http.ResponseWriter, r *http.Request) {
-	mapHttp := r.URL.Query()
+	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
 	var password string
 	var ticketid string
@@ -65,5 +58,6 @@ func (h *Handler) GetListOfLinkedChange(w http.ResponseWriter, r *http.Request) 
 		}
 	}
 
-	callListOfLinkedChange(w, r, userName, password, ticketid)
+	linkedChangeList := callListOfLinkedChange(userName, password, ticketid)
+	utils.ResponseAbstract(linkedChangeList, w)
 }
