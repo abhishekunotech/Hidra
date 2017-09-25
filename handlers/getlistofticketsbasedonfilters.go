@@ -43,10 +43,10 @@ func (h *Handler) GetTicketGrid(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	GetTicketGrid(t, w, r)
+	GetTicketGrid(t)
 }
 
-func GetTicketGrid(T Grid_API, w http.ResponseWriter, r *http.Request) {
+func GetTicketGrid(T Grid_API) []uint8{
 
 	//Get Lerna Running
 	ConfObj := lerna.ReturnConfigObject()
@@ -85,14 +85,8 @@ func GetTicketGrid(T Grid_API, w http.ResponseWriter, r *http.Request) {
 		logger.Error(err.Error())
 	}
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error("\n\n Error Occured in unmarshalling Session JSON \n\n")
-		logger.Error(err.Error())
-	}
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	return bodyText
+
 
 }

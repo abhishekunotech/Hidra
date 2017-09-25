@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io"
@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func callGetTicketHistoryVersionTwo(w http.ResponseWriter, r *http.Request, username string, password string, ticketid string, pagesize string, pagenumber string) {
+func callGetTicketHistoryVersionTwo(username string, password string, ticketid string, pagesize string, pagenumber string) []uint8{
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.gettickethistory").GetString("uri")
@@ -25,15 +25,7 @@ func callGetTicketHistoryVersionTwo(w http.ResponseWriter, r *http.Request, user
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	var data interface{}
-	err = json.Unmarshal(bodyText, &data)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
-
+	return bodyText
 }
 func (h *Handler) GetTicketHistoryVersionTwo(w http.ResponseWriter, r *http.Request) {
 
@@ -71,6 +63,6 @@ func (h *Handler) GetTicketHistoryVersionTwo(w http.ResponseWriter, r *http.Requ
 		}
 	}
 
-	callGetTicketHistoryVersionTwo(w, r, userName, password, ticketid, PageSize, PageNumber)
+	utils.ResponseAbstract(callGetTicketHistoryVersionTwo(userName, password, ticketid, PageSize, PageNumber),w)
 
 }
