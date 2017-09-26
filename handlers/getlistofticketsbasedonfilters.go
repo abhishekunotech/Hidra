@@ -3,6 +3,7 @@ package handlers
 
 
 import (
+	"github.com/Unotechsoftware/Hydra/utils"
 	"bytes"
 	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
@@ -43,10 +44,11 @@ func (h *Handler) GetTicketGrid(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	GetTicketGrid(t)
+	
+	utils.ResponseAbstract(getTicketGrid(t),w)
 }
 
-func GetTicketGrid(T Grid_API) []uint8{
+func getTicketGrid(T Grid_API) []uint8{
 
 	//Get Lerna Running
 	ConfObj := lerna.ReturnConfigObject()
