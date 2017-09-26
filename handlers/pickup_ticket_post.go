@@ -34,8 +34,7 @@ func (h *Handler) PostPickupAgentTicket(w http.ResponseWriter, r *http.Request) 
 	}
 	defer r.Body.Close()
 
-	intermediate := setUserColumnPreferences(t)
-	utils.ResponseAbstract(intermediate,w)
+	utils.ResponseAbstract(pickupAgentTicket(t),w)
 }
 
 func pickupAgentTicket(T Pickup_Request) []uint8 {
@@ -48,7 +47,7 @@ func pickupAgentTicket(T Pickup_Request) []uint8 {
 	//sessionIDString := callSessionDetails(T.UserLogin,T.Password)
 
 	//url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
-	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + T.UserLogin + "&Password=" + T.Password
+	url := felicitybaseurl + felicityapiuri  
 	j, err := json.Marshal(T)
 
 	if err != nil {
