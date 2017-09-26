@@ -72,3 +72,39 @@ func PopulateRoutes() {
 
 var routes Routes
 
+type Route_Name_URI struct{
+	Name	string
+	URI	string
+}
+
+type Exposed_routes []Route_Name_URI
+
+
+func GetExposedRouteList() Exposed_routes{
+	var ExposedRoutes Exposed_routes
+	for _,vals := range routes{
+		var temp Route_Name_URI
+		temp.Name = vals.Name
+		temp.URI = vals.Pattern
+		ExposedRoutes = append(ExposedRoutes,temp)
+	}
+	return ExposedRoutes
+}
+
+
+func GetRouteNames() []string{
+	var ReturnVal []string
+	for _,Names := range routes{
+		ReturnVal = append(ReturnVal,Names.Name)
+	}
+	return ReturnVal
+}
+
+
+func GetRouteURIs() []string{
+	var ReturnVal []string
+	for _,URIs := range routes{
+		ReturnVal = append(ReturnVal,URIs.Pattern)
+	}
+	return ReturnVal
+}
