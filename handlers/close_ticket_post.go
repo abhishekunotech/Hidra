@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"bytes"
 	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/utils"
@@ -10,7 +11,7 @@ import (
 	"net/http"
 )
 
-type Pickup_Request struct{
+type Close_Request struct{
 	UserLogin	string	`json:"UserLogin"`
 	Password	string	`json:"Password"`
 	Action		string	`json:"Action"`
@@ -18,37 +19,35 @@ type Pickup_Request struct{
 	Subaction	string	`json:"Subaction"`
 	ArticleType	string	`json:"ArticleType"`
 	Unlock		string	`json:"Unlock"`
-	OwnerID		string	`json:"OwnerID"`
+	StateID		string	`json:"StateID"`
 	Subject		string	`json:"Subject"`
 	Body		string	`json:"Body"`
 }
 
-func (h *Handler) PostPickupAgentTicket(w http.ResponseWriter, r *http.Request) {
-
+func (h *Handler) PostCloseAgentTicket(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("IN close tik")
 	decoder := json.NewDecoder(r.Body)
-	var t Pickup_Request
+	var t Close_Request
 	err := decoder.Decode(&t)
 	if err != nil {
 		logger.Error("Error Occured in Decoding Post Request")
 		logger.Error(err.Error())
 	}
 	defer r.Body.Close()
-
-	intermediate := setUserColumnPreferences(t)
-	utils.ResponseAbstract(intermediate,w)
+	utils.ResponseAbstract(PostCloseAgentTicket(t),w)
 }
 
-func pickupAgentTicket(T Pickup_Request) []uint8 {
+func PostCloseAgentTicket(T Close_Request) []uint8 {
 
 	//Get Lerna Running
 	ConfObj := lerna.ReturnConfigObject()
 
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.postpickupagentticket").GetString("uri")
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.postcloseagentticket").GetString("uri")
 	//sessionIDString := callSessionDetails(T.UserLogin,T.Password)
 
 	//url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
-	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + T.UserLogin + "&Password=" + T.Password
+	url := felicitybaseurl + felicityapiuri 
 	j, err := json.Marshal(T)
 
 	if err != nil {

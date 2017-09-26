@@ -404,22 +404,6 @@
             "handler": "GetGlobalSearch"
         }
 	,
-	"postPickupAgentTicket": {
-		"version":"1.0",
-		"method":"POST",
-		"URI":"/pickupTicket",
-		"component":"otrs",	
-		"handler": "PostPickupAgentTicket"
-	}
-	,
-	"postAssignAgentTicket":{
-		"version":"1.0",
-		"method":"POST",
-		"URI":"/assignTicket",
-		"component":"otrs",
-		"handler":"PostAssignAgentTicket"
-	}
-	,
 	"postCloseAgentTicket":{
 		"version":"1.0",
 		"method":"POST",
