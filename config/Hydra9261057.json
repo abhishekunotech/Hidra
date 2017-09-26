@@ -412,6 +412,14 @@
 		"handler":"PostCloseAgentTicket"
 	}
         ,
+	"postAssignAgentTicket":{
+                "version":"1.0",
+                "method":"POST",
+                "URI":"/assignTicket",
+                "component":"otrs",
+                "handler":"PostAssignAgentTicket"
+        }
+        ,
 	"getPublicFAQ": {
             "version": "1.0",
             "method": "GET",

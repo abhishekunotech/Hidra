@@ -10,7 +10,7 @@ import (
 	"net/http"
 )
 
-type Pickup_Request struct{
+type Assign_Request struct{
 	UserLogin	string	`json:"UserLogin"`
 	Password	string	`json:"Password"`
 	Action		string	`json:"Action"`
@@ -23,10 +23,10 @@ type Pickup_Request struct{
 	Body		string	`json:"Body"`
 }
 
-func (h *Handler) PostPickupAgentTicket(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) PostAssignAgentTicket(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)
-	var t Pickup_Request
+	var t Assign_Request
 	err := decoder.Decode(&t)
 	if err != nil {
 		logger.Error("Error Occured in Decoding Post Request")
@@ -34,21 +34,20 @@ func (h *Handler) PostPickupAgentTicket(w http.ResponseWriter, r *http.Request) 
 	}
 	defer r.Body.Close()
 
-	intermediate := setUserColumnPreferences(t)
-	utils.ResponseAbstract(intermediate,w)
+	utils.ResponseAbstract(assignAgentTicket(t),w)
 }
 
-func pickupAgentTicket(T Pickup_Request) []uint8 {
+func assignAgentTicket(T Assign_Request) []uint8 {
 
 	//Get Lerna Running
 	ConfObj := lerna.ReturnConfigObject()
 
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.postpickupagentticket").GetString("uri")
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.postassignagentticket").GetString("uri")
 	//sessionIDString := callSessionDetails(T.UserLogin,T.Password)
 
 	//url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
-	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + T.UserLogin + "&Password=" + T.Password
+	url := felicitybaseurl + felicityapiuri 
 	j, err := json.Marshal(T)
 
 	if err != nil {
