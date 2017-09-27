@@ -12,20 +12,17 @@ func callAgents(username string, password string, search string, term string) []
 
 	sessionIDString := callSessionDetails(username, password)
 
-	logger.Info("session id is ::", sessionIDString)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	logger.Info("base url:- ", felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistagents").GetString("uri")
 
 	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&Search=" + search + "&term=" + term
-	res, err := http.Get(url)
-	if err != nil {
+	res := utils.MakeHTTPGetCall(url)
+	bodyText, err := ioutil.ReadAll(res.Body)
+	if err!=nil {
+		logger.Error("Error Occured in Reading Response Body")
 		logger.Error(err.Error())
 	}
-
-	bodyText, err := ioutil.ReadAll(res.Body)
-
 	return bodyText
 }
 
