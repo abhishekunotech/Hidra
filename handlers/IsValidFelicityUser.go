@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"github.com/antigloss/go/logger"
+	"time"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -15,13 +16,18 @@ type LoginResult struct {
 
 func checkValidUserDetails(username string, password string) (bool, string) {
 	url := "http://192.168.2.166/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin=" + username + "&Password=" + password
-	logger.Error(url)
 	client := &http.Client{}
 	var bodyReader io.Reader
+
+	start := time.Now()
+
 	req, err := http.NewRequest("GET", url, bodyReader)
 
 	resp, err := client.Do(req)
 
+	till := time.Since(start).String()
+
+	logger.Info(" The call for the URL "+url+" took "+till+" to execute")
 	checkValidResult := true
 
 	if err != nil {
