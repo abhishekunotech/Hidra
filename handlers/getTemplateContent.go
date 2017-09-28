@@ -1,9 +1,7 @@
 package handlers
 
 import (
-//	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
-	"io/ioutil"
 	"net/http"
 	"github.com/Unotechsoftware/Hydra/utils"
 )
@@ -18,9 +16,8 @@ func callContentTemplate(username string, password string, templateID string) []
 
 	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&TemplateID=" + templateID
 
-	res := utils.MakeHTTPGetCall(url)
+	bodyText := utils.MakeHTTPGetCall(url)
 
-	bodyText, err := ioutil.ReadAll(res.Body)
 	return bodyText
 
 }

@@ -160,16 +160,11 @@ func (h *Handler) GetCILogs(w http.ResponseWriter, r *http.Request) {
 	url1 := felicitybaseurl + felicityapiuri + ipStrg + "&pretty=" + prettyStrg + "&size=" + sizeStrg
 
 
-	res := utils.MakeHTTPGetCall(url1)
-	//ReadAll reads from response until an error or EOF and returns the data it read.
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		logger.Error(err.Error())
-	}
+	body := utils.MakeHTTPGetCall(url1)
 	var data interface{}
 
 	//To decode JSON data, use the Unmarshal function.
-	err = json.Unmarshal(body, &data)
+	err := json.Unmarshal(body, &data)
 	if err != nil {
 		logger.Error(err.Error())
 	}
