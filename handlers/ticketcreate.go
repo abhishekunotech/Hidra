@@ -49,15 +49,7 @@ func creatorOfTickets(jsonInput string, w http.ResponseWriter, r *http.Request) 
 
 	jsonStr1 := bytes.NewBufferString(jsonInput)
 
-	resp, err := http.Post(url, "application/json", jsonStr1)
+	bodyText := utils.MakeHTTPPostCall(url,jsonStr1)
 
-	if err != nil {
-		logger.Error("Error OCcured")
-		logger.Error(err.Error())
-	}
-	defer resp.Body.Close()
-
-
-	bodyText, _ := ioutil.ReadAll(resp.Body)
 	utils.ResponseAbstract(bodyText,w)
 }

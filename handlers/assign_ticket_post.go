@@ -6,7 +6,6 @@ import (
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -44,9 +43,7 @@ func assignAgentTicket(T Assign_Request) []uint8 {
 
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.postassignagentticket").GetString("uri")
-	//sessionIDString := callSessionDetails(T.UserLogin,T.Password)
 
-	//url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
 	url := felicitybaseurl + felicityapiuri 
 	j, err := json.Marshal(T)
 
@@ -56,28 +53,7 @@ func assignAgentTicket(T Assign_Request) []uint8 {
 	}
 
 	b := bytes.NewBuffer(j)
-
-	client := &http.Client{}
-
-	req, err := http.NewRequest("POST", url, b)
-
-	if err != nil {
-		logger.Error("\n\n Request to Create Request Failed \n\n")
-		logger.Error(err.Error())
-	}
-
-	logger.Info("Request")
-
-	req.Close = true
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := client.Do(req)
-	if err != nil {
-		logger.Error("\n\n POST REQUEST TO FELICITY FAILED \n\n")
-		logger.Error(err.Error())
-	}
-	//req.Close = true
-	bodyText, err := ioutil.ReadAll(resp.Body)
-
-	return bodyText
+	
+	return utils.MakeHTTPPostCall(url,b)
 
 }

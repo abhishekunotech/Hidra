@@ -8,7 +8,6 @@ import (
 	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -67,28 +66,7 @@ func getTicketGrid(T Grid_API) []uint8{
 	}
 
 	b := bytes.NewBuffer(j)
-
-
-	client := &http.Client{}
-
-	req, err := http.NewRequest("POST", url, b)
-
-	if err != nil {
-		logger.Error("\n\n Request to Create Request Failed \n\n")
-		logger.Error(err.Error())
-	}
-
-
-	req.Close = true
-	req.Header.Set("Content-Type", "application/json")
-	resp, err := client.Do(req)
-	if err != nil {
-		logger.Error("\n\n POST REQUEST TO FELICITY FAILED \n\n")
-		logger.Error(err.Error())
-	}
-	bodyText, err := ioutil.ReadAll(resp.Body)
-
-	return bodyText
+	return utils.MakeHTTPPostCall(url,b)
 
 
 }
