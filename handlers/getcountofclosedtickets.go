@@ -3,9 +3,6 @@ package handlers
 import (
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
-	"github.com/antigloss/go/logger"
-	"io"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -16,18 +13,8 @@ func callCountClosedTickets(username string, password string, customerid string)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.getcountclosedtickets").GetString("uri")
 	sessionIDString := callSessionDetails(username, password)
 	url := felicitybaseurl + felicityapiuri + "?CustomerID=" + customerid + "&SessionID=" + sessionIDString + "&State=close"
-	client := &http.Client{}
-	var bodyReader io.Reader
-	req, err := http.NewRequest("GET", url, bodyReader)
-
-	resp, err := client.Do(req)
-	if err != nil {
-		logger.Error("\n\nThis caused the following error \n\n")
-		logger.Error(err.Error())
-	}
-	req.Close = true
-	bodyText, err := ioutil.ReadAll(resp.Body)
-	return bodyText
+	
+	return utils.MakeHTTPGetCall(url)
 
 }
 

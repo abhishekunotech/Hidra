@@ -3,30 +3,19 @@ package handlers
 import (
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
-	"github.com/antigloss/go/logger"
-	"io/ioutil"
 	"net/http"
 )
 
 func callCustListAjax(username string, password string, search string, term string) []uint8{
 
 	sessionIDString := callSessionDetails(username, password)
-
-	logger.Info("session id is ::", sessionIDString)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	logger.Info("base url:- ", felicitybaseurl)
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.custlistajax").GetString("uri")
 
 	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&Search=" + search + "&Term=" + term
 
-	res, err := http.Get(url)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-
-	bodyText, err := ioutil.ReadAll(res.Body)
-	return bodyText
+	return utils.MakeHTTPGetCall(url)
 }
 
 //Function to get list of work orders
