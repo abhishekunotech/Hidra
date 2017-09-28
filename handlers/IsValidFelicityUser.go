@@ -22,12 +22,15 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 	start := time.Now()
 
 	req, err := http.NewRequest("GET", url, bodyReader)
-
+	if err != nil{
+		logger.Error("Something went wrong, real bad",err.Error())
+	}
 	resp, err := client.Do(req)
 
 	till := time.Since(start).String()
 
 	logger.Info(" The call for the URL "+url+" took "+till+" to execute")
+
 	checkValidResult := true
 
 	if err != nil {
@@ -38,7 +41,6 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 	} else {
 		req.Close = true
 		bodyText, err := ioutil.ReadAll(resp.Body)
-		logger.Error(string(bodyText[:]))
 		var data SessionObject
 		err = json.Unmarshal(bodyText, &data)
 
