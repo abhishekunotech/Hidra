@@ -1,11 +1,8 @@
 package handlers
 
 import (
-	"fmt"
 	"encoding/json"
-	//"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
-//	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
 )
 
@@ -15,7 +12,6 @@ type User_Req struct {
 }
 
 func (h *Handler) LoginCheck(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("In logincheck")
 	decoder := json.NewDecoder(r.Body)
 	var t User_Req
 	err := decoder.Decode(&t)
@@ -25,8 +21,6 @@ func (h *Handler) LoginCheck(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	fmt.Println(t.Username)
-	fmt.Println(t.Password)
 
 	w.Header().Set("Content-Type", "application/json")
         json.NewEncoder(w).Encode(t)

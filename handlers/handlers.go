@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
@@ -156,28 +157,14 @@ func (h *Handler) GetCILogs(w http.ResponseWriter, r *http.Request) {
 	prettyStrg := ConfObj.Sub("components.graylog.apis.getcilogs.parameters").GetString("pretty")
 
 	sizeStrg := ConfObj.Sub("components.graylog.apis.getcilogs.parameters").GetString("size")
-	logger.Info("base url :: ", felicitybaseurl)
 	url1 := felicitybaseurl + felicityapiuri + ipStrg + "&pretty=" + prettyStrg + "&size=" + sizeStrg
 
-	//API response is returned in JSON format from url
 
-	//url := "http://192.168.2.52:59200/_search?q=172.34.144.133&pretty=true&size=1"
-	res, err := http.Get(url1)
-
-	//Errors are handled if any.
-	if err != nil {
-		logger.Error(err.Error())
-	}
-
-	//ReadAll reads from response until an error or EOF and returns the data it read.
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		logger.Error(err.Error())
-	}
+	body := utils.MakeHTTPGetCall(url1)
 	var data interface{}
 
 	//To decode JSON data, use the Unmarshal function.
-	err = json.Unmarshal(body, &data)
+	err := json.Unmarshal(body, &data)
 	if err != nil {
 		logger.Error(err.Error())
 	}
@@ -228,35 +215,6 @@ func (h *Handler) GetCIDetails(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	fmt.Println("Username is " + userName)
-	fmt.Println("Password is " + password)
-	/*
-		ip, _, err := net.SplitHostPort(r.RemoteAddr)
-		if err != nil {
-			fmt.Errorf("ip: %q is not IP:port", r.RemoteAddr)
-		}
-
-		userIP := net.ParseIP(ip)
-		if userIP == nil {
-			fmt.Errorf("userip: %q is not IP:port", r.RemoteAddr)
-		}
-	*/
-
-	/*body, _ := ioutil.ReadAll(r.Body)
-
-	       mapHttp := r.URL.Query()
-
-	       for key,value := range mapHttp {
-	               fmt.Fprintf(w,key+" is key \n")
-	               for _, valueStrg := range value {
-	                       fmt.Fprintf(w,valueStrg)
-	                       fmt.Fprintf(w," is value \n")
-	               }
-	}
-	       bodyStrg := string(body[:])
-
-	       fmt.Fprintf(w,"www"+bodyStrg+"\n")
-	*/
 	s := basicAuth(userName, password)
 
 	var f interface{}
@@ -277,17 +235,17 @@ func (h *Handler) GetCIDetails(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("URL is " + url)
 	res, err := http.Get(url)
 	if err != nil {
-		panic(err.Error())
+		logger.Error(err.Error())
 	}
 
 	body, err = ioutil.ReadAll(res.Body)
 	if err != nil {
-		panic(err.Error())
+		logger.Error(err.Error())
 	}
 	var data interface{}
 	err = json.Unmarshal(body, &data)
 	if err != nil {
-		panic(err.Error())
+		logger.Error(err.Error())
 	}
 	fmt.Printf("Results: %v\n", data)
 	json.NewEncoder(w).Encode(data)
