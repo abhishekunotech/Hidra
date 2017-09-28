@@ -83,7 +83,7 @@ func (h *Handler) IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
 
 	jData, err := json.Marshal(data)
 	if err != nil {
-		panic(err)
+		logger.Error(err.Error())
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")

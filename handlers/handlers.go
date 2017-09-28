@@ -240,17 +240,17 @@ func (h *Handler) GetCIDetails(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("URL is " + url)
 	res, err := http.Get(url)
 	if err != nil {
-		panic(err.Error())
+		logger.Error(err.Error())
 	}
 
 	body, err = ioutil.ReadAll(res.Body)
 	if err != nil {
-		panic(err.Error())
+		logger.Error(err.Error())
 	}
 	var data interface{}
 	err = json.Unmarshal(body, &data)
 	if err != nil {
-		panic(err.Error())
+		logger.Error(err.Error())
 	}
 	fmt.Printf("Results: %v\n", data)
 	json.NewEncoder(w).Encode(data)
