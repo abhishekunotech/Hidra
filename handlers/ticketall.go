@@ -3,8 +3,6 @@ package handlers
 import (
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
-	"github.com/antigloss/go/logger"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -19,13 +17,7 @@ func callTicketAll(username string, password string, ticketid string) []uint8{
 
 	url := felicitybaseurl + felicityapiuri + "?Filter=" + filter + "&SessionID=" + sessionIDString
 
-	res, err := http.Get(url)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-
-	bodyText, err := ioutil.ReadAll(res.Body)
-	return bodyText
+	return utils.MakeHTTPGetCall(url)
 
 }
 
