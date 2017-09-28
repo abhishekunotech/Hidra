@@ -15,13 +15,16 @@ type LoginResult struct {
 
 func checkValidUserDetails(username string, password string) (bool, string) {
 	url := "http://192.168.2.166/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin=" + username + "&Password=" + password
-	logger.Error(url)
 	client := &http.Client{}
 	var bodyReader io.Reader
 	req, err := http.NewRequest("GET", url, bodyReader)
-
+	if err != nil{
+		logger.Error("Something went wrong, real bad",err.Error())
+	}
 	resp, err := client.Do(req)
-
+	if err != nil{
+		logger.Error("Something went wrong again",err.Error())
+	}
 	checkValidResult := true
 
 	if err != nil {
@@ -32,7 +35,6 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 	} else {
 		req.Close = true
 		bodyText, err := ioutil.ReadAll(resp.Body)
-		logger.Error(string(bodyText[:]))
 		var data SessionObject
 		err = json.Unmarshal(bodyText, &data)
 
@@ -77,7 +79,7 @@ func (h *Handler) IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
 
 	jData, err := json.Marshal(data)
 	if err != nil {
-		panic(err)
+		logger.Error(err.Error())
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")

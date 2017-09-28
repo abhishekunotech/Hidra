@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"fmt"
 )
 
 type SessionObject struct {
@@ -22,6 +23,10 @@ func callSessionDetails(username string, password string) string {
 	client := &http.Client{}
 	var bodyReader io.Reader
 	req, err := http.NewRequest("GET", url, bodyReader)
+	if err != nil {
+		fmt.Println("ERROR UNRECOVERABLE")
+		fmt.Println(err.Error())
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		logger.Error("\n\n Session Creation failed because - \n\n")
@@ -29,6 +34,10 @@ func callSessionDetails(username string, password string) string {
 	}
 	req.Close = true
 	bodyText, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Coz Angels deserved to die",err.Error())
+
+	}
 	var data SessionObject
 	err = json.Unmarshal(bodyText, &data)
 	if err != nil {
