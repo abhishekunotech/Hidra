@@ -3,8 +3,6 @@ package handlers
 import (
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
-	"github.com/antigloss/go/logger"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -18,13 +16,7 @@ func callCountOfOpenTicketsCustomerUser(custID string, username string, password
 	state := ConfObj.Sub("components.otrs.apis.CountOfOpenTicketsUser.parameters").GetString("state")
 	url := felicitybaseurl + felicityapiuri + "?State=" + state + "&SessionID=" + sessionIDString + "&CustomerID=" + custID + "&CustomerUser=" + custuser
 
-	res, err := http.Get(url)
-	if err != nil {
-		logger.Error(err.Error())
-	}
-
-	bodyText, err := ioutil.ReadAll(res.Body)
-	return bodyText
+	return utils.MakeHTTPGetCall(url)
 }
 
 //Function to get list of work orders
