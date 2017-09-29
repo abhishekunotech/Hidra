@@ -11,16 +11,16 @@ import (
 )
 
 type PendingTimeBody struct{
-	Year	int	`json:"Year"`
-	Month	int	`json:"Month"`
-	Day	int	`json:"Day"`
-	Hour	int	`json:"Hour"`
-	Minute	int	`json:"Minute"`
-	Diff	int	`json:"Diff"`
+	Year	int	`json:"Year,omitempty"`
+	Month	int	`json:"Month,omitempty"`
+	Day	int	`json:"Day,omitempty"`
+	Hour	int	`json:"Hour,omitempty"`
+	Minute	int	`json:"Minute,omitempty"`
+	Diff	int	`json:"Diff,omitempty"`
 }
 
 type UpdateTicketBody struct{
-	Title	string	`json:"Title"`
+	Title	string	`json:"Title,omitempty"`
 	QueueID	int	`json:"QueueID,omitempty"`
 	Queue	string	`json:"Queue,omitempty"`
 	LockID	int	`json:"LockID,omitempty"`
@@ -33,14 +33,14 @@ type UpdateTicketBody struct{
 	SLA	string	`json:"SLA,omitempty"`
 	StateID	int	`json:"StateID,omitempty"`
 	State	string	`json:"State,omitempty"`
-	PriorityID	int	`json:"PriorityID"`
-	Priority	string	`json:"Priority"`
+	PriorityID	int	`json:"PriorityID,omitempty"`
+	Priority	string	`json:"Priority,omitempty"`
 	OwnerID	int	`json:"OwnerID,omitempty"`
 	Owner	string	`json:"Owner,omitempty"`
 	ResponsibleID	int	`json:"ResponsibleID,omitempty"`
 	Responsible	string	`json:"Responsible,omitempty"`
-	CustomerUser	string	`json:"CustomerUser"`
-	PendingTime	PendingTimeBody `json:"PendingTime"`
+	CustomerUser	string	`json:"CustomerUser,omitempty"`
+	PendingTime	PendingTimeBody `json:"PendingTime,omitempty"`
 }
 
 type UpdateArticleBody struct{
@@ -48,43 +48,43 @@ type UpdateArticleBody struct{
 	ArticleType	string	`json:"ArticleType,omitempty"`
 	SenderTypeID	int	`json:"SenderTypeID,omitempty"`
 	SenderType	string	`json:"SenderType,omitempty"`
-	AutoResponseType	string	`json:"AutoResponseType"`
-	From	string	`json:"From"`
-	Subject	string	`json:"Subject"`
-	Body	string	`json:"Body"`
-	ContentType	string	`json:"ContentType"`
-	MimeType	string	`json:"MimeType"`
-	Charset	string	`json:"Charset"`
-	HistoryType	string	`json:"HistoryType"`
-	HistoryComment	string	`json:"HistoryComment"`
-	TimeUnit	int	`json:"TimeUnit"`
-	NoAgentNotify	int	`json:"NoAgentNotify"`
-	ForceNotificationToUserID	[]int	`json:"ForceNotificationToUserID"`
-	ExcludeNotificationToUserID	[]int	`json:"ExcludeNotificationToUserID"`
+	AutoResponseType	string	`json:"AutoResponseType,omitempty"`
+	From	string	`json:"From,omitempty"`
+	Subject	string	`json:"Subject,omitempty"`
+	Body	string	`json:"Body,omitempty"`
+	ContentType	string	`json:"ContentType,omitempty"`
+	MimeType	string	`json:"MimeType,omitempty"`
+	Charset	string	`json:"Charset,omitempty"`
+	HistoryType	string	`json:"HistoryType,omitempty"`
+	HistoryComment	string	`json:"HistoryComment,omitempty"`
+	TimeUnit	int	`json:"TimeUnit,omitempty"`
+	NoAgentNotify	int	`json:"NoAgentNotify,omitempty"`
+	ForceNotificationToUserID	[]int	`json:"ForceNotificationToUserID,omitempty"`
+	ExcludeNotificationToUserID	[]int	`json:"ExcludeNotificationToUserID,omitempty"`
 }
 
 type UpdateDynamicField struct{
-	Name	string	`json:"Name"`
-	Value	string	`json:"Value"`
+	Name	string	`json:"Name,omitempty"`
+	Value	string	`json:"Value,omitempty"`
 }
 
 type UpdateAttachment struct{
-	Content	string	`json:"Content"`
-	ContentType	string	`json:"ContentType"`
-	FileName	string	`json:"Filename"`
+	Content	string	`json:"Content,omitempty"`
+	ContentType	string	`json:"ContentType,omitempty"`
+	FileName	string	`json:"Filename,omitempty"`
 }
 
 type UpdateTicket_Request struct {
-	UserLogin      string   `json:"UserLogin"`
-	CustomerUserLogin	string	`json:"CustomerUserLogin"`
-	SessionID	int	`json:"SessionID"`
-	Password       string   `json:"Password"`
-	TicketID	int	`json:"TicketID"`
-	TicketNumber	string	`json:"TicketNumber"`
-	Ticket	UpdateTicketBody	`json:"Ticket"`
-	Article	UpdateArticleBody	`json:"Article"`
-	DynamicField	[]UpdateDynamicField	`json:"DynamicField"`
-	Attachment	[]UpdateAttachment	`json:"Attachment"`
+	UserLogin      string   `json:"UserLogin,omitempty"`
+	CustomerUserLogin	string	`json:"CustomerUserLogin,omitempty"`
+	SessionID	int	`json:"SessionID,omitempty"`
+	Password       string   `json:"Password,omitempty"`
+	TicketID	int	`json:"TicketID,omitempty"`
+	TicketNumber	string	`json:"TicketNumber,omitempty"`
+	Ticket	UpdateTicketBody	`json:"Ticket,omitempty"`
+	//Article	UpdateArticleBody	`json:"Article,omitempty"`
+	DynamicField	[]UpdateDynamicField	`json:"DynamicField,omitempty"`
+	Attachment	[]UpdateAttachment	`json:"Attachment,omitempty"`
 }
 
 func (h *Handler) UpdateTicketInfo(w http.ResponseWriter, r *http.Request) {
@@ -111,7 +111,7 @@ func updateTicketinfo(T UpdateTicket_Request) []uint8{
 
 	url := felicitybaseurl + felicityapiuri 
 	j, err := json.Marshal(T)
-
+//	logger.Info(T)
 	if err != nil {
 		logger.Error("Error in Marshaling JsON")
 		logger.Error(err.Error())
