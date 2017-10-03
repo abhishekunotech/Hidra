@@ -16,7 +16,6 @@ type TicketResponseBody struct {
 	TicketID     string `json:"TicketID"`
 }
 
-//Function to create ticket.
 func (h *Handler) Ticketcreate(w http.ResponseWriter, r *http.Request) {
 
 	//ReadAll reads from response until an error or EOF and returns the data it read.

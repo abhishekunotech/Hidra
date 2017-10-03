@@ -1,12 +1,14 @@
 package handlers
 
 import (
+	"github.com/Unotechsoftware/Hydra/lerna"
+        "net/http"
+        "github.com/Unotechsoftware/Hydra/utils"
 	"encoding/json"
 	"github.com/antigloss/go/logger"
 	"time"
 	"io"
 	"io/ioutil"
-	"net/http"
 )
 
 type LoginResult struct {
@@ -15,7 +17,12 @@ type LoginResult struct {
 }
 
 func checkValidUserDetails(username string, password string) (bool, string) {
-	url := "http://192.168.2.166/felicity/nph-genericinterface.pl/Webservice/SessionAPI/SessionCreate?UserLogin=" + username + "&Password=" + password
+
+
+	ConfObj := lerna.ReturnConfigObject()
+        felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
+        felicityapiuri := ConfObj.Sub("components.otrs.apis.IsValidFelicityUser").GetString("uri")
+	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + username + "&Password=" + password
 	client := &http.Client{}
 	var bodyReader io.Reader
 
@@ -60,36 +67,36 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 }
 
 func (h *Handler) IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
-	mapHttp := r.URL.Query()
-	var userName string
-	var password string
-	for key, value := range mapHttp {
-		if key == "username" {
-			for _, valueStrg := range value {
-				userName = valueStrg
-			}
-		}
-		if key == "password" {
-			for _, valueStrg := range value {
-				password = valueStrg
-			}
-		}
-	}
+	mapHttp := utils.RequestAbstractGet(r)
+        var userName string
+        var password string
+        for key, value := range mapHttp {
+                if key == "username" {
+                        for _, valueStrg := range value {
+                                userName = valueStrg
+                        }
+                }
+                if key == "password" {
+                        for _, valueStrg := range value {
+                                password = valueStrg
+                        }
+                }
+                        }
 
-	validUser, sessionDataString := checkValidUserDetails(userName, password)
+        
+	validuser, session_data_strg := checkValidUserDetails(userName, password)
+var data LoginResult
 
-	var data LoginResult
+       data.SessionString = session_data_strg
+       data.LoginStatus = validuser
 
-	data.SessionString = sessionDataString
-	data.LoginStatus = validUser
-
-	jData, err := json.Marshal(data)
-	if err != nil {
-		logger.Error(err.Error())
-		return
-	}
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(jData)
+       jData, err := json.Marshal(data)
+       if err != nil {
+               logger.Error(err.Error())
+               return
+       }
+       w.Header().Set("Content-Type", "application/json")
+       w.Write(jData)
 
 
 }

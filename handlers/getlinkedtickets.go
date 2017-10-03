@@ -17,7 +17,6 @@ func callLinkedTickets(ticketid string, username string, password string) []uint
 
 }
 
-//Function to get the details about ticket.
 
 func (h *Handler) GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)

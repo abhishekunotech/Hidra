@@ -19,8 +19,6 @@ func callArticle(username string, password string, ticketid string, pagesize str
 
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetArticle(w http.ResponseWriter, r *http.Request) {
 

@@ -16,7 +16,6 @@ func callGetProcessInformation(ticketid string, username string, password string
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
 
 func (h *Handler) GetProcessInformation(w http.ResponseWriter, r *http.Request) {
 	mapHttp := r.URL.Query()
