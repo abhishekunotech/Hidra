@@ -17,8 +17,6 @@ func callLinkedChanges(username string, password string, ticketid string) []uint
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
-// Request as http://ip-host/getLinkedChange?ticketID=627&password=abhik&username=abhik
 func (h *Handler) GetLinkedChange(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var userName string

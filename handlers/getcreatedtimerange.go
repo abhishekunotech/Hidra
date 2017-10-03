@@ -16,7 +16,6 @@ func callGetCreatedTimeRange(username string, password string) []uint8{
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
 
 func (h *Handler) GetCreatedTimeRange(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)

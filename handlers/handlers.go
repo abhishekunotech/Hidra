@@ -36,12 +36,12 @@ type CIJobs struct {
 	JobId int
 }
 
-type Ticket struct {
+/*type Ticket struct {
 	ArticleID    string
 	TicketNumber string
 	TicketID     string
 }
-
+*/
 type Logs struct {
 	Took int `json:"took"`
 

@@ -19,8 +19,6 @@ bodyText := utils.MakeHTTPGetCall(url)
 	return bodyText
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetListAgents(w http.ResponseWriter, r *http.Request) {
 

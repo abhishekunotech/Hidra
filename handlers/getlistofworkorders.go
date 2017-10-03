@@ -17,8 +17,6 @@ func callWorkOrders(username string, password string, ticketid string) []uint8{
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetListOfWorkOrders(w http.ResponseWriter, r *http.Request) {
 

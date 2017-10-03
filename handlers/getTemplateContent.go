@@ -22,8 +22,6 @@ func callContentTemplate(username string, password string, templateID string) []
 
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getTemplateContent?TemplateID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetTemplateContent(w http.ResponseWriter, r *http.Request) {
 

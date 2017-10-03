@@ -16,7 +16,6 @@ func callGetLinkedItems(ticketid string, username string, password string) []uin
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
 
 func (h *Handler) GetLinkedItems(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)

@@ -16,8 +16,6 @@ func callTicketDetails(username string, password string, ticketid string) []uint
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
-// Request as http://ip-host/getTicketDetails?ticketID=521&password=abhik&userLogin=abhik
 func (h *Handler) GetTicketDetails(w http.ResponseWriter, r *http.Request) {
 	mapHttp := r.URL.Query()
 	var userName string

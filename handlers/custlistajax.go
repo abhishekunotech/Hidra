@@ -18,8 +18,6 @@ func callCustListAjax(username string, password string, search string, term stri
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) CustListAjax(w http.ResponseWriter, r *http.Request) {
 

@@ -19,8 +19,6 @@ func callCountOfOpenTicketsCustomerUser(custID string, username string, password
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)

@@ -19,8 +19,6 @@ func callRequestListAjax(username string, password string, search string, term s
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) RequestListAjax(w http.ResponseWriter, r *http.Request) {
 

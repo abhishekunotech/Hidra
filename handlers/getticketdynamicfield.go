@@ -18,7 +18,6 @@ func callGetTicketDynamicField(ticketid string, username string, password string
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
 
 func (h *Handler) GetTicketDynamicField(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)

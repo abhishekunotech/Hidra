@@ -21,7 +21,6 @@ func callGetCatalogList(username string, password string) []uint8{
 
 func (h *Handler) GetCatalogList(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
-//	mapHttp := r.URL.Query()
 	var userName string
 	var password string
 	for key, value := range mapHttp {

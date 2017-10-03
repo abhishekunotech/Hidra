@@ -16,8 +16,6 @@ func callAssignedQueue(username string, password string) []uint8 {
 
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/getListOfWorkOrders?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) GetListAssignedQueue(w http.ResponseWriter, r *http.Request) {
 

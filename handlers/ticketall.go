@@ -21,8 +21,6 @@ func callTicketAll(username string, password string, ticketid string) []uint8{
 
 }
 
-//Function to get list of work orders
-// Request as http://ip-host/ticketAll?ticketID=521&password=abhik&userLogin=abhik
 
 func (h *Handler) TicketAll(w http.ResponseWriter, r *http.Request) {
 
