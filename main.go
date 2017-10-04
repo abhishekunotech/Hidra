@@ -7,7 +7,7 @@
 
 	Author: Operations Management Team - Unotech Software
 */
-package main
+package Hydra
 
 import (
 	"log"
