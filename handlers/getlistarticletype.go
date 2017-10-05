@@ -16,7 +16,11 @@ func callListArticleType(username string, password string) []uint8{
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API that returns the type of Articles
+//
+// **Business Logic**: Function takes as an input GET Parameter that returns the type of Article.
+//
+// Returns data as found, with a variable JSON Structure
 func (h *Handler) GetListArticleType(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := utils.RequestAbstractGet(r)

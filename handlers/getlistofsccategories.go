@@ -17,7 +17,11 @@ func callGetCategoryList(username string, password string, catalog string, id st
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API that returns a list of all the Service Catalog Categories filtered by Catalog ID.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __ID__ and __Catalog__ identify the Catalog in the Service Catalog and return a list of Categories in that Catalog.
+//
+// Returns data as found, with a variable JSON Structure
 func (h *Handler) GetCategoryList(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var id string

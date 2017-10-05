@@ -17,7 +17,11 @@ func callLinkedTickets(ticketid string, username string, password string) []uint
 
 }
 
-
+// This function is a handler that creates a GET API to get the Tickets Linked to a Ticket.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __ticketID__ that will identify a ticket and return all the Tickets attached to it.
+//
+// Returns data as shown in examples.
 func (h *Handler) GetLinkedTickets(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var ticketid string

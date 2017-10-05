@@ -17,7 +17,11 @@ func callGetCategoryItemList(username string, password string, category string, 
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API that returns a list of all the Items in a Service Catalog Category filtered by Item ID.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __ID__ and __Category__ identify the Category in the Service Catalog and return a list of Items in that Category.
+//
+// Returns data as found, with a variable JSON Structure
 func (h *Handler) GetCategoryItemList(w http.ResponseWriter, r *http.Request) {
 	mapHttp := r.URL.Query()
 	var id string

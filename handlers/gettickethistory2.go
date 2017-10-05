@@ -14,6 +14,12 @@ func callGetTicketHistoryVersionTwo(username string, password string, ticketid s
 	url := felicitybaseurl + felicityapiuri + "?TicketID=" + ticketid + "&UserLogin=" + username + "&Password=" + password + "&Action=" + felicityaction + "&PageSize=" + pagesize + "&PageNumber=" + pagenumber
 	return utils.MakeHTTPGetCall(url)
 }
+
+// This function is a handler that creates a GET API that returns the history associated with a ticket.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __TicketID__ identifies the Ticket and __PageSize__ and __PageNumber__ that identifies the Page Limits to return a paginated list of history items linked to a ticket.
+//
+// Returns data as shown in examples.
 func (h *Handler) GetTicketHistoryVersionTwo(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := r.URL.Query()

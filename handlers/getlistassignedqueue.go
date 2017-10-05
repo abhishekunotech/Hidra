@@ -16,7 +16,11 @@ func callAssignedQueue(username string, password string) []uint8 {
 
 }
 
-
+// This function is a handler
+//
+// **Business Logic**: To be done.
+//
+// Returns data as found, with a variable JSON Structure
 func (h *Handler) GetListAssignedQueue(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := utils.RequestAbstractGet(r)

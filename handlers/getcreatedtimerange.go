@@ -16,7 +16,11 @@ func callGetCreatedTimeRange(username string, password string) []uint8{
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API to get the Created Time Range.
+//
+// **Business Logic**: Function that returns the Created Time Range.
+//
+// Returns JSON Array of the format "id","minutes","value"; where value = Within x hours/minutes/days
 func (h *Handler) GetCreatedTimeRange(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var username string

@@ -16,7 +16,11 @@ func callCustomerInfo(ticketid string, username string, password string) []uint8
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API to get the customer user details assigned to a ticket.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __TicketID__ that will identify Customer User and obtain personal details of the Customer.
+//
+// Returns data as shown in examples
 func (h *Handler) GetCustomerInfobyTicketID(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var ticketid string
