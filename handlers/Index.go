@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+
 // Function exposes a simple landing page
 //
 // No Business Logic

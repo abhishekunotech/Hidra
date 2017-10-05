@@ -9,13 +9,17 @@ import (
 	"net/http"
 	"time"
 )
-
+//The following struct provides the JSON structure to create a ticket.
 type TicketResponseBody struct {
 	ArticleID    string `json:"ArticleID,omitempty"`
 	TicketNumber string `json:"TicketNumber"`
 	TicketID     string `json:"TicketID"`
 }
-
+// This function is a handler that creates a POST API to create a ticket
+//
+// **Business Logic**: Function takes Article ID, Ticket Number and Ticket ID as POST parameters and creates a request to generate ticket.
+//
+// Returns the resulting message as success or failed based on the response.
 func (h *Handler) Ticketcreate(w http.ResponseWriter, r *http.Request) {
 
 	//ReadAll reads from response until an error or EOF and returns the data it read.

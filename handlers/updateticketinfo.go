@@ -85,7 +85,11 @@ type UpdateTicket_Request struct {
 	DynamicField	[]UpdateDynamicField	`json:"DynamicField,omitempty"`
 	Attachment	[]UpdateAttachment	`json:"Attachment,omitempty"`
 }
-
+// This function is a handler that creates a POST request to update ticket details.
+//
+// **Business Logic**: Function takes as an input a JSON Body and generates the response
+//
+// Returns data as shown in examples
 func (h *Handler) UpdateTicketInfo(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)

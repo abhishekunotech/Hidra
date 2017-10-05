@@ -9,7 +9,11 @@ import (
 	"net/http"
 )
 
-
+// This function is a handler that creates a POST request for Bulk Action on Ticket
+//
+// **Business Logic**: Function takes as an input a JSON Body in Request to generate the response.
+//
+// Returns the resulting message as success or failed based on the response
 func (h *Handler) SetAgentTicketBulk(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)

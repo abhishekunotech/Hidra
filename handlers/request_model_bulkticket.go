@@ -1,5 +1,5 @@
 package handlers
-
+// The following Type defines the Input JSON Body for Creating a Bulk Ticket Request
 type BulkTicket_Request struct{
 	UserLogin	string	`json:"UserLogin"`
 	Password	string	`json:"Password"`
