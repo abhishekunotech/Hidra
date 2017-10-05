@@ -20,6 +20,11 @@ func callCountOfOpenTicketsCustomerUser(custID string, username string, password
 }
 
 
+// This function is a handler that decodes the request from UI
+//
+// **Business Logic**: Function takes as input a JSON Body and assigns the Tickets defined by TicketIDs to the OwnerID defined in the JSON Request
+//
+// Returns the ticketID and ticketNumber
 func (h *Handler) GetCountOfOpenTicketsCustomerUser(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 

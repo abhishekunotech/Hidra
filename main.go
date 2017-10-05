@@ -2,8 +2,7 @@
     This is the entry point for a middleware to Felicity Components
 
 	Install using go install in this directory
-	Running this will start up an HTTPS Server instance on port 443, and can be accessed at http://localhost:443.
-	You will first need to generate SSL Certificates for the server using instructions from README.md, if you do not already have any certificates
+	Running this will start up an HTTP Server instance on port 8080, and can be accessed at http://localhost:8080.
 
 	Author: Operations Management Team - Unotech Software
 */
