@@ -19,9 +19,9 @@ func callGetLinkObjectList(username string, password string) []uint8{
 
 }
 
-// This function is a handler that creates a GET API to get details about navigation bar of an agent on the basis of access.
+// This function is a handler that creates a GET API to get linked object lists
 //
-// **Business Logic**: Function takes as an input GET Parameter UserLogin and Password that will identify the agent and obtain details of nav bar.
+// **Business Logic**: Function takes as an input GET Parameter UserLogin and password.
 //
 // Returns data as shown in examples
 func (h *Handler) GetLinkObjectList(w http.ResponseWriter, r *http.Request) {
