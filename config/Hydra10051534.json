@@ -9,6 +9,13 @@
                 "handler": "LoginCheck"
         }
 	,
+	"GetDynamicFieldPossible":{
+		"version":"1.0",
+		"method":"GET",
+		"URI":"/getTicketDynamicFieldPossible",
+		"handler": "GetTicketDynamicFieldPossible"
+	}
+	,
 	"SetAgentTicketBulk":{
                 "version":"1.0",
                 "method":"POST",
@@ -363,6 +370,14 @@
             "version": "1.0",
             "url": "http://192.168.2.166/felicity/nph-genericinterface.pl/Webservice",
             "apis": {
+		"GetTicketDynamicFieldPossible":{
+			"version":"1.0",
+			"URI":"/",
+			"parameters": {
+				"Action":"AgentTicketDecision"
+			}
+		}
+		,
                 "GetTicketInfo": {
                     "version": "1.0",
                     "URI": "/TicketAPI/TicketInfo",
