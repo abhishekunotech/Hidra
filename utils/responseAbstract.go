@@ -7,7 +7,11 @@ import(
 	"github.com/antigloss/go/logger"
 )
 
-
+// Function that sends the JSON response as a part of the HTTP Response
+//
+// Business Logic: Accepts a writer to the HTTP Response and a body as a stream of bytes, it will encode the stream as a JSON Object and sends up the JSON Object as a HTTP Response
+//
+// Returns Nothing
 func ResponseAbstract(bodyText []uint8,w http.ResponseWriter){
 
 	 var data interface{}

@@ -22,7 +22,11 @@ func callContentTemplate(username string, password string, templateID string) []
 
 }
 
-
+// This function is a handler that creates a GET API that returns the content of a Template defined by its ID.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __TemplateID__ identifies the Template and returns the content of that template.
+//
+// Returns data as shown in examples.
 func (h *Handler) GetTemplateContent(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := utils.RequestAbstractGet(r)

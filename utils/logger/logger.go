@@ -7,6 +7,10 @@ import (
     "time"
 )
 
+// Function to Start the Logger
+//
+// Business Logic: Stores the Handler caller's IP, Method Used, URI called, Name of the API and Time Taken to execute the request to the logger//
+// Returns the handler for which call was made
 func Logger(inner http.Handler, name string) http.Handler {
  return  http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         start := time.Now()

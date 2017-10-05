@@ -10,6 +10,11 @@ import (
 	"net/http"
 )
 
+
+
+// This Type defines the Input JSON Body for Creating a Service Request
+//
+// It includes sub-types Ticket and Article
 type SR_Request struct {
 	UserLogin      string   `json:"UserLogin"`
 	Password       string   `json:"Password"`
@@ -34,6 +39,13 @@ type Article struct{
 	Charset      string   `json:"Charset"`
 	MimeType     string   `json:"MimeType"`
 }
+
+
+// This function is a handler that creates a Service Request based on Input from UI
+//
+// **Business Logic**: Function takes as an input a JSON Body and uses the Ticket and Article in Request Body to generate a Service Request
+//
+// Returns data as shown in examples
 func (h *Handler) CreateServiceRequest(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)
@@ -55,9 +67,7 @@ func createServiceRequest(T SR_Request, w http.ResponseWriter, r *http.Request) 
 
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.CreateServiceRequest").GetString("uri")
-	//sessionIDString := callSessionDetails(T.UserLogin,T.Password)
 	fmt.Println(T)
-	//url := felicitybaseurl+felicityapiuri+"?SessionID="+sessionIDString
 	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + T.UserLogin + "&Password=" + T.Password
 	j, err := json.Marshal(T)
 	fmt.Println(url)

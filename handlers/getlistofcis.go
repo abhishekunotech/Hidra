@@ -17,7 +17,11 @@ func callListOfCIs(username string, password string, ticketid string) []uint8{
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API that returns the list of Configuration Items attached to a ticket
+//
+// **Business Logic**: Function takes as an input GET Parameter, __TicketID__ to identify a Ticket and return the list of Configuration Items assigned to the ticket.
+//
+// Returns data as shown in the examples.
 func (h *Handler) GetListOfCIs(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var userName string

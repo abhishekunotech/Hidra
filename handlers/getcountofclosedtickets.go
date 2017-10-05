@@ -18,8 +18,11 @@ func callCountClosedTickets(username string, password string, customerid string)
 
 }
 
-//Function to get the details about ticket.
-
+// This function is a handler that creates a GET API to get the count of closed tickets that were created/assigned for a customer user.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __CustomerID__ that will identify Customer User and obtain a list of Tickets that are in "Closed" state.
+//
+// Returns data as shown in examples
 func (h *Handler) GetCountofClosedTickets(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var customerid string
@@ -43,5 +46,4 @@ func (h *Handler) GetCountofClosedTickets(w http.ResponseWriter, r *http.Request
 		}
 	}
 	utils.ResponseAbstract(callCountClosedTickets(username, password, customerid),w)
-
 }

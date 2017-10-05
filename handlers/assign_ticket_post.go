@@ -1,3 +1,11 @@
+/*
+    This is the List of Handler Functions
+
+        This package provides the source code for all the APIs exposed by Hydra.
+
+        Author: Operations Management Team - Unotech Software
+*/
+
 package handlers
 
 import (
@@ -9,6 +17,7 @@ import (
 	"net/http"
 )
 
+// This structure defines a Request for assigning a ticket
 type Assign_Request struct{
 	UserLogin	string	`json:"UserLogin"`
 	Password	string	`json:"Password"`
@@ -22,6 +31,11 @@ type Assign_Request struct{
 	Body		string	`json:"Body"`
 }
 
+// This function is a handler that decodes the request from UI
+//
+// **Business Logic**: Function takes as input a JSON Body and assigns the Tickets defined by TicketIDs to the OwnerID defined in the JSON Request
+//
+// Returns the ticketID and ticketNumber
 func (h *Handler) PostAssignAgentTicket(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)
@@ -36,6 +50,8 @@ func (h *Handler) PostAssignAgentTicket(w http.ResponseWriter, r *http.Request) 
 	utils.ResponseAbstract(assignAgentTicket(t),w)
 }
 
+
+// This function defines the business logic and pulls data from configuration to call the API to assign a ticket to an agent
 func assignAgentTicket(T Assign_Request) []uint8 {
 
 	//Get Lerna Running

@@ -11,10 +11,14 @@ import (
 	"io/ioutil"
 )
 
+// Struct that defines the response of the IsUserLoggedIn API
 type LoginResult struct {
 	LoginStatus   bool
 	SessionString string
 }
+
+
+
 
 func checkValidUserDetails(username string, password string) (bool, string) {
 
@@ -66,6 +70,12 @@ func checkValidUserDetails(username string, password string) (bool, string) {
 	}
 }
 
+
+// Function that checks if the User is a Valid Felicity Service Desk User
+//
+// Business Logic: Checks if a session can be created for the credentials provided in the GET URL Parameters: __username__ and __password__ 
+//
+// Returns Status as false/true and if True Returns SessionID
 func (h *Handler) IsValidFelicityUser(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
         var userName string

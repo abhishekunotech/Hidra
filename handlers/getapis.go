@@ -6,6 +6,12 @@ import(
         "net/http"
 )
 
+
+// This function is a handler that generates a list of API
+//
+// **Business Logic**: Function reads the list of API from the configuration and gives out a list of API that are exposed by Hydra
+//
+// Returns a JSON array with Name,URI and Method of API
 func (h *Handler) GetListOfAPIs(w http.ResponseWriter, r *http.Request) {
 	listofapis(w)
 

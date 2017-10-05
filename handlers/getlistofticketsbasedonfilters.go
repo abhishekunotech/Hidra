@@ -11,6 +11,9 @@ import (
 	"net/http"
 )
 
+// Defines a struct that can be used to store the values obtained from Felicity Service Desk to show a grid of tickets
+//
+// Variables and their corresponding JSON keys are defined hereby
 type Grid_API struct {
 	UserLogin         string   `json:"UserLogin"`
 	Password          string   `json:"Password"`
@@ -32,6 +35,11 @@ type Grid_API struct {
 	OrderBy		string	`json:"OrderBy"`
 }
 
+// This function is a handler that creates a POST API. <TBD>
+//
+// **Business Logic**: <TBD>
+//
+// Returns data as found, with a variable JSON Structure
 func (h *Handler) GetTicketGrid(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)

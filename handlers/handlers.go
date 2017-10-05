@@ -1,7 +1,10 @@
-//Package handlers contains definitions for different functions.
-//Install using go install in this directory.
-//Author: Operations Management Team - Unotech Software.
+/*
+    This is the List of Handler Functions
 
+    This package provides the source code for all the APIs exposed by Hydra.
+
+*/
+// Author: Operations Management Team - Unotech Software.
 package handlers
 
 import (
@@ -36,12 +39,6 @@ type CIJobs struct {
 	JobId int
 }
 
-/*type Ticket struct {
-	ArticleID    string
-	TicketNumber string
-	TicketID     string
-}
-*/
 type Logs struct {
 	Took int `json:"took"`
 
@@ -147,7 +144,7 @@ type OtsArray struct {
 	Four  string `json:"4"`
 }
 
-//Function to get CI logs.
+// Function to get CI logs.
 func (h *Handler) GetCILogs(w http.ResponseWriter, r *http.Request) {
 
 	ConfObj := lerna.ReturnConfigObject()

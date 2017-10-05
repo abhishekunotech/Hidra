@@ -18,7 +18,11 @@ func callGetTicketDynamicField(ticketid string, username string, password string
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API that returns a list of dynamic fields attached to a Ticket and their corresponding values.
+//
+// **Business Logic**: Function takes as an input GET Parameter, __TicketID__ identifies the Ticket and returns a list of Dynamic Field names and corresponding values.
+//
+// Returns data as shown in examples.
 func (h *Handler) GetTicketDynamicField(w http.ResponseWriter, r *http.Request) {
 	//body, _ := ioutil.ReadAll(r.Body)
 	mapHttp := r.URL.Query()

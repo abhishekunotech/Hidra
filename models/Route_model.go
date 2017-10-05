@@ -4,6 +4,7 @@ import(
 	"net/http"
 )
 
+// Defines the Structure of the Route as required to call the Handler in the Mux Module
 type Route struct {
         // Name is a key specifying which HTTP handler the router should associate
         Name string

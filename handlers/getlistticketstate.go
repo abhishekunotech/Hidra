@@ -17,7 +17,11 @@ func callListTicketState(username string, password string) []uint8{
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that creates a GET API that returns a list of tickets and their corresponding states.
+//
+// **Business Logic**: Function returns a list of Tickets and their corresponding states.
+//
+// Returns data as shown in examples.
 func (h *Handler) GetListTicketState(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := r.URL.Query()
