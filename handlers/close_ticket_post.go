@@ -10,6 +10,9 @@ import (
 	"net/http"
 )
 
+// This Type defines the Input JSON Body for creating a request to close the ticket
+//
+// It includes required parameters
 type Close_Request struct{
 	UserLogin	string	`json:"UserLogin"`
 	Password	string	`json:"Password"`
@@ -23,6 +26,11 @@ type Close_Request struct{
 	Body		string	`json:"Body"`
 }
 
+// This function is a handler that creates a request to close the ticket
+//
+// **Business Logic**: Function takes as an input a JSON Body and uses Ticket details in Request Body to generate a request
+//
+// Returns data as shown in examples
 func (h *Handler) PostCloseAgentTicket(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("IN close tik")
 	decoder := json.NewDecoder(r.Body)

@@ -19,7 +19,9 @@ func callRequestListAjax(username string, password string, search string, term s
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function provides the list of Agents and their IDs in the JSON structure
+//
+// **Business Logic**: Function uses Username, Password and generates response based on search and term parameters
 func (h *Handler) RequestListAjax(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := utils.RequestAbstractGet(r)

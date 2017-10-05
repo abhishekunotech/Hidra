@@ -8,7 +8,9 @@ import (
 	"github.com/antigloss/go/logger"
 	"net/http"
 )
-
+// This Type defines the Input JSON Body for creating a Pickup Ticket Request
+//
+// It includes ticket parameters
 type Pickup_Request struct{
 	UserLogin	string	`json:"UserLogin"`
 	Password	string	`json:"Password"`
@@ -21,7 +23,11 @@ type Pickup_Request struct{
 	Subject		string	`json:"Subject"`
 	Body		string	`json:"Body"`
 }
-
+// This function is a handler that creates a POST request to assign an unassigned ticket to yourself.
+//
+// **Business Logic**: Function takes as an input a JSON Body and uses the Ticket details in Request Body to generate response
+//
+// Returns data as shown in examples
 func (h *Handler) PostPickupAgentTicket(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)

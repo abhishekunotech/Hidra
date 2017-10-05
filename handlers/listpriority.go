@@ -19,7 +19,11 @@ func callListPriority(username string, password string) []uint8{
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that displays the priority with the associated ID.
+//
+// **Business Logic**: Function uses Username and Password in Request Body to generate response.
+//
+// Returns data as shown in examples
 func (h *Handler) ListPriority(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := utils.RequestAbstractGet(r)

@@ -16,7 +16,11 @@ func callUserColumnPreference(username string, password string, Action string) [
 	return utils.MakeHTTPGetCall(url)
 }
 
-
+// This function is a handler that provides the details about user column preferences based on action 
+//
+// **Business Logic**: Function uses Username and Password in Request Body to generate the response
+//
+// Returns data as shown in examples
 func (h *Handler) GetUserColumnPreferences(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var userName string

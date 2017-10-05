@@ -10,7 +10,9 @@ type User_Req struct {
 	Username	string	`json:"Username"`
 	Password	string	`json:"Password"`
 }
-
+// LoginCheck provides basic user authentication functionality.
+//
+// **Business Logic**: Function takes Username and Password of the user as an input in JSON Body
 func (h *Handler) LoginCheck(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var t User_Req

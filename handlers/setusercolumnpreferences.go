@@ -8,14 +8,20 @@ import (
 	"github.com/antigloss/go/logger"
 	"net/http"
 )
-
+// This Type defines the Input JSON Body for POST request to set user column preferences.
+//
+// The structure consists of parameters such as Userlogin, Password, Action and selected Column
 type SUCP_Request struct {
 	UserLogin      string   `json:"UserLogin"`
 	Password       string   `json:"Password"`
 	Action         string   `json:"Action"`
 	ColumnSelected []string `json:"ColumnSelected"`
 }
-
+// This function is a handler that creates a POST Request to set user column preferences.
+//
+// **Business Logic**: Function takes as an input a JSON Body and uses the parameters in Request Body to generate response.
+//
+// Returns data as shown in examples
 func (h *Handler) SetUserColumnPreferences(w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)

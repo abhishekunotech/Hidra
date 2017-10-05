@@ -21,7 +21,11 @@ func callTicketAll(username string, password string, ticketid string) []uint8{
 
 }
 
-
+// This function is a handler that provides a GET call to API which gives details of Ticket
+//
+// **Business Logic**: Function takes Userlogin, Password and TicketId as parameters to generate the response.
+//
+// Returns data as shown in examples
 func (h *Handler) TicketAll(w http.ResponseWriter, r *http.Request) {
 
 	mapHttp := utils.RequestAbstractGet(r)
