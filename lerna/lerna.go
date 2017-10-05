@@ -5,13 +5,14 @@ import (
 	"github.com/spf13/viper"
 )
 
-
+// Json Object Type Returns Level - 1 structure of Hydra Configuration
 type JSONObjectType struct {
 	Version    string `json:"version"`
 	Routes     map[string] RouteType
 	Components map[string] ComponentType
 }
 
+// Route Object returns array elements from Route Object in JSON - Hydra Configuration
 type RouteType struct {
 	Version   string `json:"version"`
 	Method    string `json:"method"`
@@ -20,26 +21,28 @@ type RouteType struct {
 	Handler   string `json:"handler"`
 }
 
+// Component Object returns array elements from Component Object in JSON - Hydra Configuration
 type ComponentType struct {
 	Version string `json:"version"`
 	Url     string `json:"URL"`
 	Apis    map[string] APIType
 }
 
+// API Object returns array elements from API Type Object in JSON - Hydra Configuration
 type APIType struct {
 	Version   string `json:"version"`
 	Uri       string `json:"URI"`
 	Parameter map[string] ParameterVal
 }
 
+// Returns Values of Parameters
 type ParameterVal struct {
 	Value string 
 }
 
 
 
-//Write Initialize Redis in Utils
-//Import and Call that MOFO here
+// Returns a Viper Object to access the Configuration
 func ReturnConfigObject() *viper.Viper{
 
 	ViConfig := viper.New()

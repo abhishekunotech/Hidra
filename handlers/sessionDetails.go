@@ -11,6 +11,7 @@ import (
 	"fmt"
 )
 
+// Struct that exposes the SessionID as a String to be returned as JSON Content
 type SessionObject struct {
 	SessionIDStrg string `json:"SessionID"`
 }

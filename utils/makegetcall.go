@@ -8,7 +8,9 @@ import(
 	"github.com/antigloss/go/logger"
 )
 
-
+// Function that makes an HTTP Client execute a GET Request to the URL mentioned in the Parameter
+//
+// Business Logic: Will make a HTTP GET Request and return the byte converted response obtained from that request
 func MakeHTTPGetCall(url string) []uint8{
 	start := time.Now()
 	res, err := http.Get(url)

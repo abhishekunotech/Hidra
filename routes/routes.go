@@ -17,6 +17,7 @@ import (
 	"reflect"
 )
 
+// As defined in the other Route Structure
 type Route struct {
 	// Name is a key specifying which HTTP handler the router should associate
 	Name string
@@ -31,6 +32,8 @@ type Route struct {
 //Routes is a Route collection.
 type Routes []Route
 
+
+// Creates a New Router Object
 func NewRouter() *mux.Router {
 	//Create a new mux router for given handler
 	PopulateRoutes()
@@ -52,7 +55,7 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-
+// Uses Lerna to Populate the Routes Global Object with the Routes from the Configuration
 func PopulateRoutes() {
 	ConfObj := lerna.ReturnConfigObject()
 	RouteMapString := ConfObj.GetStringMap("routes")
@@ -71,14 +74,16 @@ func PopulateRoutes() {
 
 var routes Routes
 
+// A mapping between the Name and the URI of the Route
 type Route_Name_URI struct{
 	Name	string
 	URI	string
 }
 
+// A SLice of Route_Name_URI Structure
 type Exposed_routes []Route_Name_URI
 
-
+// Exports the Names and URIs of API Exposed through configuration
 func GetExposedRouteList() Exposed_routes{
 	var ExposedRoutes Exposed_routes
 	for _,vals := range routes{
@@ -90,7 +95,7 @@ func GetExposedRouteList() Exposed_routes{
 	return ExposedRoutes
 }
 
-
+// Exports the names of the API exposed through Configuration
 func GetRouteNames() []string{
 	var ReturnVal []string
 	for _,Names := range routes{
@@ -99,7 +104,7 @@ func GetRouteNames() []string{
 	return ReturnVal
 }
 
-
+// Exports the URIs of the API exposed through Configuration
 func GetRouteURIs() []string{
 	var ReturnVal []string
 	for _,URIs := range routes{

@@ -7,7 +7,11 @@ import(
 	"encoding/json"
 )
 
-
+// Function that Abstracts out the Request to be executed for a POST Request
+//
+// Business Logic: Reads the Body coming in through an HTTP Request, Decodes the JSON into a Struct.
+//
+// Returns a Hash-Map of Variable Interface
 func RequestAbstract(r *http.Request) map[string] interface{} {
 
         var t interface{}
@@ -21,6 +25,8 @@ func RequestAbstract(r *http.Request) map[string] interface{} {
         return t.(map[string] interface{})
 }
 
+
+// Returns a hash-map of the GET Parameters of HTTP Request
 func RequestAbstractGet(r *http.Request) url.Values {
 	return r.URL.Query()
 

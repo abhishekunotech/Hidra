@@ -5,6 +5,11 @@ import(
 	"github.com/Unotechsoftware/Hydra/models"
 )
 
+// FUnction that provides the List of all the APIs exposed by Hydra
+//
+// Business Logic: Read the API names from Hydra and return their structure
+//
+// Returns Name, Method and URI array as JSON Object
 func ListRoutes() []models.APIObject{
 	var routes []models.APIObject
         ConfObj := lerna.ReturnConfigObject()
