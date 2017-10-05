@@ -20,7 +20,11 @@ func getuserdata(username string, password string, userid string) []uint8{
 
 }
 
-
+// This function is a handler that provides the user data of requested User ID
+// 
+// **Business Logic**: Function takes Username, Password and User ID in Request Body to generate the response
+//      
+// Returns data as shown in examples
 func (h *Handler) GetUserData(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var userName string

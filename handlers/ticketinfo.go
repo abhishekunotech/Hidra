@@ -16,8 +16,11 @@ func callGetTicketInfo(ticketid string, username string, password string) []uint
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
-
+// This function is a handler that provides detailed information of the Ticket.
+//
+// **Business Logic**: Function takes Userlogin, Password and TicketID as an input and generates response.
+//
+// Returns data as shown in examples
 func (h *Handler) GetTicketInfo(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var ticketid string

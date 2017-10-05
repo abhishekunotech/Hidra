@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+
 func callTicketHistory(username string, password string, ticketid string) []uint8{
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
@@ -15,8 +16,11 @@ func callTicketHistory(username string, password string, ticketid string) []uint
 	return utils.MakeHTTPGetCall(url)
 }
 
-//Function to get the details about ticket.
-// Request as http://ip-host/getTicketDetails?ticketID=521&password=abhik&userLogin=abhik
+// This function is a handler that provides the history about requested Ticket 
+//
+// **Business Logic**: Function uses the Ticket ID, Username and Password in Request Body to generate the response
+//
+// Returns data as shown in examples
 func (h *Handler) GetTicketHistory(w http.ResponseWriter, r *http.Request) {
 	mapHttp := utils.RequestAbstractGet(r)
 	var userName string
