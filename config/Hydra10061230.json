@@ -170,6 +170,14 @@
             "handler": "GetConfigItemIncidentState"
         }
         ,
+	"GetConfigItemDeploymentState": {
+            "version": "1.0",
+            "method": "GET",
+            "URI": "/getConfigItemDeploymentState",
+            "component": "otrs",
+            "handler": "GetConfigItemDeploymentState"
+        }
+        ,
 	"GetToolBarCount": {
             "version": "1.0",
             "method": "GET",
@@ -418,6 +426,10 @@
 		"GetConfigItemIncidentState": {
                         "version":"1.0",
                         "URI":"/Common/ConfigItemIncidentState"
+                },
+		"GetConfigItemDeploymentState": {
+                        "version":"1.0",
+                        "URI":"/Common/ConfigItemDeploymentState"
                 },
 		"PostPickupAgentTicket":{
 			"version":"1.0",
