@@ -30,12 +30,12 @@ func (h *Handler) RequestListAjax(w http.ResponseWriter, r *http.Request) {
 	var search string
 	var term string
 	for key, value := range mapHttp {
-		if key == "userLogin" {
+		if key == "UserLogin" {
 			for _, valueStrg := range value {
 				userName = valueStrg
 			}
 		}
-		if key == "password" {
+		if key == "Password" {
 			for _, valueStrg := range value {
 				password = valueStrg
 			}

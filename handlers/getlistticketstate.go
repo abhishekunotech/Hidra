@@ -28,12 +28,12 @@ func (h *Handler) GetListTicketState(w http.ResponseWriter, r *http.Request) {
 	var userName string
 	var password string
 	for key, value := range mapHttp {
-		if key == "userLogin" {
+		if key == "UserLogin" {
 			for _, valueStrg := range value {
 				userName = valueStrg
 			}
 		}
-		if key == "password" {
+		if key == "Password" {
 			for _, valueStrg := range value {
 				password = valueStrg
 			}

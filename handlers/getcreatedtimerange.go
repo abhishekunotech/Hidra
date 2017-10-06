@@ -26,12 +26,12 @@ func (h *Handler) GetCreatedTimeRange(w http.ResponseWriter, r *http.Request) {
 	var username string
 	var password string
 	for key, value := range mapHttp {
-		if key == "userLogin" {
+		if key == "UserLogin" {
 			for _, valueStrg := range value {
 				username = valueStrg
 			}
 		}
-		if key == "password" {
+		if key == "Password" {
 			for _, valueStrg := range value {
 				password = valueStrg
 			}

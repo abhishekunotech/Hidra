@@ -32,12 +32,12 @@ func (h *Handler) GetTicketHistory(w http.ResponseWriter, r *http.Request) {
 				ticketid = valueStrg
 			}
 		}
-		if key == "userLogin" {
+		if key == "UserLogin" {
 			for _, valueStrg := range value {
 				userName = valueStrg
 			}
 		}
-		if key == "password" {
+		if key == "Password" {
 			for _, valueStrg := range value {
 				password = valueStrg
 			}

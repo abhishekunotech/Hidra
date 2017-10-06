@@ -28,12 +28,12 @@ func (h *Handler) GetListGroupFilter(w http.ResponseWriter, r *http.Request) {
 	var password string
 	var userAccess string
 	for key, value := range mapHttp {
-		if key == "userLogin" {
+		if key == "UserLogin" {
 			for _, valueStrg := range value {
 				userName = valueStrg
 			}
 		}
-		if key == "password" {
+		if key == "Password" {
 			for _, valueStrg := range value {
 				password = valueStrg
 			}
