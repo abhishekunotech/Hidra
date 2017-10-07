@@ -61,7 +61,7 @@ func LinkObjectSearch(T LinkObjectSearch_Request) []uint8 {
 	ConfObj := lerna.ReturnConfigObject()
 
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.LinkObjectSearch").GetString("uri")
+	felicityapiuri := ConfObj.Sub("components.otrs.apis.GetLinkObjectSearch").GetString("uri")
 
 	url := felicitybaseurl + felicityapiuri 
 	j, err := json.Marshal(T)
