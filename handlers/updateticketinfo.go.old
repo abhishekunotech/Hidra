@@ -39,7 +39,7 @@ type UpdateTicketBody struct{
 	ResponsibleID	int	`json:"ResponsibleID,omitempty"`
 	Responsible	string	`json:"Responsible,omitempty"`
 	CustomerUser	string	`json:"CustomerUser,omitempty"`
-	PendingTime	*PendingTimeBody `json:"PendingTime,omitempty"`
+	PendingTime	PendingTimeBody `json:"PendingTime,omitempty"`
 }
 
 type UpdateArticleBody struct{
@@ -80,10 +80,10 @@ type UpdateTicket_Request struct {
 	Password       string   `json:"Password,omitempty"`
 	TicketID	int	`json:"TicketID,omitempty"`
 	TicketNumber	string	`json:"TicketNumber,omitempty"`
-	Ticket	*UpdateTicketBody	`json:"Ticket,omitempty"`
-	Article	*UpdateArticleBody	`json:"Article,omitempty"`
-	DynamicField	*[]UpdateDynamicField	`json:"DynamicField,omitempty"`
-	Attachment	*[]UpdateAttachment	`json:"Attachment,omitempty"`
+	Ticket	UpdateTicketBody	`json:"Ticket,omitempty"`
+	//Article	UpdateArticleBody	`json:"Article,omitempty"`
+	DynamicField	[]UpdateDynamicField	`json:"DynamicField,omitempty"`
+	Attachment	[]UpdateAttachment	`json:"Attachment,omitempty"`
 }
 // This function is a handler that creates a POST request to update ticket details.
 //

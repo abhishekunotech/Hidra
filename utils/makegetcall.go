@@ -5,6 +5,7 @@ import(
 	"io/ioutil"
 	"time"
 	"net/http"
+	"io"
 	"github.com/antigloss/go/logger"
 )
 
@@ -12,8 +13,13 @@ import(
 //
 // Business Logic: Will make a HTTP GET Request and return the byte converted response obtained from that request
 func MakeHTTPGetCall(url string) []uint8{
+	var netClient = &http.Client{
+  Timeout: time.Second * 10,
+}
+	var bodyTess io.Reader
+	newRequest,err := http.NewRequest("GET",url,bodyTess)
 	start := time.Now()
-	res, err := http.Get(url)
+	res, err := netClient.Do(newRequest)
         if err != nil {
                 logger.Error(err.Error())
         }

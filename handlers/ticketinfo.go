@@ -43,6 +43,7 @@ func (h *Handler) GetTicketInfo(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
+	 w.Header().Set("Access-Control-Allow-Origin", "http://192.168.2.166")
 	utils.ResponseAbstract(callGetTicketInfo(ticketid, username, password),w)
 
 }

@@ -14,8 +14,11 @@ import(
 // Returns Nothing
 func ResponseAbstract(bodyText []uint8,w http.ResponseWriter){
 
-	 var data interface{}
+	var data interface{}
         err := json.Unmarshal(bodyText, &data)
+
+	
+
         if err != nil {
                 logger.Error(err.Error())
         }
