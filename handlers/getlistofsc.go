@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
 	"net/http"
-	"github.com/Unotechsoftware/Hydra/utils"
+	"github.com/Unotechsoftware/Hydrav2/utils"
 )
 
 func callGetCatalogList(username string, password string) []uint8{

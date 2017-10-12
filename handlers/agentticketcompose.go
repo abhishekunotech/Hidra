@@ -3,8 +3,8 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/Unotechsoftware/Hydra/utils"
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
 	"github.com/antigloss/go/logger"
 	"net/http"
 )
@@ -13,43 +13,43 @@ import (
 //
 // It includes required parameters
 type AgentTicketCompose_Request struct{
-	UserLogin	string	`json:"UserLogin"`
-	Password	string	`json:"Password"`
-	Action	string	`json:"Action"`
-	Subaction	string	`json:"Subaction"`
-	TicketID	string	`json:"TicketID"`
-	StateID		string	`json:"StateID"`
-	From		string	`json:"From"`
-	To		string	`json:"To"`
-	Cc		string	`json:"Cc"`
-	Bcc		string	`json:"Bcc"`
-	Subject		string	`json:"Subject"`
-	Body		string	`json:"Body"`
-	InReplyTo	string	`json:"InReplyTo"`
-	References	string	`json:"References"`
-	ResponseID	string	`json:"ResponseID"`
-	ReplyArticleID	string	`json:"ReplyArticleID"`
-	ArticleTypeID	string	`json:"ArticleTypeID"`
-	TimeUnits	string	`json:"TimeUnits"`
-	Year		string	`json:"Year"`
-	Month		string	`json:"Month"`
-	Day		string	`json:"Day"`
-	Hour		string	`json:"Hour"`
-	Minute		string	`json:"Minute"`
-	ReplyAll	string	`json:"ReplyAll"`
-	CustomerTicketCounterToCustomer	string	`json:"CustomerTicketCounterToCustomer"`
-	CustomerTicketText      	[]string        `json:"CustomerTicketText"`
-	CustomerKey     		[]string        `json:"CustomerKey"`
-	CustomerQueue  	 		[]string        `json:"CustomerQueue"`
-	CustomerTicketCounterCcCustomer string  `json:"CustomerTicketCounterCcCustomer"`
-	CcCustomerTicketText      	[]string        `json:"CcCustomerTicketText"`
-	CcCustomerKey     		[]string        `json:"CcCustomerKey"`
-	CustomerQueueCc  		[]string        `json:"CustomerQueueCc"`
-	CustomerTicketCounterBccCustomer string  `json:"CustomerTicketCounterBccCustomer"`
-	BccCustomerTicketText      	[]string        `json:"BccCustomerTicketText"`
-	BccCustomerKey			[]string	`json:"BccCustomerKey"`
-	BccCustomerQueue		[]string	`json:"BccCustomerQueue"`
-	Attachment        		[]ATCR_Attachment        `json:"Attachment"`
+	UserLogin	string	`json:"UserLogin,omitempty"`
+	Password	string	`json:"Password,omitempty"`
+	Action	string	`json:"Action,omitempty"`
+	Subaction	string	`json:"Subaction,omitempty"`
+	TicketID	string	`json:"TicketID,omitempty"`
+	StateID		string	`json:"StateID,omitempty"`
+	From		string	`json:"From,omitempty"`
+	To		string	`json:"To,omitempty"`
+	Cc		string	`json:"Cc,omitempty"`
+	Bcc		string	`json:"Bcc,omitempty"`
+	Subject		string	`json:"Subject,omitempty"`
+	Body		string	`json:"Body,omitempty"`
+	InReplyTo	string	`json:"InReplyTo,omitempty"`
+	References	string	`json:"References,omitempty"`
+	ResponseID	string	`json:"ResponseID,omitempty"`
+	ReplyArticleID	string	`json:"ReplyArticleID,omitempty"`
+	ArticleTypeID	string	`json:"ArticleTypeID,omitempty"`
+	TimeUnits	string	`json:"TimeUnits,omitempty"`
+	Year		string	`json:"Year,omitempty"`
+	Month		string	`json:"Month,omitempty"`
+	Day		string	`json:"Day,omitempty"`
+	Hour		string	`json:"Hour,omitempty"`
+	Minute		string	`json:"Minute,omitempty"`
+	ReplyAll	string	`json:"ReplyAll,omitempty"`
+	CustomerTicketCounterToCustomer	string	`json:"CustomerTicketCounterToCustomer,omitempty"`
+	CustomerTicketText      	[]string        `json:"CustomerTicketText,omitempty"`
+	CustomerKey     		[]string        `json:"CustomerKey,omitempty"`
+	CustomerQueue  	 		[]string        `json:"CustomerQueue,omitempty"`
+	CustomerTicketCounterCcCustomer string  `json:"CustomerTicketCounterCcCustomer,omitempty"`
+	CcCustomerTicketText      	[]string        `json:"CcCustomerTicketText,omitempty"`
+	CcCustomerKey     		[]string        `json:"CcCustomerKey,omitempty"`
+	CustomerQueueCc  		[]string        `json:"CustomerQueueCc,omitempty"`
+	CustomerTicketCounterBccCustomer string  `json:"CustomerTicketCounterBccCustomer,omitempty"`
+	BccCustomerTicketText      	[]string        `json:"BccCustomerTicketText,omitempty"`
+	BccCustomerKey			[]string	`json:"BccCustomerKey,omitempty"`
+	BccCustomerQueue		[]string	`json:"BccCustomerQueue,omitempty"`
+	Attachment        		*[]ATCR_Attachment        `json:"Attachment,omitempty"`
 
 }
 
@@ -59,9 +59,9 @@ type AgentTicketCompose_Request struct{
 //
 //
 type ATCR_Attachment struct{
-	Content	string	`json:"Content"`
-	ContentType	string	`json:"ContentType"`
-	Filename	string	`json:"Filename"`
+	Content	string	`json:"Content,omitempty"`
+	ContentType	string	`json:"ContentType,omitempty"`
+	Filename	string	`json:"Filename,omitempty"`
 }
 
 

@@ -3,8 +3,8 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/Unotechsoftware/Hydra/utils"
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
 	"github.com/antigloss/go/logger"
 	"net/http"
 )
@@ -13,13 +13,13 @@ import (
 //
 // It includes required parameters
 type LinkObject_Request struct{
-	UserLogin	string	`json:"UserLogin"`
-	Password	string	`json:"Password"`
-	SourceObject		string	`json:"SourceObject"`
-	LinkTargetKeys	[]string	`json:"LinkTargetKeys"`
-	SourceKey	string	`json:"SourceKey"`
-	TypeIdentifier	string	`json:"TypeIdentifier"`
-	TargetIdentifier	string	`json:"TargetIdentifier"`
+	UserLogin	string	`json:"UserLogin,omitempty"`
+	Password	string	`json:"Password,omitempty"`
+	SourceObject		string	`json:"SourceObject,omitempty"`
+	LinkTargetKeys	[]string	`json:"LinkTargetKeys,omitempty"`
+	SourceKey	string	`json:"SourceKey,omitempty"`
+	TypeIdentifier	string	`json:"TypeIdentifier,omitempty"`
+	TargetIdentifier	string	`json:"TargetIdentifier,omitempty"`
 }
 
 // This function is a handler that creates a POST API to link objects.

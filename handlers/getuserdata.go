@@ -1,20 +1,18 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydra/utils"
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
 	"net/http"
 )
 
 func getuserdata(username string, password string, userid string) []uint8{
 
-	sessionIDString := callSessionDetails(username, password)
 	ConfObj := lerna.ReturnConfigObject()
 	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
 	felicityapiuri := ConfObj.Sub("components.otrs.apis.GetUserData").GetString("uri")
 
-	url := felicitybaseurl + felicityapiuri + "?UserID=" + userid + "&SessionID=" + sessionIDString
-
+	url := felicitybaseurl + felicityapiuri + "?UserID=" + userid + "&UserLogin=" + username +"&Password="+password
 
 	return utils.MakeHTTPGetCall(url)
 

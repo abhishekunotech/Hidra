@@ -3,8 +3,8 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/Unotechsoftware/Hydra/utils"
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
 	"github.com/antigloss/go/logger"
 	"net/http"
 	"fmt"
@@ -14,27 +14,29 @@ import (
 //
 // It includes required parameters
 type LinkObjectSearch_Request struct{
-	UserLogin	string	`json:"UserLogin"`
-	Password	string	`json:"Password"`
-	SourceObject	string	`json:"SourceObject"`
-	SourceKey	string	`json:"SourceKey"`
-	TargetIdentifier       string  `json:"TargetIdentifier"`
-	TypeIDs		[]string	`json:"TypeIDs"`
-	StateIDs 	[]string        `json:"StateIDs"`
-	TicketTitle	string	`json:"TicketTitle"`
-	TicketNumber	string	`json:"TicketNumber"`
-	PriorityIDs     []string        `json:"PriorityIDs"`
-	TicketFulltext    string  `json:"TicketFulltext"`
-	WorkOrderTitle    string  `json:"WorkOrderTitle"`
-	ChangeTitle     string  `json:"ChangeTitle"`
-	ChangeNumber    string  `json:"ChangeNumber"`
-	Number          string  `json:"Number"`
-	What    	string  `json:"What"`
-	Title    	string  `json:"Title"`
-	WorkOrderNumber    string  `json:"WorkOrderNumber"`
-	InciStateIDs    []string        `json:"InciStateIDs"`
-	DeplStateIDs    []string        `json:"DeplStateIDs"`
-	Name    	string  `json:"Name"`
+	UserLogin	string	`json:"UserLogin,omitempty"`
+	Password	string	`json:"Password,omitempty"`
+	SourceObject	string	`json:"SourceObject,omitempty"`
+	SourceKey	string	`json:"SourceKey,omitempty"`
+	TargetIdentifier       string  `json:"TargetIdentifier,omitempty"`
+	TypeIDs		[]string	`json:"TypeIDs,omitempty"`
+	StateIDs 	[]string        `json:"StateIDs,omitempty"`
+	TicketTitle	string	`json:"TicketTitle,omitempty"`
+	TicketNumber	string	`json:"TicketNumber,omitempty"`
+	PriorityIDs     []string        `json:"PriorityIDs,omitempty"`
+	TicketFulltext    string  `json:"TicketFulltext,omitempty"`
+	WorkOrderTitle    string  `json:"WorkOrderTitle,omitempty"`
+	ChangeTitle     string  `json:"ChangeTitle,omitempty"`
+	ChangeNumber    string  `json:"ChangeNumber,omitempty"`
+	Number          string  `json:"Number,omitempty"`
+	What    	string  `json:"What,omitempty"`
+	Title    	string  `json:"Title,omitempty"`
+	WorkOrderNumber    string  `json:"WorkOrderNumber,omitempty"`
+	InciStateIDs    []string        `json:"InciStateIDs,omitempty"`
+	DeplStateIDs    []string        `json:"DeplStateIDs,omitempty"`
+	Name    	string  `json:"Name,omitempty"`
+	TypeIdentifier	string	`json:"TypeIdentifier,omitempty"`
+	LinkTargetKeys	[]string	`json:"LinkTargetKeys,omitempty"`
 }
 
 // This function is a handler that creates a POST API

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"bytes"
 	"encoding/json"
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"net/http"
@@ -16,28 +16,28 @@ import (
 //
 // It includes sub-types Ticket and Article
 type SR_Request struct {
-	UserLogin      string   `json:"UserLogin"`
-	Password       string   `json:"Password"`
-	Ticket         Ticket  `json:"Ticket"`
-	Article        Article  `json:"Article"`
+	UserLogin      string   `json:"UserLogin,omitempty"`
+	Password       string   `json:"Password,omitempty"`
+	Ticket         *Ticket  `json:"Ticket,omitempty"`
+	Article        *Article  `json:"Article,omitempty"`
 }
 type Ticket struct{
-	Title		 string   `json:"Title"`
-	State      	 string   `json:"State"`
-	Priority         string   `json:"Priority"`
-	Queue  	 	 string   `json:"Queue"`
-	CustomerUser     string   `json:"CustomerUser"`
-	Type      	 string   `json:"Type"`
-	ServiceID        string   `json:"ServiceID"`
-	SLAID            string   `json:"SLAID"`
-	Owner            string   `json:"Owner"`
-	Responsible      string   `json:"Responsible"`
+	Title		 string   `json:"Title,omitempty"`
+	State      	 string   `json:"State,omitempty"`
+	Priority         string   `json:"Priority,omitempty"`
+	Queue  	 	 string   `json:"Queue,omitempty"`
+	CustomerUser     string   `json:"CustomerUser,omitempty"`
+	Type      	 string   `json:"Type,omitempty"`
+	ServiceID        string   `json:"ServiceID,omitempty"`
+	SLAID            string   `json:"SLAID,omitempty"`
+	Owner            string   `json:"Owner,omitempty"`
+	Responsible      string   `json:"Responsible,omitempty"`
 }
 type Article struct{
-	Subject      string   `json:"Subject"`
-	Body         string   `json:"Body"`
-	Charset      string   `json:"Charset"`
-	MimeType     string   `json:"MimeType"`
+	Subject      string   `json:"Subject,omitempty"`
+	Body         string   `json:"Body,omitempty"`
+	Charset      string   `json:"Charset,omitempty"`
+	MimeType     string   `json:"MimeType,omitempty"`
 }
 
 
