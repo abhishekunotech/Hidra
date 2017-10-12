@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav2/utils"
-	"github.com/Unotechsoftware/Hydrav2/lerna"
+	"github.com/Unotechsoftware/Hydrav3/utils"
+	"github.com/Unotechsoftware/Hydrav3/lerna"
 	"net/http"
 )
 

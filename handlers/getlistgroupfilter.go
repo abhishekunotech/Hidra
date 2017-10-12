@@ -1,20 +1,9 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav2/utils"
-	"github.com/Unotechsoftware/Hydrav2/lerna"
+	"github.com/Unotechsoftware/Hydrav3/utils"
 	"net/http"
 )
-
-func callGroupFilter(username string, password string, UserAccess string) []uint8{
-	sessionIDString := callSessionDetails(username, password)
-	ConfObj := lerna.ReturnConfigObject()
-	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistgroupfilter").GetString("uri")
-	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&UserAccess=" + UserAccess
-	return utils.MakeHTTPGetCall(url)
-}
-
 
 // This function is a handler that creates a GET API <TBD>
 //
@@ -23,28 +12,9 @@ func callGroupFilter(username string, password string, UserAccess string) []uint
 // Returns data as found, with a variable JSON Structure
 func (h *Handler) GetListGroupFilter(w http.ResponseWriter, r *http.Request) {
 
-	mapHttp := utils.RequestAbstractGet(r)
-	var userName string
-	var password string
-	var userAccess string
-	for key, value := range mapHttp {
-		if key == "UserLogin" {
-			for _, valueStrg := range value {
-				userName = valueStrg
-			}
-		}
-		if key == "Password" {
-			for _, valueStrg := range value {
-				password = valueStrg
-			}
-		}
-		if key == "UserAccess" {
-			for _, valueStrg := range value {
-				userAccess = valueStrg
-			}
-		}
-	}
-
-	groupfilter := callGroupFilter(userName, password, userAccess)
+	actionStrg := utils.RequestAbstractGet1(r)
+	configStrg := "components.otrs"
+	uriStrg := "components.otrs.apis.getlistgroupfilter"
+	groupfilter := utils.ExecuteCallGet(configStrg,uriStrg,actionStrg)
 	utils.ResponseAbstract(groupfilter, w)
 }

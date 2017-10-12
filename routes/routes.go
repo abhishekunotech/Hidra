@@ -9,9 +9,9 @@
 package routes
 
 import (
-	"github.com/Unotechsoftware/Hydrav2/handlers"
-	"github.com/Unotechsoftware/Hydrav2/lerna"
-	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav3/handlers"
+	"github.com/Unotechsoftware/Hydrav3/lerna"
+	"github.com/Unotechsoftware/Hydrav3/utils"
 	"github.com/gorilla/mux"
 	"net/http"
 	"reflect"

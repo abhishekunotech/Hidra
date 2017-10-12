@@ -1,8 +1,8 @@
 package utils
 
 import(
-	"github.com/Unotechsoftware/Hydrav2/lerna"
-	"github.com/Unotechsoftware/Hydrav2/models"
+	"github.com/Unotechsoftware/Hydrav3/lerna"
+	"github.com/Unotechsoftware/Hydrav3/models"
 )
 
 // FUnction that provides the List of all the APIs exposed by Hydra

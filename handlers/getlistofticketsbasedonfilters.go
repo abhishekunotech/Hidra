@@ -3,10 +3,10 @@ package handlers
 
 
 import (
-	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav3/utils"
 	"bytes"
 	"encoding/json"
-	"github.com/Unotechsoftware/Hydrav2/lerna"
+	"github.com/Unotechsoftware/Hydrav3/lerna"
 	"github.com/antigloss/go/logger"
 	"net/http"
 )
