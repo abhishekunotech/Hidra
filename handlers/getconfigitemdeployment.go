@@ -1,22 +1,9 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav3/utils"
-	"github.com/Unotechsoftware/Hydrav3/lerna"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
 )
-
-func callGetConfigItemDeploymentState(username string, password string) []uint8{
-
-	ConfObj := lerna.ReturnConfigObject()
-	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.GetConfigItemDeploymentState").GetString("uri")
-	sessionIDString := callSessionDetails(username, password)
-	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + username + "&Password=" + password + "&SessionID=" + sessionIDString 
-	
-	return utils.MakeHTTPGetCall(url)
-
-}
 
 // This function is a handler that creates a GET API to get Link Object CI Deployment State Dropdown List. 
 //
@@ -24,20 +11,10 @@ func callGetConfigItemDeploymentState(username string, password string) []uint8{
 //
 // Returns data as shown in examples
 func (h *Handler) GetConfigItemDeploymentState(w http.ResponseWriter, r *http.Request) {
-	mapHttp := utils.RequestAbstractGet(r)
-	var username string
-	var password string
-	for key, value := range mapHttp {
-		if key == "UserLogin" {
-			for _, valueStrg := range value {
-				username = valueStrg
-			}
-		}
-		if key == "Password" {
-			for _, valueStrg := range value {
-				password = valueStrg
-			}
-		}
-	}
-	utils.ResponseAbstract(callGetConfigItemDeploymentState(username, password),w)
+
+	actionStrg := utils.RequestAbstractGet1(r)
+        configStrg := "components.otrs"
+        uriStrg := "components.otrs.apis.GetConfigItemDeploymentState"
+        configDeployment := utils.ExecuteCallGet(configStrg, uriStrg, actionStrg)
+        utils.ResponseAbstract(configDeployment, w)
 }

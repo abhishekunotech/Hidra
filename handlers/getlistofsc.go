@@ -1,22 +1,10 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav3/lerna"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
-	"github.com/Unotechsoftware/Hydrav3/utils"
 )
 
-func callGetCatalogList(username string, password string) []uint8{
-
-	sessionIDString := callSessionDetails(username, password)
-	ConfObj := lerna.ReturnConfigObject()
-	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.GetCatalogList").GetString("uri")
-	
-	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + username + "&Password=" + password + "&SessionID=" + sessionIDString
-	return utils.MakeHTTPGetCall(url)
-
-}
 
 // This function is a handler that creates a GET API to search for a term in the Service Catalog
 //
@@ -24,22 +12,10 @@ func callGetCatalogList(username string, password string) []uint8{
 //
 // Returns data as found, with a variable JSON Structure
 func (h *Handler) GetCatalogList(w http.ResponseWriter, r *http.Request) {
-	mapHttp := utils.RequestAbstractGet(r)
-	var userName string
-	var password string
-	for key, value := range mapHttp {
-		if key == "UserLogin" {
-			for _, valueStrg := range value {
-				userName = valueStrg
-			}
-		}
-		if key == "Password" {
-			for _, valueStrg := range value {
-				password = valueStrg
-			}
-		}
-			}
 
-	something := callGetCatalogList(userName, password)
-	utils.ResponseAbstract(something, w)
+	actionStrg := utils.RequestAbstractGet1(r)
+        configStrg := "components.otrs"
+        uriStrg := "components.otrs.apis.GetCatalogList"
+        utils.ResponseAbstract(utils.ExecuteCallGet(configStrg, uriStrg, actionStrg), w)
+
 }

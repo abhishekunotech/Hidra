@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav3/lerna"
+	"github.com/Unotechsoftware/Hydra/lerna"
         "net/http"
-        "github.com/Unotechsoftware/Hydrav3/utils"
+        "github.com/Unotechsoftware/Hydra/utils"
 	"encoding/json"
 	"github.com/antigloss/go/logger"
 	"time"

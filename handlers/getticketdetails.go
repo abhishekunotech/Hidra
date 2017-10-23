@@ -1,20 +1,9 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav3/utils"
-	"github.com/Unotechsoftware/Hydrav3/lerna"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
 )
-
-func callTicketDetails(username string, password string, ticketid string) []uint8{
-	ConfObj := lerna.ReturnConfigObject()
-	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.getticketdetails").GetString("uri")
-	felicityusername := ConfObj.Sub("components.otrs.apis.getticketdetails.parameters").GetString("UserLogin")
-	felicitypassword := ConfObj.Sub("components.otrs.apis.getticketdetails.parameters").GetString("Password")
-	url := felicitybaseurl + felicityapiuri + "?UserLogin=" + felicityusername + "&Password=" + felicitypassword
-	return utils.MakeHTTPGetCall(url)
-}
 
 // This function is a handler that creates a GET API that returns the details of the Ticket.
 //
@@ -22,26 +11,9 @@ func callTicketDetails(username string, password string, ticketid string) []uint
 //
 // Returns data as shown in examples.
 func (h *Handler) GetTicketDetails(w http.ResponseWriter, r *http.Request) {
-	mapHttp := r.URL.Query()
-	var userName string
-	var password string
-	var ticketid string
-	for key, value := range mapHttp {
-		if key == "ticketID" {
-			for _, valueStrg := range value {
-				ticketid = valueStrg
-			}
-		}
-		if key == "UserLogin" {
-			for _, valueStrg := range value {
-				userName = valueStrg
-			}
-		}
-		if key == "Password" {
-			for _, valueStrg := range value {
-				password = valueStrg
-			}
-		}
-	}
-	utils.ResponseAbstract(callTicketDetails(userName, password, ticketid),w)
+
+	actionStrg := utils.RequestAbstractGet1(r)
+        configStrg := "components.otrs"
+        uriStrg := "components.otrs.apis.getticketdetails"
+        utils.ResponseAbstract(utils.ExecuteCallGet(configStrg, uriStrg, actionStrg), w)
 }

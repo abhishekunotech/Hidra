@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav3/utils"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
 )
 
