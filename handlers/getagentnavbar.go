@@ -15,6 +15,6 @@ func (h *Handler) GetAgentNavBar(w http.ResponseWriter, r *http.Request) {
 	actionStrng := utils.RequestAbstractGet1(r)
 	configStrng := "components.otrs"
 	uriStrng := "components.otrs.apis.GetAgentNavBar"
-	agentNavBar := utils.ExecuteCallGet(actionStrng, configStrng, uriStrng)
+	agentNavBar := utils.ExecuteCallGet(configStrng, uriStrng, actionStrng)
 	utils.ResponseAbstract(agentNavBar, w)
 }

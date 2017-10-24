@@ -11,11 +11,9 @@ import (
 //
 // Returns data as shown in examples.
 func (h *Handler) GetSLAInfo(w http.ResponseWriter, r *http.Request) {
-
 	actionStrng := utils.RequestAbstractGet1(r)
 	configStrng := "components.otrs"
 	uriStrng := "components.otrs.apis.getslainfo"
-	slainfo := utils.ExecuteCallGet(configStrng, actionStrng, uriStrng)
+	slainfo := utils.ExecuteCallGet(configStrng, uriStrng, actionStrng)
 	utils.ResponseAbstract(slainfo, w)
-
 }
