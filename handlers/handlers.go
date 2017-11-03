@@ -11,13 +11,8 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-<<<<<<< Updated upstream
-	"github.com/Unotechsoftware/Hydrav4/utils"
-	"github.com/Unotechsoftware/Hydrav4/lerna"
-=======
-	"github.com/Unotechsoftware/Hydrav4/utils"
-	"github.com/Unotechsoftware/Hydrav4/lerna"
->>>>>>> Stashed changes
+	"github.com/Unotechsoftware/Hydra/utils"
+	"github.com/Unotechsoftware/Hydra/lerna"
 	"github.com/antigloss/go/logger"
 	"io/ioutil"
 	"log"

@@ -37,7 +37,7 @@ figlet -f small "Installing Hydra"
 sleep 1
 
 
-git clone https://github.com/Unotechsoftware/Hydrav4.git
+git clone https://github.com/Unotechsoftware/Hydra.git
 
 cd Hydra
 

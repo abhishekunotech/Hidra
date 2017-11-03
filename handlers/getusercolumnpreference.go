@@ -1,25 +1,10 @@
 package handlers
 
 import (
-<<<<<<< Updated upstream
-	"github.com/Unotechsoftware/Hydrav4/utils"
-	"github.com/Unotechsoftware/Hydrav4/lerna"
-=======
-	"github.com/Unotechsoftware/Hydrav4/utils"
-	"github.com/Unotechsoftware/Hydrav4/lerna"
->>>>>>> Stashed changes
+	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
 )
 
-func callUserColumnPreference(Component string,URI string ,Action string) []uint8{
-
-	ConfObj := lerna.ReturnConfigObject()
-	
-	felicitybaseurl := ConfObj.Sub(Component).GetString("url")
-	felicityapiuri := ConfObj.Sub(URI).GetString("uri")
-	url := felicitybaseurl + felicityapiuri +  Action 
-	return utils.MakeHTTPGetCall(url)
-}
 
 // This function is a handler that provides the details about user column preferences based on action 
 //

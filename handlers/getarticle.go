@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/Unotechsoftware/Hydrav4/utils"
+	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
 )
 
@@ -14,9 +14,6 @@ import (
 func (h *Handler) GetArticle(w http.ResponseWriter, r *http.Request) {
 
 	actionStrg := utils.RequestAbstractGet1(r)
-        configStrg := "components.otrs"
-        uriStrg := "components.otrs.apis.getarticle"
-        article := utils.ExecuteCallGet(configStrg, uriStrg, actionStrg)
 	utils.ResponseAbstract(utils.ExecuteCallGet("components.otrs","components.otrs.apis.getarticle",actionStrg),w)
 
 }

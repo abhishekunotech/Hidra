@@ -1,13 +1,8 @@
 package handlers
 
 import (
-<<<<<<< Updated upstream
-	"github.com/Unotechsoftware/Hydrav4/utils"
-	"github.com/Unotechsoftware/Hydrav4/lerna"
-=======
-	"github.com/Unotechsoftware/Hydrav4/utils"
-	"github.com/Unotechsoftware/Hydrav4/lerna"
->>>>>>> Stashed changes
+	"github.com/Unotechsoftware/Hydra/utils"
+	"github.com/Unotechsoftware/Hydra/lerna"
 	"net/http"
 )
 
