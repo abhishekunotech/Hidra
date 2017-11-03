@@ -11,8 +11,8 @@ package main
 import (
 	"log"
 	"net/http"
-//	"github.com/Unotechsoftware/Hydrav2/utils"
-	"github.com/Unotechsoftware/Hydrav2/routes"	
+//	"github.com/Unotechsoftware/Hydra/utils"
+	"github.com/Unotechsoftware/Hydra/routes"	
 	"github.com/antigloss/go/logger"
 	"os"
 )

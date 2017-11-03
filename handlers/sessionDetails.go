@@ -5,7 +5,7 @@ import (
 <<<<<<< Updated upstream
 	"github.com/Unotechsoftware/Hydra/lerna"
 =======
-	"github.com/Unotechsoftware/Hydrav2/lerna"
+	"github.com/Unotechsoftware/Hydra/lerna"
 >>>>>>> Stashed changes
 	"github.com/antigloss/go/logger"
 	"io"

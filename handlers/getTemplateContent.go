@@ -1,14 +1,9 @@
 package handlers
 
 import (
-<<<<<<< Updated upstream
+	"github.com/Unotechsoftware/Hydra/lerna"
+	"net/http"
 	"github.com/Unotechsoftware/Hydra/utils"
-	"net/http"
-=======
-	"github.com/Unotechsoftware/Hydrav2/lerna"
-	"net/http"
-	"github.com/Unotechsoftware/Hydrav2/utils"
->>>>>>> Stashed changes
 )
 
 // This function is a handler that creates a GET API that returns the content of a Template defined by its ID.

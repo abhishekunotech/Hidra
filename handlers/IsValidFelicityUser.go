@@ -1,15 +1,9 @@
 package handlers
 
 import (
-<<<<<<< Updated upstream
 	"github.com/Unotechsoftware/Hydra/lerna"
         "net/http"
         "github.com/Unotechsoftware/Hydra/utils"
-=======
-	"github.com/Unotechsoftware/Hydrav2/lerna"
-        "net/http"
-        "github.com/Unotechsoftware/Hydrav2/utils"
->>>>>>> Stashed changes
 	"encoding/json"
 	"github.com/antigloss/go/logger"
 	"time"

@@ -5,9 +5,9 @@ import (
 	"github.com/Unotechsoftware/Hydra/utils"
 	"net/http"
 =======
-	"github.com/Unotechsoftware/Hydrav2/lerna"
+	"github.com/Unotechsoftware/Hydra/lerna"
 	"net/http"
-	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydra/utils"
 >>>>>>> Stashed changes
 )
 
