@@ -1,7 +1,7 @@
 package utils
 
 import(
-	"github.com/Unotechsoftware/Hydra/lerna"
+	"github.com/Unotechsoftware/Hydrav4/lerna"
 )
 
 // Function that executes an action on the URL and URI passed to it

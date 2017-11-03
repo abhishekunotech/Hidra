@@ -1,31 +1,10 @@
 package handlers
 
 import (
-<<<<<<< Updated upstream
-	"github.com/Unotechsoftware/Hydra/utils"
+	"github.com/Unotechsoftware/Hydrav4/utils"
 	"net/http"
 )
 
-=======
-	"github.com/Unotechsoftware/Hydra/utils"
-	"github.com/Unotechsoftware/Hydra/lerna"
-	"net/http"
-)
-
-func callAgents(username string, password string, search string, term string) []uint8{
-
-	sessionIDString := callSessionDetails(username, password)
-
-	ConfObj := lerna.ReturnConfigObject()
-	felicitybaseurl := ConfObj.Sub("components.otrs").GetString("url")
-	felicityapiuri := ConfObj.Sub("components.otrs.apis.getlistagents").GetString("uri")
-
-	url := felicitybaseurl + felicityapiuri + "?SessionID=" + sessionIDString + "&Search=" + search + "&Term=" + term
-bodyText := utils.MakeHTTPGetCall(url)
-	return bodyText
-}
-
->>>>>>> Stashed changes
 // This function is a handler that creates a GET API to search for an agent in the system
 //
 // **Business Logic**: Function takes as an input GET Parameter, __term__ that will search for agents whose login names match the parameters.

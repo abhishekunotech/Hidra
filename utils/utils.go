@@ -2,7 +2,7 @@ package utils
 
 import (
 "net/http"
-"github.com/Unotechsoftware/Hydra/utils/logger"
+"github.com/Unotechsoftware/Hydrav4/utils/logger"
 )
 
 // Wrapper Function to logger/logger.go
