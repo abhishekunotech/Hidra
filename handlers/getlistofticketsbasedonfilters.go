@@ -3,10 +3,17 @@ package handlers
 
 
 import (
+<<<<<<< Updated upstream
 	"github.com/Unotechsoftware/Hydra/utils"
 	"bytes"
 	"encoding/json"
 	"github.com/Unotechsoftware/Hydra/lerna"
+=======
+	"github.com/Unotechsoftware/Hydrav2/utils"
+	"bytes"
+	"encoding/json"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
+>>>>>>> Stashed changes
 	"github.com/antigloss/go/logger"
 	"net/http"
 )
@@ -33,6 +40,7 @@ type Grid_API struct {
 	CreatedTime       string     `json:"CreatedTime,omitempty"`
 	SortBy		string	`json:"SortBy,omitempty"`
 	OrderBy		string	`json:"OrderBy,omitempty"`
+	OwnerIDs	[]int	`json:"OwnerIDs,omitempty"`
 }
 
 // This function is a handler that creates a POST API. <TBD>

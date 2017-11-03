@@ -3,8 +3,13 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
+<<<<<<< Updated upstream
 	"github.com/Unotechsoftware/Hydra/utils"
 	"github.com/Unotechsoftware/Hydra/lerna"
+=======
+	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
+>>>>>>> Stashed changes
 	"github.com/antigloss/go/logger"
 	"net/http"
 )
@@ -34,7 +39,7 @@ type AgentTicketCommon_Request struct{
 	NewPriorityID	string	`json:"NewPriorityID,omitempty"`
 	TypeID	string	`json:"TypeID,omitempty"`
 	NewResponsibleID	string	`json:"NewResponsibleID,omitempty"`
-	Article	*[]ATCR_Article	`json:"Article,omitempty"`
+	Article	*[]ATCR_Article	`json:"Attachment,omitempty"`
 	DynamicField	*[]ATCR_DynamicField	`json:"DynamicField,omitempty"`
 }
 

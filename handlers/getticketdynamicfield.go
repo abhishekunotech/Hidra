@@ -2,7 +2,12 @@
 package handlers
 
 import (
+<<<<<<< Updated upstream
 	"github.com/Unotechsoftware/Hydra/utils"
+=======
+	"github.com/Unotechsoftware/Hydrav2/utils"
+	"github.com/Unotechsoftware/Hydrav2/lerna"
+>>>>>>> Stashed changes
 	"net/http"
 )
 
@@ -12,10 +17,16 @@ import (
 //
 // Returns data as shown in examples.
 func (h *Handler) GetTicketDynamicField(w http.ResponseWriter, r *http.Request) {
+<<<<<<< Updated upstream
 
 	actionStrg := utils.RequestAbstractGet1(r)
         configStrg := "components.otrs"
         uriStrg := "components.otrs.apis.GetTicketDynamicField"
         utils.ResponseAbstract(utils.ExecuteCallGet(configStrg, uriStrg, actionStrg), w)
+=======
+	//body, _ := ioutil.ReadAll(r.Body)
+	actionStrg := utils.RequestAbstractGet1(r)
+	utils.ResponseAbstract(utils.ExecuteCallGet("components.otrs","components.otrs.apis.GetTicketDynamicField",actionStrg),w)
+>>>>>>> Stashed changes
 
 }
