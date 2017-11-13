@@ -46,7 +46,7 @@ type ParameterVal struct {
 func ReturnConfigObject() *viper.Viper{
 
 	ViConfig := viper.New()
-	ViConfig.SetConfigName("Hydra")
+	ViConfig.SetConfigName("Hydra-new")
 	ViConfig.AddConfigPath("/etc/Hydra/conf.d/")
 	ViConfig.SetConfigType("json")
 
