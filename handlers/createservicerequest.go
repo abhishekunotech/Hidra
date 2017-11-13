@@ -17,6 +17,7 @@ import (
 // It includes sub-types Ticket and Article
 type SR_Request struct {
 	UserLogin      string   `json:"UserLogin,omitempty"`
+	CustomerUserLogin	string	`json:"CustomerUserLogin,omitempty"`
 	Password       string   `json:"Password,omitempty"`
 	Ticket         *Ticket  `json:"Ticket,omitempty"`
 	Article        *Article  `json:"Article,omitempty"`

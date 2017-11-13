@@ -31,7 +31,9 @@ type AgentTicketCommon_Request struct{
 	Day	string	`json:"Day,omitempty"`
 	Minute	string	`json:"Minute,omitempty"`
 	Month	string	`json:"Month,omitempty"`
-	NewPriorityID	string	`json:"NewPriorityID,omitempty"`
+	ReplyToArticle  string  `json:"ReplyToArticle,omitempty"`
+    UserListWithoutSelection    string  `json:"UserListWithoutSelection,omitempty"`
+    NewPriorityID	string	`json:"NewPriorityID,omitempty"`
 	TypeID	string	`json:"TypeID,omitempty"`
 	NewResponsibleID	string	`json:"NewResponsibleID,omitempty"`
 	Article	*[]ATCR_Article	`json:"Attachment,omitempty"`
